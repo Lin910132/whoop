@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C12E38CC-E58D-4E0C-8411-0F2F1CCE5646</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Whoop</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>35C3EF383E3FF2994174B94BA97872A5FC072980</key>
+		<string>github.com:huangtian549/whoop_new.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Whoop.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>35C3EF383E3FF2994174B94BA97872A5FC072980</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:huangtian549/whoop_new.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>35C3EF383E3FF2994174B94BA97872A5FC072980</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>35C3EF383E3FF2994174B94BA97872A5FC072980</string>
+			<key>IDESourceControlWCCName</key>
+			<string>whoop_new</string>
+		</dict>
+	</array>
+</dict>
+</plist>
