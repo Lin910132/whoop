@@ -12,20 +12,24 @@
 	<dict>
 		<key>35C3EF383E3FF2994174B94BA97872A5FC072980</key>
 		<string>github.com:huangtian549/whoop_new.git</string>
+		<key>42F2DBFF6FDF8A72E3EE97EAD088857F8984DDE7</key>
+		<string>github.com:huangtian549/whoop.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Whoop.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>35C3EF383E3FF2994174B94BA97872A5FC072980</key>
+		<string>../../../whoop_new</string>
+		<key>42F2DBFF6FDF8A72E3EE97EAD088857F8984DDE7</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:huangtian549/whoop_new.git</string>
+	<string>github.com:huangtian549/whoop.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>35C3EF383E3FF2994174B94BA97872A5FC072980</string>
+	<string>42F2DBFF6FDF8A72E3EE97EAD088857F8984DDE7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>35C3EF383E3FF2994174B94BA97872A5FC072980</string>
 			<key>IDESourceControlWCCName</key>
 			<string>whoop_new</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>42F2DBFF6FDF8A72E3EE97EAD088857F8984DDE7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WhoopModified</string>
 		</dict>
 	</array>
 </dict>

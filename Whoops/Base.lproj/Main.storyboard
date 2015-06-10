@@ -1187,7 +1187,7 @@ If you have any questions about these Terms or otherwise need to contact Whoop f
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="top" secondItem="rTB-1f-ENa" secondAttribute="bottom" id="E68-GU-yBF"/>
                             <constraint firstItem="obV-Az-6ZH" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leadingMargin" constant="-16" id="PyI-ZF-pis"/>
                             <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="Rzu-QN-R95"/>
-                            <constraint firstItem="dwa-jf-uwl" firstAttribute="top" secondItem="obV-Az-6ZH" secondAttribute="bottom" constant="390" id="tCN-ws-kBm"/>
+                            <constraint firstItem="obV-Az-6ZH" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="8" id="VVD-E8-kCy"/>
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leading" id="ujx-U2-pCR"/>
                         </constraints>
                     </view>
@@ -1211,7 +1211,6 @@ If you have any questions about these Terms or otherwise need to contact Whoop f
                         <outlet property="photoButton" destination="5rU-iV-n28" id="nCD-10-VL3"/>
                         <outlet property="sendItem" destination="9B2-8O-Yug" id="uMN-ma-Frw"/>
                         <outlet property="toolView" destination="obV-Az-6ZH" id="dJq-8n-sg7"/>
-                        <outlet property="toolViewHeighContraint" destination="tCN-ws-kBm" id="8xH-iL-LVi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIH-bb-Rjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
