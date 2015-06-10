@@ -10,7 +10,7 @@ import UIKit
 
 var textYpostion:CGFloat = 0;
 var isTop:Bool=false;
-
+var bottomHeight:CGFloat = 30;
 protocol YRJokeCellDelegate
 {
     
@@ -33,7 +33,7 @@ protocol YRRefreshCommentDelegate
 
 class YRJokeCell2: UITableViewCell
 {
-
+    
     var delegate:YRJokeCellDelegate?
     var refreshMainDelegate:YRRefreshMainDelegate?
     var refreshCommentDelegate:YRRefreshCommentDelegate?
@@ -46,10 +46,10 @@ class YRJokeCell2: UITableViewCell
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -60,12 +60,13 @@ class YRJokeCell2: UITableViewCell
         {
             view.removeFromSuperview();
         }
+        self.imgList.removeAll(keepCapacity: false)
         
         if(self.data.count <= 0)
         {
             return ;
         }
-
+        
         var rec = UIScreen.mainScreen().bounds.width;
         
         self.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0);
@@ -95,7 +96,7 @@ class YRJokeCell2: UITableViewCell
         var height:CGFloat = 160; //图片区域的高度
         var offset:CGFloat = 5; //图片偏移区
         var xPositon:CGFloat = 5;
-        var yPosition:CGFloat = 33;
+        var yPosition:CGFloat = 30;
         var width:CGFloat;
         width = (CGFloat)(ivBack.frame.size.width - 55); //图片区域的宽度
         
@@ -108,19 +109,23 @@ class YRJokeCell2: UITableViewCell
             if (imgArray.count == 1)
             {
                 //只有一张图片,高度应该小于宽度，以高度为准，居中显示
-                var img0 = UIImageView(frame:CGRectMake((width - height)/2, yPosition, height, height));
-                self.imgList.append(img0)
+                var imgView = UIImageView(frame:CGRectMake((width - height)/2, yPosition, height, height));imgView.userInteractionEnabled = true
+                var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                imgView.addGestureRecognizer(tap)
+
+                self.imgList.append(imgView)
                 
-                ivBack.addSubview(img0);
+                
+                ivBack.addSubview(imgView);
                 var imgUrl = imgArray.objectAtIndex(0) as! NSString;
                 if(imgUrl.length <= 0)
                 {
-                    img0.image = UIImage(named: "Logoo.png");
+                    imgView.image = UIImage(named: "Logoo.png");
                 }
                 else
                 {
                     var imagURL = FileUtility.getUrlImage() + (imgUrl as String);
-                    img0.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"));
+                    imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"));
                 }
                 
                 textYpostion = height + yPosition;
@@ -137,7 +142,7 @@ class YRJokeCell2: UITableViewCell
                 for imgUrl in imgArray
                 {
                     var x:CGFloat;
-                     x = xPositon + CGFloat(index * Int(imgWidth + offset));
+                    x = xPositon + CGFloat(index * Int(imgWidth + offset));
                     var imgView = UIImageView(frame:CGRectMake(x, yPosition, imgWidth, imgWidth));
                     self.imgList.append(imgView)
                     imgView.userInteractionEnabled = true
@@ -177,7 +182,15 @@ class YRJokeCell2: UITableViewCell
                     ivBack.addSubview(imgView);
                 }
                 
-                textYpostion = yPosition + CGFloat(index/3 * Int(widthTmp + offset));
+                if(index > 3)
+                {
+                    textYpostion = yPosition + CGFloat(2 * Int(widthTmp + offset));
+                }
+                else
+                {
+                    textYpostion = yPosition + CGFloat(Int(widthTmp + offset));
+                }
+                
             }
         }
         else
@@ -190,43 +203,47 @@ class YRJokeCell2: UITableViewCell
         if(isTop)
         {
             lbPostion = yPosition;
+            //textYpostion = yPosition;
         }
         else
         {
             lbPostion = textYpostion;
         }
         
-        var lableContent = UILabel(frame: CGRectMake(3, lbPostion + 5, ivBack.frame.size.width-6, 1000));
+        var lableContent = UILabel(frame: CGRectMake(3, lbPostion, ivBack.frame.size.width-6, 1000));
         lableContent.numberOfLines = 0;
         lableContent.textColor = UIColor(red:60.0/255.0 , green:60.0/255.0 , blue: 60.0/255.0, alpha: 1.0);
         lableContent.font = UIFont.systemFontOfSize(13);
         var text = data.stringAttributeForKey("content");
         
         lableContent.text = text as String;
-        let size = text.stringHeightWith(13,width:lableContent.frame.size.width);
+        var size = text.stringHeightWith(13,width:lableContent.frame.size.width);
         var rect = lableContent.frame as CGRect;
+        
         rect.size.height = size+20;
+        
         rect.size.width = ivBack.frame.size.width-50
         lableContent.frame = rect;
         ivBack.addSubview(lableContent);
         
         //设置底部数据
         var bottomY = textYpostion+size + 25;
+        
         if(isTop)
         {
-            if(size + yPosition > 153)
+            if(size + 20 + lbPostion > 153)
             {
-                bottomY = size + yPosition + 25;
+                bottomY = size + lbPostion + 30;
             }
             else
             {
-                bottomY = 138 + 15;
+                bottomY = 153;
             }
             
         }
         
         var rectBack = ivBack.frame as CGRect;
-        rectBack.size.height = bottomY + 35;
+        rectBack.size.height = bottomY + bottomHeight;
         ivBack.frame = rectBack;
         
         //喜欢按钮
@@ -255,24 +272,24 @@ class YRJokeCell2: UITableViewCell
         unlike.addTarget(self, action: "btnUnLikeClick:", forControlEvents: UIControlEvents.TouchUpInside);
         ivBack.addSubview(unlike);
         
-
-
         
-        var viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, 35));
+        
+        
+        var viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, bottomHeight));
         viewBottom.backgroundColor = UIColor(red:244.0/255.0 , green:244.0/255.0 , blue:244.0/255.0 , alpha: 1.0);
         ivBack.addSubview(viewBottom);
         
-        var imgTime = UIImageView(frame: CGRectMake(5, 9, 16, 16));
+        var imgTime = UIImageView(frame: CGRectMake(5, (bottomHeight - 16)/2, 16, 16));
         imgTime.image = UIImage(named: "time");
         viewBottom.addSubview(imgTime);
         
-        var createDateLabel = UILabel(frame: CGRectMake(25, 9, 30, 16));
+        var createDateLabel = UILabel(frame: CGRectMake(25, (bottomHeight - 16)/2, 30, 16));
         createDateLabel.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         createDateLabel.font = UIFont.systemFontOfSize(13);
         createDateLabel.text = data.stringAttributeForKey("createDateLabel") as String;
         viewBottom.addSubview(createDateLabel);
         
-        var commentCount = UILabel(frame: CGRectMake(55, 9, 70, 16));
+        var commentCount = UILabel(frame: CGRectMake(55, (bottomHeight - 16)/2, 70, 16));
         commentCount.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         commentCount.font = UIFont.systemFontOfSize(13);
         commentCount.textAlignment = NSTextAlignment.Center;
@@ -288,18 +305,18 @@ class YRJokeCell2: UITableViewCell
         commentCount.text = "\(strcommentCount) ";
         viewBottom.addSubview(commentCount);
         
-        var  imgNick = UIImageView(frame: CGRectMake(155, 9, 16, 16));
+        var  imgNick = UIImageView(frame: CGRectMake(155, (bottomHeight - 16)/2, 16, 16));
         imgNick.image = UIImage(named: "ballonHighlight");
         imgNick.userInteractionEnabled = true;
         viewBottom.addSubview(imgNick);
         
-        var nickName = UILabel(frame: CGRectMake(177, 9, ivBack.frame.width - 180, 16));
+        var nickName = UILabel(frame: CGRectMake(177, (bottomHeight - 16)/2, ivBack.frame.width - 180, 16));
         nickName.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         nickName.font = UIFont.systemFontOfSize(13);
         nickName.text = data.stringAttributeForKey("nickName") as String;
         viewBottom.addSubview(nickName);
         
-        var btnNick = UIButton(frame: CGRectMake(155, 9, ivBack.frame.width - 164, 16));
+        var btnNick = UIButton(frame: CGRectMake(155, (bottomHeight - 16)/2, ivBack.frame.width - 164, 16));
         btnNick.backgroundColor = UIColor.clearColor();
         btnNick.addTarget(self, action: "btnNickClick:", forControlEvents: UIControlEvents.TouchUpInside);
         viewBottom.addSubview(btnNick);
@@ -327,9 +344,9 @@ class YRJokeCell2: UITableViewCell
                     subject = subject + "..."
                 }
                 subject = "I'm interest in your post in Whoop, that " + subject
-
+                
                 var body:String = "Hi, I'm interest in your post in Whoop, that \"" + content + "\""
-
+                
                 delegate?.sendEmail(nick as String,
                     strSubject: subject,
                     strBody:  body)
@@ -338,7 +355,7 @@ class YRJokeCell2: UITableViewCell
         }
     }
     
-
+    
     
     func btnFavClick(sender:UIButton)
     {
@@ -356,7 +373,7 @@ class YRJokeCell2: UITableViewCell
             self.refreshCommentDelegate?.refreshCommentByFavor()
             
         })
-
+        
     }
     
     func btnLikeClick(sender:UIButton)
@@ -401,27 +418,100 @@ class YRJokeCell2: UITableViewCell
         lableContent.numberOfLines = 0;
         lableContent.font = UIFont.systemFontOfSize(13);
         var text = data.stringAttributeForKey("content");
-        let size = text.stringHeightWith(13,width:mainWidth - 26);
+        var size = text.stringHeightWith(13,width:mainWidth - 26);
+        //size = size + 20.0;
+        //设置图片
+        var imageStr = data.stringAttributeForKey("image") as NSString;
+        var imgArray = imageStr.componentsSeparatedByString(",") as NSArray;
+        var height:CGFloat = 160; //图片区域的高度
+        var offset:CGFloat = 5; //图片偏移区
+        var xPositon:CGFloat = 5;
+        var yPosition:CGFloat = 30;
+        var width:CGFloat;
+        width = (CGFloat)(UIScreen.mainScreen().bounds.width - 20 - 55); //图片区域的宽度
         
-        var bottomY = textYpostion+size + 10;
-        var resut = textYpostion + size+65;
+        
+        
+        var textTmpYpostion:CGFloat = 0;
+        if(imgArray.count > 0 && imageStr.length > 0)
+        {
+            isTop = false;
+            if (imgArray.count == 1)
+            {
+                //只有一张图片,高度应该小于宽度，以高度为准，居中显示
+                
+                textTmpYpostion = height + yPosition;
+                
+            }
+            else if(imgArray.count == 2)
+            {
+                //2张图片
+                var widthTmp:CGFloat;
+                widthTmp = (CGFloat)(width - offset)/2;
+                var imgWidth:CGFloat;
+                imgWidth = height>widthTmp ? widthTmp:height;
+                
+                textTmpYpostion = imgWidth + yPosition;
+            }
+            else if(imgArray.count >= 3)
+            {
+                //3张图片及以上
+                var widthTmp:CGFloat;
+                widthTmp = (CGFloat)(width - 2*offset)/3;
+                var index = 0
+                for imgUrl in imgArray
+                {
+                    index++;
+                }
+                
+                if(index > 3)
+                {
+                    textTmpYpostion = yPosition + CGFloat(2 * Int(widthTmp + offset));
+                }
+                else
+                {
+                    textTmpYpostion = yPosition + CGFloat(Int(widthTmp + offset));
+                }
+            }
+        }
+        else
+        {
+            isTop = true;
+            textTmpYpostion = 138;
+        }
+        
+        var lbPostion:CGFloat;
+        if(isTop)
+        {
+            lbPostion = yPosition ;
+            //textYpostion = yPosition;
+        }
+        else
+        {
+            lbPostion = textTmpYpostion;
+        }
+        
+        
+        var bottomY = textTmpYpostion + size + 25;
+        
+        var resut = textTmpYpostion + size + 30 + bottomHeight;
         
         if(isTop)
         {
-            if(size + 33 > 153)
+            if(size + 20 + lbPostion > 153)
             {
-                bottomY = size + 33  + 15;
+                bottomY = size + lbPostion + 30;
             }
             else
             {
-                bottomY = 138;
+                bottomY = 153;
             }
             
-            resut = bottomY + 50;
+            resut = bottomY + bottomHeight;
         }
-
+        
         return resut;
-
+        
     }
     
     class func judgeNum(strInput:NSString)->Bool
@@ -500,5 +590,5 @@ class YRJokeCell2: UITableViewCell
             })
         }
     }
-
+    
 }

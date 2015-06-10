@@ -188,8 +188,10 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
-            self.page++
+            
         })
+        
+        self.page++
         
     }
     
@@ -313,7 +315,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         if (location.horizontalAccuracy > 0) {
             lat = location.coordinate.latitude
             lng = location.coordinate.longitude
-            loadData(self.type)
+            if self.page == 1 {
+                loadData(self.type)
+            }
             self.locationManager.stopUpdatingLocation()
             
             

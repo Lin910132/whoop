@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
+class MyRepliesViewController: UITableViewController,MFMailComposeViewControllerDelegate, YRRefreshViewDelegate,YRJokeCellDelegate {
     
     let identifier = "cell"
     var dataArray = NSMutableArray()
@@ -138,11 +139,20 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRJokeCell
         var index = indexPath.row
-        cell.data = self.dataArray[index] as! NSDictionary
-       // cell.textLabel?.text = self.dataArray[index]
-        return cell
+        
+        var data = self.dataArray[index] as! NSDictionary
+        var cell :YRJokeCell2? = tableView.dequeueReusableCellWithIdentifier(identifier) as? YRJokeCell2
+        if cell == nil{
+            cell = YRJokeCell2(style: .Default, reuseIdentifier: identifier)
+        }
+        
+        cell!.data = data
+        cell!.setCellUp()
+        cell!.delegate = self;
+        cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
+        return cell!
+
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -157,7 +167,7 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var index = indexPath.row
         var data = self.dataArray[index] as! NSDictionary
-        return  YRJokeCell.cellHeightByData(data)
+        return  YRJokeCell2.cellHeightByData(data)
     }
 
     func imageViewTapped(noti:NSNotification)
@@ -168,5 +178,35 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
         imgVC.imageURL = imageURL
         self.navigationController?.pushViewController(imgVC, animated: true)
     }
+    
+    func sendEmail(strTo:String, strSubject:String, strBody:String)
+    {
+        var controller = MFMailComposeViewController();
+        controller.mailComposeDelegate = self;
+        controller.setSubject(strSubject);
+        var toList: [String] = [String]()
+        toList.append(strTo)
+        controller.setToRecipients(toList)
+        controller.setMessageBody(strBody, isHTML: false);
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(controller, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+
         
 }
