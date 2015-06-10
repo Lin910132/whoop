@@ -49,7 +49,7 @@ class LikeViewCell: UITableViewCell {
         let mainWidth = UIScreen.mainScreen().bounds.width
         var content = data.stringAttributeForKey("msg")
         var height = content.stringHeightWith(17,width:mainWidth-80)
-        return 40.0 + height
+        return 60.0 + height
     }
     
 }

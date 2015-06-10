@@ -9,5 +9,7 @@
 #ifndef Whoops_Swift_Bridging_OC_h
 #define Whoops_Swift_Bridging_OC_h
 #import "KCTextView.h"
+#import <Bolts/Bolts.h>
+#import <Parse/Parse.h>
 
 #endif
