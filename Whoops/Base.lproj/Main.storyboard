@@ -1211,6 +1211,7 @@ If you have any questions about these Terms or otherwise need to contact Whoop f
                         <outlet property="photoButton" destination="5rU-iV-n28" id="nCD-10-VL3"/>
                         <outlet property="sendItem" destination="9B2-8O-Yug" id="uMN-ma-Frw"/>
                         <outlet property="toolView" destination="obV-Az-6ZH" id="dJq-8n-sg7"/>
+                        <outlet property="toolViewHeighContraint" destination="VVD-E8-kCy" id="LOJ-81-4Bm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIH-bb-Rjs" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -28,6 +28,9 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var toolView: UIView!
     @IBOutlet weak var countWordLabel: UILabel!
     @IBOutlet weak var sendButton: UIBarButtonItem!
+    
+    
+    let placeHolder = "Write something"
     let locationManager = CLLocationManager()
     
     
@@ -53,7 +56,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         contentTextView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
-        self.contentTextView.text = "Write something"
+        self.contentTextView.text = placeHolder
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -109,7 +112,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func sendButtonClick(sender: AnyObject) {
         var content:String = contentTextView!.text
         
-        if count(content) == 0 {
+        if count(content) == 0 || content == placeHolder {
             UIView.showAlertView("Warning",message:"The Content should not be empty")
             return
         }else{
@@ -174,12 +177,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
-                toolViewHeighContraint.setValue(200, forKey: "Constant")
+                toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
             }else{
                 var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
-                toolViewHeighContraint.setValue(100, forKey: "Constant")
+                toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
                 
             }
             
@@ -205,12 +208,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     func textViewDidEndEditing(textView: UITextView) {
         if count(self.contentTextView.text) < 1 {
-            self.contentTextView.text = "Write something"
+            self.contentTextView.text = placeHolder
         }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        if self.contentTextView.text == "Write something"{
+        if self.contentTextView.text == placeHolder{
             self.contentTextView.text = ""
         }
     }
