@@ -75,7 +75,7 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var index = indexPath.row
         var data = self._db[index] as! NSDictionary
         var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
-        commentsVC.jokeId = data.stringAttributeForKey("id")
+        commentsVC.jokeId = data.stringAttributeForKey("uid")
         commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
