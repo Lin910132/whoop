@@ -255,7 +255,7 @@ This Policy is current as of the Effective Date set forth above. We may change t
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1803921568627451" green="0.54509803921568623" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="u1b-It-OOO" firstAttribute="top" secondItem="YVq-Ps-uq4" secondAttribute="top" constant="2" id="87h-7u-aCp"/>
                                     <constraint firstAttribute="trailing" secondItem="SB5-jX-cqN" secondAttribute="trailing" constant="7" id="Kep-wV-skM"/>
@@ -292,6 +292,7 @@ This Policy is current as of the Effective Date set forth above. We may change t
                     <navigationItem key="navigationItem" id="1W5-vV-9HW"/>
                     <connections>
                         <outlet property="tableView" destination="A2Z-bp-gL3" id="qOz-MJ-8fT"/>
+                        <outlet property="topBarview" destination="YVq-Ps-uq4" id="Co3-WZ-uXp"/>
                         <segue destination="RhR-4p-SGt" kind="show" identifier="showComment" id="p84-es-z4M"/>
                     </connections>
                 </viewController>

@@ -10,7 +10,8 @@ import UIKit
 
 var textYpostion:CGFloat = 0;
 var isTop:Bool=false;
-var bottomHeight:CGFloat = 30;
+var bottomHeight:CGFloat = 30; //最小值为16
+
 protocol YRJokeCellDelegate
 {
     
@@ -276,7 +277,7 @@ class YRJokeCell2: UITableViewCell
         
         
         var viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, bottomHeight));
-        viewBottom.backgroundColor = UIColor(red:244.0/255.0 , green:244.0/255.0 , blue:244.0/255.0 , alpha: 1.0);
+        viewBottom.backgroundColor = UIColor(red:204.0/255.0 , green:204.0/255.0 , blue:204.0/255.0 , alpha: 1.0);
         ivBack.addSubview(viewBottom);
         
         var imgTime = UIImageView(frame: CGRectMake(5, (bottomHeight - 16)/2, 16, 16));

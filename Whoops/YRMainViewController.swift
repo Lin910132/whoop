@@ -17,7 +17,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     @IBOutlet weak var tableView: UITableView!
-    
+     @IBOutlet weak var topBarview: UIView!
     //@IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
@@ -50,6 +50,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         locationManager.startUpdatingLocation()
         userId = FileUtility.getUserId()
+        self.topBarview.backgroundColor = UIColor(red:65.0/255.0 , green:137.0/255.0 , blue:210.0/255.0 , alpha: 1.0);
         setupViews()
         // self.hotClick();
         
@@ -113,6 +114,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
+        var rect = self.tableView.frame;
+//        rect.size.height = rect.size.height -  49.0 as CGFloat;
+//        self.tableView.frame = rect;
         //self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.height));
         // self.tableView?.registerClass(YRJokeCell.self,
         //forCellReuseIdentifier: identifier)
