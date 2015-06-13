@@ -124,7 +124,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("Alert",message:"Loading Failed")
                 return
             }
             
@@ -212,10 +212,10 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func btnAuditClicked(){
         var alertView = UIAlertView()
-        alertView.title = "举报"
-        alertView.message = "这条状态违反whoop的有关规定"
-        alertView.addButtonWithTitle("取消")
-        alertView.addButtonWithTitle("确定")
+        alertView.title = "Report"
+        alertView.message = "This post violate whoop's regulation!"
+        alertView.addButtonWithTitle("No")
+        alertView.addButtonWithTitle("Yes")
         alertView.cancelButtonIndex = 0
         alertView.delegate = self
         alertView.show()

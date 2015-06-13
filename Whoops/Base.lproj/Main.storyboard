@@ -315,7 +315,13 @@ This Policy is current as of the Effective Date set forth above. We may change t
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyy-1R-13W">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Whoop creates a community that allow everyone to share and connect their Ads, Information, and question with others by a new convince way (Free register and sign up). Whoop is a user self-regulated community. Everyone has right to vote and post content. But please make sure you are voting sincerely and posting high quality content. One simple rule: every post has votes below -5, will be deleted from whoop automatically. Here are some guideline to help us create an awesome whoop community near you.
+Rule and Regulation
+• We highly monitor for whoever post people's private information
+• We DO NOT allow bully issues happen in the Whoop environment
+• We DO NOT allow offensive and trash talks clutter people's feeds
+• For whatever reason you think a user or message needs to be reported, we are here to do the job for you
+• We hate to suspend an account, but if your posts are continue to be reported, you know what will happen next.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
