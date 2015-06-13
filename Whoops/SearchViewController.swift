@@ -39,6 +39,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             controller.searchBar.barTintColor = UIColor(netHex: 0x3593DD)
             var textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
             textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
+            //textfield?.backgroundColor = UIColor.blackColor()
             textfield?.textColor = UIColor.whiteColor()
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
