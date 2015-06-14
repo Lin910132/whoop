@@ -49,7 +49,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //nickNameText.textColor = UIColor.blackColor()
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
