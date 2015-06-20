@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate {
+class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshUniversityDelegate {
 
     let identifier = "cell"
     var dataArray = NSMutableArray()
@@ -148,6 +148,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         cell!.data = data
         cell!.setCellUp()
         cell!.delegate = self;
+        cell!.refreshUniversityDelete = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
         return cell!
     }
@@ -179,6 +180,11 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         var imgVC = YRImageViewController(nibName: nil, bundle: nil)
         imgVC.imageURL = imageURL
         self.navigationController?.pushViewController(imgVC, animated: true)
+    }
+    
+    func refreshUniversityByFavor(){
+        var fresh:UIRefreshControl = UIRefreshControl()
+        self.actionRefreshHandler(fresh)
     }
     
     func sendEmail(strTo:String, strSubject:String, strBody:String)

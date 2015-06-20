@@ -30,6 +30,12 @@ protocol YRRefreshCommentDelegate
     func refreshCommentByFavor();
 }
 
+protocol YRRefreshUniversityDelegate
+{
+    
+    func refreshUniversityByFavor();
+}
+
 
 
 class YRJokeCell2: UITableViewCell
@@ -38,6 +44,7 @@ class YRJokeCell2: UITableViewCell
     var delegate:YRJokeCellDelegate?
     var refreshMainDelegate:YRRefreshMainDelegate?
     var refreshCommentDelegate:YRRefreshCommentDelegate?
+    var refreshUniversityDelete:YRRefreshUniversityDelegate?
     var data = NSDictionary()
     var postId:String = ""
     var likeNum:UILabel!
@@ -372,6 +379,7 @@ class YRJokeCell2: UITableViewCell
             
             self.refreshMainDelegate?.refreshMain()
             self.refreshCommentDelegate?.refreshCommentByFavor()
+            self.refreshUniversityDelete?.refreshUniversityByFavor()
             
         })
         
