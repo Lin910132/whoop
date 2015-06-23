@@ -11,5 +11,6 @@
 #import "KCTextView.h"
 #import <Bolts/Bolts.h>
 #import <Parse/Parse.h>
+#import "Flurry.h"
 
 #endif

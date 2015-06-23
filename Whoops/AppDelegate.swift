@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("OEcTC65wuvGwqASgutgQDjFce3Dp0l8bhQ8hmAhs",
             clientKey: "Vm9QRZfBVb5aVHbiZs1m42nyfV4JhoyZFhRznnzs")
         
+        Flurry.startSession("ZN9CB2BK8KJMCJ26S8Q5")
+        Flurry.logEvent("Application Started!")
         
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background {

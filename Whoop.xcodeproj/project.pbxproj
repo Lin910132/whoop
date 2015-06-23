@@ -34,6 +34,7 @@
 		73BB8A001AAF533600CAECB5 /* YRSendComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BB89FF1AAF533600CAECB5 /* YRSendComment.xib */; };
 		73BB8A021AAF53AE00CAECB5 /* YRSendComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB8A011AAF53AE00CAECB5 /* YRSendComment.swift */; };
 		7E2882FB1B1DEA04003F95EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2882FA1B1DEA04003F95EB /* MessageUI.framework */; };
+		861D2E781B39083000A0B3AC /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 861D2E771B39083000A0B3AC /* libFlurry_6.4.0.a */; };
 		86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */; };
 		86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */; };
 		868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30551A9E972700FC9EF9 /* AppDelegate.swift */; };
@@ -110,6 +111,9 @@
 		73BB89FF1AAF533600CAECB5 /* YRSendComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRSendComment.xib; sourceTree = "<group>"; };
 		73BB8A011AAF53AE00CAECB5 /* YRSendComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YRSendComment.swift; sourceTree = "<group>"; };
 		7E2882FA1B1DEA04003F95EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		861D2E751B39083000A0B3AC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = "Flurry iPhone SDK viPhone 6.4.0/Flurry-iOS-6.4.0/Flurry/Flurry.h"; sourceTree = "<group>"; };
+		861D2E761B39083000A0B3AC /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryWatch.h; path = "Flurry iPhone SDK viPhone 6.4.0/Flurry-iOS-6.4.0/Flurry/FlurryWatch.h"; sourceTree = "<group>"; };
+		861D2E771B39083000A0B3AC /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.4.0.a; path = "Flurry iPhone SDK viPhone 6.4.0/Flurry-iOS-6.4.0/Flurry/libFlurry_6.4.0.a"; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
 		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
 		868A30501A9E972700FC9EF9 /* Whoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,13 +158,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39DE6DF1B28DAF700744D27 /* Security.framework in Frameworks */,
+				E39DE6E31B28DB1800744D27 /* SystemConfiguration.framework in Frameworks */,
+				861D2E781B39083000A0B3AC /* libFlurry_6.4.0.a in Frameworks */,
 				E39DE6EB1B28DB5300744D27 /* Social.framework in Frameworks */,
 				E39DE6E91B28DB4B00744D27 /* Accounts.framework in Frameworks */,
 				E39DE6E71B28DB2D00744D27 /* libsqlite3.dylib in Frameworks */,
 				E39DE6E51B28DB2300744D27 /* libz.dylib in Frameworks */,
-				E39DE6E31B28DB1800744D27 /* SystemConfiguration.framework in Frameworks */,
 				E39DE6E11B28DB0A00744D27 /* StoreKit.framework in Frameworks */,
-				E39DE6DF1B28DAF700744D27 /* Security.framework in Frameworks */,
 				E39DE6DD1B28DAEB00744D27 /* QuartzCore.framework in Frameworks */,
 				E39DE6DB1B28DAE100744D27 /* MobileCoreServices.framework in Frameworks */,
 				E39DE6D91B28DAD300744D27 /* CoreGraphics.framework in Frameworks */,
@@ -253,6 +258,9 @@
 		868A30471A9E972700FC9EF9 = {
 			isa = PBXGroup;
 			children = (
+				861D2E751B39083000A0B3AC /* Flurry.h */,
+				861D2E761B39083000A0B3AC /* FlurryWatch.h */,
+				861D2E771B39083000A0B3AC /* libFlurry_6.4.0.a */,
 				E39DE6EA1B28DB5300744D27 /* Social.framework */,
 				E39DE6E81B28DB4B00744D27 /* Accounts.framework */,
 				E39DE6E61B28DB2D00744D27 /* libsqlite3.dylib */,
@@ -596,6 +604,14 @@
 				);
 				INFOPLIST_FILE = Whoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"6.4.0/Flurry-iOS-6.4.0/Flurry",
+				);
 				PRODUCT_NAME = Whoop;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Whoops/Swift-Bridging-OC.h";
@@ -614,6 +630,14 @@
 				);
 				INFOPLIST_FILE = Whoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"6.4.0/Flurry-iOS-6.4.0/Flurry",
+				);
 				PRODUCT_NAME = Whoop;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Whoops/Swift-Bridging-OC.h";
