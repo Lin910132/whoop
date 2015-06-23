@@ -30,6 +30,12 @@ protocol YRRefreshCommentDelegate
     func refreshCommentByFavor();
 }
 
+protocol YRRefreshUniversityDelegate
+{
+    
+    func refreshUniversityByFavor();
+}
+
 
 
 class YRJokeCell2: UITableViewCell
@@ -38,6 +44,7 @@ class YRJokeCell2: UITableViewCell
     var delegate:YRJokeCellDelegate?
     var refreshMainDelegate:YRRefreshMainDelegate?
     var refreshCommentDelegate:YRRefreshCommentDelegate?
+    var refreshUniversityDelete:YRRefreshUniversityDelegate?
     var data = NSDictionary()
     var postId:String = ""
     var likeNum:UILabel!
@@ -277,7 +284,7 @@ class YRJokeCell2: UITableViewCell
         
         
         var viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, bottomHeight));
-        viewBottom.backgroundColor = UIColor(red:204.0/255.0 , green:204.0/255.0 , blue:204.0/255.0 , alpha: 1.0);
+        viewBottom.backgroundColor = UIColor(red:244.0/255.0 , green:244.0/255.0 , blue:244.0/255.0 , alpha: 1.0);
         ivBack.addSubview(viewBottom);
         
         var imgTime = UIImageView(frame: CGRectMake(5, (bottomHeight - 16)/2, 16, 16));
@@ -372,6 +379,7 @@ class YRJokeCell2: UITableViewCell
             
             self.refreshMainDelegate?.refreshMain()
             self.refreshCommentDelegate?.refreshCommentByFavor()
+            self.refreshUniversityDelete?.refreshUniversityByFavor()
             
         })
         

@@ -235,11 +235,11 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 
                 if data as! NSObject == NSNull()
                 {
-                    UIView.showAlertView("提示",message:"加载失败")
+                    UIView.showAlertView("Alert",message:"Loading Failed")
                     return
                 }
                 
-                UIView.showAlertView("提示",message:"举报成功")
+                UIView.showAlertView("Alert",message:"Report success")
                 
             })
             
