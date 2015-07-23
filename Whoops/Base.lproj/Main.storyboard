@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -312,26 +312,16 @@ This Policy is current as of the Effective Date set forth above. We may change t
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyy-1R-13W">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Whoop creates a community that allow everyone to share and connect their Ads, Information, and question with others by a new convince way (Free register and sign up). Whoop is a user self-regulated community. Everyone has right to vote and post content. But please make sure you are voting sincerely and posting high quality content. One simple rule: every post has votes below -5, will be deleted from whoop automatically. Here are some guideline to help us create an awesome whoop community near you.
-Rule and Regulation
-• We highly monitor for whoever post people's private information
-• We DO NOT allow bully issues happen in the Whoop environment
-• We DO NOT allow offensive and trash talks clutter people's feeds
-• For whatever reason you think a user or message needs to be reported, we are here to do the job for you
-• We hate to suspend an account, but if your posts are continue to be reported, you know what will happen next.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rules and Info" translatesAutoresizingMaskIntoConstraints="NO" id="bBz-4U-5jd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eyy-1R-13W" firstAttribute="top" secondItem="XGa-lz-dwE" secondAttribute="top" id="1L5-fM-R8I"/>
-                            <constraint firstAttribute="trailing" secondItem="eyy-1R-13W" secondAttribute="trailing" id="HS9-OK-z6B"/>
-                            <constraint firstAttribute="bottom" secondItem="eyy-1R-13W" secondAttribute="bottom" id="UD0-xZ-eCJ"/>
-                            <constraint firstItem="eyy-1R-13W" firstAttribute="leading" secondItem="XGa-lz-dwE" secondAttribute="leading" id="lhO-Rd-qmc"/>
+                            <constraint firstAttribute="trailing" secondItem="bBz-4U-5jd" secondAttribute="trailing" id="Kgf-mg-rfm"/>
+                            <constraint firstItem="bBz-4U-5jd" firstAttribute="bottom" secondItem="Kl3-g0-vKa" secondAttribute="top" id="gd0-se-f9z"/>
+                            <constraint firstItem="bBz-4U-5jd" firstAttribute="top" secondItem="XGa-lz-dwE" secondAttribute="top" id="p2l-tz-j4T"/>
+                            <constraint firstItem="bBz-4U-5jd" firstAttribute="leading" secondItem="XGa-lz-dwE" secondAttribute="leading" id="wmD-Is-iCD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Rules &amp; Info" id="Z7R-Pk-g0v"/>
@@ -1673,6 +1663,7 @@ If you have any questions about these Terms or otherwise need to contact Whoop f
         <image name="Logoo" width="512" height="512"/>
         <image name="Post" width="59" height="59"/>
         <image name="Profile" width="37" height="65"/>
+        <image name="Rules and Info" width="750" height="1334"/>
         <image name="Search" width="56" height="56"/>
         <image name="Settings" width="34" height="34"/>
         <image name="ballonHighlight" width="20" height="17"/>
