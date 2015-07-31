@@ -77,10 +77,10 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        
-        var titleImgView = UIImageView(frame:CGRectMake(0, 0, 64, 28))
-        titleImgView.image = UIImage(named: "whook")
-        self.navigationItem.titleView = titleImgView
+        //self.title = "UniPub";
+        //var titleImgView = UIImageView(frame:CGRectMake(0, 0, 64, 28))
+        //titleImgView.image = UIImage(named: "whook")
+        //self.navigationItem.titleView = titleImgView
 //        var myTabbar :UIView = UIView(frame: CGRectMake(0,64,width,32))
 //        myTabbar.backgroundColor = UIColor(red: 0.164, green: 0.49, blue: 0.83, alpha: 1.0)
 //
