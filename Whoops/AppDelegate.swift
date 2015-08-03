@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "Vm9QRZfBVb5aVHbiZs1m42nyfV4JhoyZFhRznnzs")
         
         Flurry.startSession("ZN9CB2BK8KJMCJ26S8Q5")
-        Flurry.logEvent("Application Started!")
+        Flurry.logAllPageViewsForTarget(UINavigationController)
         
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background {
