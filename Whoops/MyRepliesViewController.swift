@@ -9,13 +9,14 @@
 import UIKit
 import MessageUI
 
-class MyRepliesViewController: UITableViewController,MFMailComposeViewControllerDelegate, YRRefreshViewDelegate,YRJokeCellDelegate {
+class MyRepliesViewController: UITableViewController,MFMailComposeViewControllerDelegate, YRRefreshViewDelegate,YRJokeCellDelegate,YRRefreshMyRepliesDelegate {
     
     let identifier = "cell"
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
     var uid = String()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,12 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
         loadData()
     }
     
+    
+    func refreshMyRepliesByFavor(){
+        var fresh:UIRefreshControl = UIRefreshControl()
+        self.actionRefreshHandler(fresh)
+
+    }
     func setupViews()
     {
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
@@ -98,7 +105,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     func urlString()->String
     {
-        //return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
+        
         self.uid = FileUtility.getUserId()
         return "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=\(page)"
     }
@@ -150,6 +157,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
         cell!.data = data
         cell!.setCellUp()
         cell!.delegate = self;
+        cell!.refreshMyRepliesDelegate = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
         return cell!
 
