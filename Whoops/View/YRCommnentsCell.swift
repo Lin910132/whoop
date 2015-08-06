@@ -12,7 +12,7 @@ class YRCommnentsCell: UITableViewCell {
     
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var createdDate: UILabel!
-    @IBOutlet weak var likeHotLabel: UILabel!
+ 
     
     var likeClick:Bool = true
     var likeHot = Int()
@@ -49,7 +49,7 @@ class YRCommnentsCell: UITableViewCell {
         
         
         
-        self.likeHotLabel.text = String(self.likeHot)
+       
         
     }
 
@@ -72,7 +72,7 @@ class YRCommnentsCell: UITableViewCell {
                     return
                 }
                 var result:Int = data["result"] as! Int
-                self.likeHotLabel!.text = "\(result)"
+                
                 
             })
             
@@ -92,8 +92,7 @@ class YRCommnentsCell: UITableViewCell {
                     return
                 }
                 var result:Int = data["result"] as! Int
-                self.likeHotLabel!.text = "\(result)"
-                
+                                
             })
             
 

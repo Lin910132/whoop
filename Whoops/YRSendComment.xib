@@ -15,12 +15,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMT-7p-GW8">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMT-7p-GW8">
                     <rect key="frame" x="282" y="9" width="32" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="pfY-fl-AOJ"/>
                     </constraints>
-                    <state key="normal" image="Post">
+                    <state key="normal" image="sendHighlight">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -30,7 +30,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="NMT-7p-GW8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="ANe-RP-wl9"/>
                 <constraint firstItem="aKf-hM-ia9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="AU5-Zo-vid"/>
+                <constraint firstAttribute="bottom" secondItem="NMT-7p-GW8" secondAttribute="bottom" constant="10" id="P1m-OH-04g"/>
                 <constraint firstItem="NMT-7p-GW8" firstAttribute="leading" secondItem="aKf-hM-ia9" secondAttribute="trailing" constant="8" symbolic="YES" id="dvL-4j-pRA"/>
                 <constraint firstAttribute="trailing" secondItem="NMT-7p-GW8" secondAttribute="trailing" constant="8" id="zce-J7-Zo4"/>
             </constraints>
@@ -39,10 +41,10 @@
                 <outlet property="commentText" destination="aKf-hM-ia9" id="UM5-Bd-xCR"/>
                 <outlet property="sendButton" destination="NMT-7p-GW8" id="TH8-b6-wjp"/>
             </connections>
-            <point key="canvasLocation" x="358" y="260"/>
+            <point key="canvasLocation" x="338" y="269"/>
         </view>
     </objects>
     <resources>
-        <image name="Post" width="59" height="59"/>
+        <image name="sendHighlight" width="120" height="120"/>
     </resources>
 </document>
