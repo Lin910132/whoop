@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
                BuildableName = "Whoop.app"
-               BlueprintName = "Whoop"
-               ReferencedContainer = "container:Whoop.xcodeproj">
+               BlueprintName = "UniPub"
+               ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
                BuildableName = "WhoopTests.xctest"
-               BlueprintName = "WhoopTests"
-               ReferencedContainer = "container:Whoop.xcodeproj">
+               BlueprintName = "UniPubTests"
+               ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
                BuildableName = "WhoopTests.xctest"
-               BlueprintName = "WhoopTests"
-               ReferencedContainer = "container:Whoop.xcodeproj">
+               BlueprintName = "UniPubTests"
+               ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoop.app"
-            BlueprintName = "Whoop"
-            ReferencedContainer = "container:Whoop.xcodeproj">
+            BlueprintName = "UniPub"
+            ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,8 +78,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoop.app"
-            BlueprintName = "Whoop"
-            ReferencedContainer = "container:Whoop.xcodeproj">
+            BlueprintName = "UniPub"
+            ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,8 +97,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoop.app"
-            BlueprintName = "Whoop"
-            ReferencedContainer = "container:Whoop.xcodeproj">
+            BlueprintName = "UniPub"
+            ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
