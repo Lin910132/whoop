@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
-               BuildableName = "Whoop.app"
+               BuildableName = "UniPub.app"
                BlueprintName = "UniPub"
                ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
-               BuildableName = "WhoopTests.xctest"
+               BuildableName = "UniPubTests.xctest"
                BlueprintName = "UniPubTests"
                ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
-               BuildableName = "WhoopTests.xctest"
+               BuildableName = "UniPubTests.xctest"
                BlueprintName = "UniPubTests"
                ReferencedContainer = "container:UniPub.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
-            BuildableName = "Whoop.app"
+            BuildableName = "UniPub.app"
             BlueprintName = "UniPub"
             ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
-            BuildableName = "Whoop.app"
+            BuildableName = "UniPub.app"
             BlueprintName = "UniPub"
             ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
-            BuildableName = "Whoop.app"
+            BuildableName = "UniPub.app"
             BlueprintName = "UniPub"
             ReferencedContainer = "container:UniPub.xcodeproj">
          </BuildableReference>
