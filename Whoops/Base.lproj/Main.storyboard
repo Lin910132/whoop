@@ -1414,7 +1414,10 @@ Unipub respects the intellectual property rights of others, and we ask you to do
                                         <string key="content">Unipub’s agent for notice of claims of copyright or trademark infringement on the Services can be reached as follows:
 Unipub
 Attn: Copyright Agent
-   </string>
+
+
+
+</string>
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                             <font key="NSFont" size="12" name="Times-Roman"/>

@@ -36,6 +36,13 @@ protocol YRRefreshUniversityDelegate
     func refreshUniversityByFavor();
 }
 
+protocol YRRefreshMyRepliesDelegate
+{
+    
+    func refreshMyRepliesByFavor();
+}
+
+
 
 
 class YRJokeCell2: UITableViewCell
@@ -45,9 +52,12 @@ class YRJokeCell2: UITableViewCell
     var refreshMainDelegate:YRRefreshMainDelegate?
     var refreshCommentDelegate:YRRefreshCommentDelegate?
     var refreshUniversityDelete:YRRefreshUniversityDelegate?
+    var refreshMyRepliesDelegate:YRRefreshMyRepliesDelegate?
     var data = NSDictionary()
     var postId:String = ""
     var likeNum:UILabel!
+    var likeButton:UIButton!
+    var unlikeButton:UIButton!
     
     var imgList = [UIImageView]()
     override func awakeFromNib() {
@@ -256,9 +266,15 @@ class YRJokeCell2: UITableViewCell
         
         //喜欢按钮
         var like = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, ((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
-        like.setImage(UIImage(named:"Like"), forState: UIControlState.Normal);
+        var isLike = data.stringAttributeForKey("isLike") as String;
+        if isLike == "1" {
+            like.setImage(UIImage(named:"Likefill"), forState: UIControlState.Normal);
+        }else{
+            like.setImage(UIImage(named:"LikeNew"), forState: UIControlState.Normal);
+        }
         like.addTarget(self, action: "btnLikeClick:", forControlEvents: UIControlEvents.TouchUpInside);
-        ivBack.addSubview(like);
+        self.likeButton = like
+        ivBack.addSubview(self.likeButton);
         
         //喜欢数量
         likeNum = UILabel(frame: CGRectMake(ivBack.frame.size.width-52, (textYpostion - yPosition)/3 + ((textYpostion - yPosition)/3 - 34)/2 + yPosition, 67, 34));
@@ -276,9 +292,16 @@ class YRJokeCell2: UITableViewCell
         
         //不喜欢
         var unlike = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, 2*(textYpostion - yPosition)/3+((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
-        unlike.setImage(UIImage(named:"close"), forState: UIControlState.Normal);
+        
+        if isLike == "-1" {
+            unlike.setImage(UIImage(named:"unlikefill"), forState: UIControlState.Normal);
+        }else{
+            unlike.setImage(UIImage(named:"unlikeNew"), forState: UIControlState.Normal);
+        }
+
         unlike.addTarget(self, action: "btnUnLikeClick:", forControlEvents: UIControlEvents.TouchUpInside);
-        ivBack.addSubview(unlike);
+        self.unlikeButton = unlike
+        ivBack.addSubview(self.unlikeButton);
         
         
         
@@ -380,6 +403,7 @@ class YRJokeCell2: UITableViewCell
             self.refreshMainDelegate?.refreshMain()
             self.refreshCommentDelegate?.refreshCommentByFavor()
             self.refreshUniversityDelete?.refreshUniversityByFavor()
+            self.refreshMyRepliesDelegate?.refreshMyRepliesByFavor()
             
         })
         
@@ -398,7 +422,15 @@ class YRJokeCell2: UITableViewCell
             }
             var result:Int = data["result"] as! Int
             self.likeNum!.text = "\(result)"
-            
+            var post = data["data"] as! NSDictionary
+            var isLike = post["isLike"] as! String;
+            if isLike == "1" {
+                self.likeButton.setImage(UIImage(named:"Likefill"), forState: UIControlState.Normal);
+                self.unlikeButton.setImage(UIImage(named:"unlikeNew"), forState: UIControlState.Normal);
+            }else{
+                self.likeButton.setImage(UIImage(named:"LikeNew"), forState: UIControlState.Normal);
+            }
+
             
         })
     }
@@ -416,6 +448,17 @@ class YRJokeCell2: UITableViewCell
             }
             var result:Int = data["result"] as! Int
             self.likeNum!.text = "\(result)"
+            
+            var post = data["data"] as! NSDictionary
+            var isLike = post["isLike"] as! String;
+
+            if isLike == "-1" {
+                self.unlikeButton.setImage(UIImage(named:"unlikefill"), forState: UIControlState.Normal);
+                self.likeButton.setImage(UIImage(named:"LikeNew"), forState: UIControlState.Normal);
+            }else{
+                self.unlikeButton.setImage(UIImage(named:"unlikeNew"), forState: UIControlState.Normal);
+            }
+
             
         })
     }
