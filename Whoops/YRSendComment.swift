@@ -36,11 +36,13 @@ class YRSendComment:UIView , UITextFieldDelegate{
         var height = UIScreen.mainScreen().bounds.height
         self.sendButton.frame = CGRectMake(0, width - 10, 30, 30)
         
-        
-        
+               
     }
     
     
+   
+    
+       
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
         
@@ -56,8 +58,16 @@ class YRSendComment:UIView , UITextFieldDelegate{
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         var width = UIScreen.mainScreen().bounds.width
         var height = UIScreen.mainScreen().bounds.height
-        self.frame = CGRectMake(0, height * 0.5 , width, 50)
+//        self.frame = CGRectMake(0, height * 0.5 , width, 50)
         return true
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField == self.commentText) {
+            
+            textField.resignFirstResponder()
+            //            self.view.becomeFirstResponder()
+        }
+        return true;
     }
 
     func setCurrentPostId(postId:String){
