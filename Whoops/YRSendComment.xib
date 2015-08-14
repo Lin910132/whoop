@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="322" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Write some comments" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aKf-hM-ia9">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write some comments" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aKf-hM-ia9">
                     <rect key="frame" x="22" y="10" width="252" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -28,7 +28,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.95472301136363635" green="0.95472301136363635" blue="0.95472301136363635" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="NMT-7p-GW8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="ANe-RP-wl9"/>
                 <constraint firstItem="aKf-hM-ia9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="AU5-Zo-vid"/>
