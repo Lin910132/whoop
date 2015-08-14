@@ -75,6 +75,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         UIView.animateWithDuration(duration, animations: { () -> Void in
             
             self.sendView!.transform = CGAffineTransformMakeTranslation(0, ty);
+            self.tableView?.transform = CGAffineTransformMakeTranslation(0, ty);
         });
         
         //        键盘弹出隐藏所执行的操作数据
