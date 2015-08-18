@@ -308,6 +308,37 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             }
             
         }
+        //显示添加图片的按钮
+        if imgList.count < 6 {
+            let imgView = UIImageView(image: UIImage(named: "Icon_128x128px.png"))
+            imgView.userInteractionEnabled = true
+            imgView.tag = imgList.count
+            
+            var tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
+            imgView.addGestureRecognizer(tap)
+            
+            
+            imgList.append(imgView)
+            var width = self.view.frame.size.width
+            var height = self.view.frame.size.height
+            var imgWidth = (width - 10 - 10 - 20)/3
+            if imgList.count <= 3 {
+                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
+                toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
+            }else{
+                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
+                
+            }
+            imgList.removeLast()
+            
+        }
+
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         
