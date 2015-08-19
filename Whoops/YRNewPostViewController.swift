@@ -12,7 +12,7 @@ import CoreLocation
 
 
 
-class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate{
+class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate,DKImagePickerControllerDelegate{
     
     
     
@@ -138,17 +138,138 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             return
         }else if buttonIndex == 1{
             sourceType = UIImagePickerControllerSourceType.Camera
+            
+            var picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true//设置可编辑
+            picker.sourceType = sourceType
+            
+            self.presentViewController(picker, animated: true, completion: nil)//进入照相界面
+
         }else{
             sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
+            let pickerController = DKImagePickerController()
+            pickerController.pickerDelegate = self
+            self.presentViewController(pickerController, animated: true) {}
         }
         
-        var picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true//设置可编辑
-        picker.sourceType = sourceType
-        
-        self.presentViewController(picker, animated: true, completion: nil)//进入照相界面
     }
+    
+    // MARK: - DKImagePickerControllerDelegate methods
+    // 取消时的回调
+    func imagePickerControllerCancelled() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // 选择图片并确定后的回调
+    func imagePickerControllerDidSelectedAssets(assets: [DKAsset]!) {
+//        imageScrollView.subviews.map(){$0.removeFromSuperview}
+//        
+//        for (index, asset) in enumerate(assets) {
+//            let imageHeight: CGFloat = imageScrollView.bounds.height / 2
+//            
+//
+//            imageView.contentMode = UIViewContentMode.ScaleAspectFit
+//            imageView.frame = CGRect(x: 0, y: CGFloat(index) * imageHeight, width: imageScrollView.bounds.width, height: imageHeight)
+//            imageScrollView.addSubview(imageView)
+//            
+//        }
+//        imageScrollView.contentSize.height = CGRectGetMaxY((imageScrollView.subviews.last as! UIView).frame)
+//        
+     
+        
+        for (index, asset) in enumerate(assets) {
+
+            let imgView = UIImageView(image: asset.fullScreenImage)
+            
+            imgView.userInteractionEnabled = true
+            imgView.tag = imgList.count
+            
+            var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+            imgView.addGestureRecognizer(tap)
+
+            if imgList.count < 6 {
+                imgList.append(imgView)
+                var width = self.view.frame.size.width
+                var height = self.view.frame.size.height
+                var imgWidth = (width - 10 - 10 - 20)/3
+                if imgList.count <= 3 {
+                    var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                    imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
+                    self.view.addSubview(imgView)
+                    //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
+                    toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
+                }else{
+                    var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                    imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
+                    self.view.addSubview(imgView)
+                    toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
+                    
+                }
+                
+            }
+            
+        }
+        
+        //显示添加图片的按钮
+        if imgList.count < 6 {
+            let imgView = UIImageView(image: UIImage(named: "Icon_128x128px.png"))
+            imgView.userInteractionEnabled = true
+            imgView.tag = imgList.count
+            
+            var tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
+            imgView.addGestureRecognizer(tap)
+
+
+            imgList.append(imgView)
+            var width = self.view.frame.size.width
+            var height = self.view.frame.size.height
+            var imgWidth = (width - 10 - 10 - 20)/3
+            if imgList.count <= 3 {
+                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
+                toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
+            }else{
+                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
+                
+            }
+            imgList.removeLast()
+
+        }
+        
+        
+//        picker.dismissViewControllerAnimated(true, completion: nil)
+
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func addPhotoButtonClick(sender:UITapGestureRecognizer) {
+        var actionSheet = UIActionSheet()
+        //        actionSheet.addButtonWithTitle("取消")
+        //        actionSheet.addButtonWithTitle("打开照相机")
+        //        actionSheet.addButtonWithTitle("从手机相册选择")
+        if imgList.count >= 6 {
+            UIView.showAlertView("Warning",message:"The max count of photos can not be more than 6")
+            return
+        }
+        actionSheet.addButtonWithTitle("Cancel")
+        actionSheet.addButtonWithTitle("Camera")
+        actionSheet.addButtonWithTitle("Photo Library")
+        actionSheet.cancelButtonIndex = 0
+        actionSheet.delegate = self
+        
+        actionSheet.showInView(self.view)
+        
+        
+        
+    }
+
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
@@ -187,6 +308,37 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             }
             
         }
+        //显示添加图片的按钮
+        if imgList.count < 6 {
+            let imgView = UIImageView(image: UIImage(named: "Icon_128x128px.png"))
+            imgView.userInteractionEnabled = true
+            imgView.tag = imgList.count
+            
+            var tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
+            imgView.addGestureRecognizer(tap)
+            
+            
+            imgList.append(imgView)
+            var width = self.view.frame.size.width
+            var height = self.view.frame.size.height
+            var imgWidth = (width - 10 - 10 - 20)/3
+            if imgList.count <= 3 {
+                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
+                toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
+            }else{
+                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
+                self.view.addSubview(imgView)
+                toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
+                
+            }
+            imgList.removeLast()
+            
+        }
+
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         

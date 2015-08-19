@@ -40,8 +40,58 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         setupViews()
         loadData()
-        //self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onKeyboardWillChangeFrame:",
+            name: UIKeyboardWillChangeFrameNotification,
+            object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        super.viewDidDisappear(animated)
+    }
+
+    
+    /**
+    键盘显示隐藏事件监听
+    */
+    func onKeyboardWillChangeFrame(notification: NSNotification) {
+        // 1、将通知中的数据转换成NSDictionary
+        let dict = NSDictionary(dictionary: notification.userInfo!);
+        // 2、获取键盘最后的Frame值
+        let keyboardFrame = dict[UIKeyboardFrameEndUserInfoKey]!.CGRectValue();
+        // 3、获取键盘移动值
+        println("keyboardFrame.origin.y \(keyboardFrame.origin.y)")
+        println("self.sendView!.bounds.height \(self.sendView!.bounds.height)")
+        let ty = keyboardFrame.origin.y - view.frame.height;
+        // 4、获取键盘弹出动画事件
+        let duration = dict[UIKeyboardAnimationDurationUserInfoKey] as! Double;
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            
+            self.sendView!.transform = CGAffineTransformMakeTranslation(0, ty);
+            self.tableView?.transform = CGAffineTransformMakeTranslation(0, ty);
+        });
+        
+        //        键盘弹出隐藏所执行的操作数据
+        //        UIKeyboardAnimationCurveUserInfoKey = 7;
+        //        UIKeyboardAnimationDurationUserInfoKey = "0.25";  键盘弹出/隐藏时动画时间
+        //        UIKeyboardBoundsUserInfoKey = "NSRect: {{0, 0}, {375, 258}}";
+        //        UIKeyboardCenterBeginUserInfoKey = "NSPoint: {187.5, 796}";
+        //        UIKeyboardCenterEndUserInfoKey = "NSPoint: {187.5, 538}";
+        //        UIKeyboardFrameBeginUserInfoKey = "NSRect: {{0, 667}, {375, 258}}";
+        //        UIKeyboardFrameEndUserInfoKey = "NSRect: {{0, 409}, {375, 258}}";
+        
+    }
+    
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.sendView!.resignFirstResponder()
     }
     
     func setupViews()
@@ -109,7 +159,9 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             //            self.refreshView!.stopLoading()
             self.page++
             
-            
+            var width = self.view.frame.size.width
+            var height = self.view.frame.size.height
+            self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
             
             
         })
@@ -201,9 +253,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){
         self.dataArray = NSMutableArray()
         loadData()
-        var width = self.view.frame.size.width
-        var height = self.view.frame.size.height
-        self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
