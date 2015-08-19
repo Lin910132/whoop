@@ -11,8 +11,9 @@ import UIKit
 class SettingViewController: UITableViewController {
 
     @IBAction func facebookLink(sender: AnyObject) {
-        if let url = NSURL(string: "https://www.facebook.com/whoop.hopkins") {
-            UIApplication.sharedApplication().openURL(url)
+        var url = NSURL(string: "http://www.facebook.com/whoop.hopkins")
+        if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
         }
         
     }
