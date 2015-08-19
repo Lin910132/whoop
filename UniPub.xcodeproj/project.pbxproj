@@ -48,6 +48,7 @@
 		86D0A4F81AE012A100D86953 /* LikeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A4F61AE012A100D86953 /* LikeViewCell.swift */; };
 		86D0A4F91AE012A100D86953 /* LikeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D0A4F71AE012A100D86953 /* LikeViewCell.xib */; };
 		86D0A4FB1AE019AB00D86953 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */; };
+		86F32C261B84216D00689CE6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F32C251B84216D00689CE6 /* SettingViewController.swift */; };
 		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 		9B88E2AD1AD6C6FC00B5E051 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */; };
 		9B88E2AF1AD6C83000B5E051 /* MyUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */; };
@@ -132,6 +133,7 @@
 		86D0A4F61AE012A100D86953 /* LikeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewCell.swift; sourceTree = "<group>"; };
 		86D0A4F71AE012A100D86953 /* LikeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeViewCell.xib; sourceTree = "<group>"; };
 		86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		86F32C251B84216D00689CE6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 		9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUITabBarController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */,
 				9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */,
 				86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */,
+				86F32C251B84216D00689CE6 /* SettingViewController.swift */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				73BB8A021AAF53AE00CAECB5 /* YRSendComment.swift in Sources */,
 				738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */,
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
+				86F32C261B84216D00689CE6 /* SettingViewController.swift in Sources */,
 				86D0A4FB1AE019AB00D86953 /* LikeViewController.swift in Sources */,
 				738AA80E1AABD48D008E6649 /* SearchViewController.swift in Sources */,
 				8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */,
