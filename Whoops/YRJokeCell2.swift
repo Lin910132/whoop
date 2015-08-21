@@ -231,11 +231,11 @@ class YRJokeCell2: UITableViewCell
         var lableContent = UILabel(frame: CGRectMake(3, lbPostion, ivBack.frame.size.width-6, 1000));
         lableContent.numberOfLines = 0;
         lableContent.textColor = UIColor(red:60.0/255.0 , green:60.0/255.0 , blue: 60.0/255.0, alpha: 1.0);
-        lableContent.font = UIFont.systemFontOfSize(13);
+        lableContent.font = UIFont.systemFontOfSize(17);
         var text = data.stringAttributeForKey("content");
         
         lableContent.text = text as String;
-        var size = text.stringHeightWith(13,width:lableContent.frame.size.width);
+        var size = text.stringHeightWith(17,width:lableContent.frame.size.width);
         var rect = lableContent.frame as CGRect;
         
         rect.size.height = size+20;
@@ -469,9 +469,9 @@ class YRJokeCell2: UITableViewCell
         var lableContent = UILabel(frame: CGRectMake(3, 193, mainWidth - 26, 1000));
         
         lableContent.numberOfLines = 0;
-        lableContent.font = UIFont.systemFontOfSize(13);
+        lableContent.font = UIFont.systemFontOfSize(17);
         var text = data.stringAttributeForKey("content");
-        var size = text.stringHeightWith(13,width:mainWidth - 26);
+        var size = text.stringHeightWith(17,width:mainWidth - 26);
         //size = size + 20.0;
         //设置图片
         var imageStr = data.stringAttributeForKey("image") as NSString;
