@@ -467,6 +467,7 @@ class YRJokeCell2: UITableViewCell
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
         var lableContent = UILabel(frame: CGRectMake(3, 193, mainWidth - 26, 1000));
+        
         lableContent.numberOfLines = 0;
         lableContent.font = UIFont.systemFontOfSize(13);
         var text = data.stringAttributeForKey("content");
