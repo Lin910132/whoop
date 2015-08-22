@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -154,7 +154,7 @@ This Policy is current as of the Effective Date set forth above. We may change t
         <!--Home Page-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Home Page" id="9pv-A4-QxB" customClass="YRMainViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home Page" id="9pv-A4-QxB" customClass="YRMainViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZmA-Nx-jUB"/>
                         <viewControllerLayoutGuide type="bottom" id="zmG-De-n7I"/>
@@ -279,12 +279,9 @@ This Policy is current as of the Effective Date set forth above. We may change t
                                     <constraint firstItem="2Af-KH-8Pe" firstAttribute="top" secondItem="YVq-Ps-uq4" secondAttribute="top" constant="2" id="yQQ-5t-Bak"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
                                 <rect key="frame" x="0.0" y="94" width="600" height="457"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
@@ -1673,7 +1670,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Settings-->
         <scene sceneID="lOo-AM-NfQ">
             <objects>
-                <tableViewController id="adm-Sc-8Q6" sceneMemberID="viewController">
+                <tableViewController id="adm-Sc-8Q6" customClass="SettingViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nT9-sv-bNh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1701,6 +1698,9 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                     <state key="normal" backgroundImage="renren">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="renrenLink:" destination="adm-Sc-8Q6" eventType="touchUpInside" id="QDh-vc-v1r"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0z-Vv-jAh">
                                     <rect key="frame" x="278" y="78" width="44" height="44"/>
@@ -1731,6 +1731,9 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                     <state key="normal" backgroundImage="facebook">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="facebookLink:" destination="adm-Sc-8Q6" eventType="touchUpInside" id="ZLL-nR-JR2"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loveus" translatesAutoresizingMaskIntoConstraints="NO" id="HOe-lH-hDn">
                                     <rect key="frame" x="200" y="22" width="200" height="20"/>
@@ -1927,7 +1930,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--University View Controller-->
         <scene sceneID="i7e-6D-cmP">
             <objects>
-                <tableViewController id="n3u-xl-SSi" customClass="UniversityViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="n3u-xl-SSi" customClass="UniversityViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zi0-Ph-FUL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1963,7 +1966,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Search-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SearchViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="SearchViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6eA-eX-WOl"/>
                         <viewControllerLayoutGuide type="bottom" id="vL8-Op-rXD"/>
@@ -1978,7 +1981,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchResult" id="5ba-jh-7aG" customClass="SearchResultCell" customModule="Whoop" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchResult" id="5ba-jh-7aG" customClass="SearchResultCell" customModule="UniPub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ba-jh-7aG" id="3qx-TI-cYF">
@@ -2032,7 +2035,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                             <segue destination="n3u-xl-SSi" kind="show" id="NUi-C3-wVh"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headCell" rowHeight="50" id="vSA-3R-2bV" customClass="SearchHeadCell" customModule="Whoop" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headCell" rowHeight="50" id="vSA-3R-2bV" customClass="SearchHeadCell" customModule="UniPub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vSA-3R-2bV" id="h9d-KI-Csj">
@@ -2116,7 +2119,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Likes-->
         <scene sceneID="q2o-qI-qsC">
             <objects>
-                <viewController id="n79-RT-vSM" customClass="LikeViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n79-RT-vSM" customClass="LikeViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8C0-mR-IHD"/>
                         <viewControllerLayoutGuide type="bottom" id="HN1-4Z-1ta"/>
@@ -2154,7 +2157,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--MyUI Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarId" id="49e-Tb-3d3" customClass="MyUITabBarController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarId" id="49e-Tb-3d3" customClass="MyUITabBarController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="zH2-Hw-o0x"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -2180,7 +2183,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Post-->
         <scene sceneID="SHS-f2-jMm">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rTB-1f-ENa"/>
                         <viewControllerLayoutGuide type="bottom" id="dwa-jf-uwl"/>
@@ -2192,12 +2195,13 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceHorizontal="YES" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-Gh-xwJ">
                                 <rect key="frame" x="0.0" y="16" width="375" height="184"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint=""/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="arM-FN-Sg1"/>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
@@ -2402,7 +2406,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Comments View Controller-->
         <scene sceneID="BTZ-3J-g1k">
             <objects>
-                <viewController id="RhR-4p-SGt" customClass="YRCommentsViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RhR-4p-SGt" customClass="YRCommentsViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZlE-LE-22k"/>
                         <viewControllerLayoutGuide type="bottom" id="8is-z4-fZ4"/>
@@ -2586,7 +2590,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--My Replies-->
         <scene sceneID="AMO-52-gJd">
             <objects>
-                <tableViewController title="My Replies" id="Lvh-BA-oUc" customClass="MyRepliesViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="My Replies" id="Lvh-BA-oUc" customClass="MyRepliesViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WyW-h7-2Ut">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2613,7 +2617,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--My Post-->
         <scene sceneID="Oqg-6V-erh">
             <objects>
-                <viewController title="My Post" id="daP-pz-D65" customClass="MyPostsViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Post" id="daP-pz-D65" customClass="MyPostsViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9WA-SH-Fx6"/>
                         <viewControllerLayoutGuide type="bottom" id="zWE-Ub-RQC"/>
@@ -2628,7 +2632,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="myPost" rowHeight="320" id="ICs-Ua-37T" customClass="PostTableViewCell" customModule="Whoop" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="myPost" rowHeight="320" id="ICs-Ua-37T" customClass="PostTableViewCell" customModule="UniPub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ICs-Ua-37T" id="00Q-pW-gBZ">
@@ -2713,7 +2717,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--My Post Comment View Controller-->
         <scene sceneID="u6x-EE-oO7">
             <objects>
-                <tableViewController id="XZl-wH-wcb" customClass="MyPostCommentViewController" customModule="Whoop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="XZl-wH-wcb" customClass="MyPostCommentViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aOL-FN-9JX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

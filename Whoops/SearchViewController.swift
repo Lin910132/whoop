@@ -373,6 +373,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
+                //university.currentUniversity = "[1F601]"
                 self.resultSearchController.active = false
             }
             else
@@ -382,12 +383,15 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
+                    //university.currentUniversity = "[1F601]"
                 }
                 if indexPath.section == 1{
                     var data = self.nearby[indexPath.row] as! NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("id")
                     university.currentUniversity = selectedUniversity
+                    //university.currentUniversity = "[1F601]"
+                    
                 }
             }
         }
