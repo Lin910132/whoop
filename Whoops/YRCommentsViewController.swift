@@ -40,7 +40,13 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         setupViews()
         loadData()
-        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,6 +99,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.sendView!.resignFirstResponder()
     }
+    
     
     func setupViews()
     {
