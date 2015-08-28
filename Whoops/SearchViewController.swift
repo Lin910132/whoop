@@ -37,13 +37,14 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.searchBar.barTintColor = UIColor(netHex: 0x3593DD)
+            controller.searchBar.tintColor = UIColor.whiteColor()
             var textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
             textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
             //textfield?.backgroundColor = UIColor.blackColor()
-            textfield?.textColor = UIColor.whiteColor()
+            //textfield?.textColor = UIColor.whiteColor()
+            //textfield?.tintColor = UIColor.whiteColor()
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-            
             textfield?.attributedPlaceholder = NSAttributedString(string:"Search your School",
                 attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
 //            
@@ -54,9 +55,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         })()
         
         
-        //self.sendFavorite?.delegate = self
-        
-        
+        //add background to status bar
+        var modalView:UIView = UIView(frame: CGRectMake(0 , 0, self.view.frame.width, UIApplication.sharedApplication().statusBarFrame.height+2))
+        modalView.backgroundColor = UIColor(netHex: 0x2E8BD1)
+        self.view.addSubview(modalView)
+    
         // Get location begins
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -87,6 +90,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         //self.addRefreshControl()
         
     }
+    
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
         println("get location")
