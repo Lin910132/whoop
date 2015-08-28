@@ -9,6 +9,8 @@
 import UIKit
 import MessageUI
 
+
+
 class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshUniversityDelegate {
 
     let identifier = "cell"
@@ -34,6 +36,10 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         self.refreshView!.delegate = self
         self.tableView.tableFooterView = self.refreshView
         addRefreshControll()
+        
+        SchoolObject.result = self.schoolId
+        SchoolObject.schoolName = self.currentUniversity
+        
     }
     
     func addRefreshControll()

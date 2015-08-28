@@ -53,6 +53,7 @@
 		9B88E2AD1AD6C6FC00B5E051 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */; };
 		9B88E2AF1AD6C83000B5E051 /* MyUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */; };
 		9B88E2B11AD6CAFE00B5E051 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2B01AD6CAFE00B5E051 /* UIViewControllerExt.swift */; };
+		E342EB581B90FDBE00B2E534 /* SchoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342EB571B90FDBE00B2E534 /* SchoolObject.swift */; };
 		E34F95541B814A6300EF5E24 /* DKImagePickerController_PhotoChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E34F95521B814A6300EF5E24 /* DKImagePickerController_PhotoChecked@2x.png */; };
 		E34F95551B814A6300EF5E24 /* DKImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34F95531B814A6300EF5E24 /* DKImagePickerController.swift */; };
 		E3780B081B1FE67500EB662E /* YRJokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3780B051B1FE67500EB662E /* YRJokeCell.swift */; };
@@ -138,6 +139,7 @@
 		9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUITabBarController.swift; sourceTree = "<group>"; };
 		9B88E2B01AD6CAFE00B5E051 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		E342EB571B90FDBE00B2E534 /* SchoolObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolObject.swift; sourceTree = "<group>"; };
 		E34F95521B814A6300EF5E24 /* DKImagePickerController_PhotoChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DKImagePickerController_PhotoChecked@2x.png"; sourceTree = "<group>"; };
 		E34F95531B814A6300EF5E24 /* DKImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKImagePickerController.swift; sourceTree = "<group>"; };
 		E3780B051B1FE67500EB662E /* YRJokeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YRJokeCell.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */,
 				86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */,
 				86F32C251B84216D00689CE6 /* SettingViewController.swift */,
+				E342EB571B90FDBE00B2E534 /* SchoolObject.swift */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				239A383E1A9FF414000976E0 /* UIImageViewWebExt.swift in Sources */,
 				E34F95551B814A6300EF5E24 /* DKImagePickerController.swift in Sources */,
 				86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */,
+				E342EB581B90FDBE00B2E534 /* SchoolObject.swift in Sources */,
 				2363F9981AA00A1E009957D1 /* YRImageViewController.swift in Sources */,
 				239A38401A9FF414000976E0 /* NSStringExt.swift in Sources */,
 				239A38421A9FF414000976E0 /* UIViewExt.swift in Sources */,

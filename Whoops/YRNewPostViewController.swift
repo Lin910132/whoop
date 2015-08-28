@@ -46,6 +46,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     let MAX_WORD_COUNT = 100
     
+    var universityView:UniversityViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +55,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
+        self.schoolId = SchoolObject.result
         
         contentTextView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
@@ -67,6 +70,10 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         }
         
         
+    }
+    
+    func transmitSchoolId(schoolId:String){
+        self.schoolId = schoolId
     }
     
     
@@ -126,8 +133,14 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
         self.presentViewController(vc, animated: true, completion: nil)
-        
-        
+
+//        if self.schoolId == "" {
+//                    }else{
+//            let anotherView:SearchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("search") as! SearchViewController
+////            anotherView.schoolId = self.schoolId
+////            anotherView.currentUniversity = SchoolObject.schoolName
+//            self.presentViewController(anotherView, animated: true, completion: nil)
+//        }
         
     }
     
