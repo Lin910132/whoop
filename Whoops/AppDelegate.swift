@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    
     func swizzlingMethod(clzz: AnyClass, #oldSelector: Selector, #newSelector: Selector) {
         let oldMethod = class_getInstanceMethod(clzz, oldSelector)
         let newMethod = class_getInstanceMethod(clzz, newSelector)

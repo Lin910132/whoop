@@ -66,6 +66,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
+        
+        page = 1
+        loadData(self.type)
     }
     
     
@@ -185,6 +188,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
             }
+            self.page++
             
             for data : AnyObject  in arr
             {
@@ -195,7 +199,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
         })
         
-        self.page++
+        
         
     }
     
