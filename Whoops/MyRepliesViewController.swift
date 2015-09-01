@@ -92,13 +92,18 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
             
             var arr = data["data"] as! NSArray
             
+            if self.page == 1 {
+                self.dataArray = NSMutableArray()
+            }
+            self.page++
+            
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
-            self.page++
+            
         })
         
     }
@@ -127,6 +132,9 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
+        
+        self.page = 1
+        loadData()
     }
     
     

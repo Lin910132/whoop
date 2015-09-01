@@ -37,6 +37,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
+        self.page = 1
+        loadData()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -121,14 +123,17 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             
             var arr = data["data"] as! NSArray
+            if self.page == 1 {
+                self.dataArray = NSMutableArray()
+            }
+            self.page++
             
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
             }
             self.PostTableView.reloadData()
-           // self.refreshView!.stopLoading()
-            self.page++
+            self.refreshView!.stopLoading()
         })
     }
     

@@ -92,6 +92,10 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             }
             
             var arr = data["data"] as! NSArray
+            if self.page == 1 {
+                self.dataArray = NSMutableArray()
+            }
+            self.page++
             
             for data : AnyObject  in arr
             {
@@ -99,7 +103,6 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             }
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
-            self.page++
         })
         
     }
@@ -130,6 +133,9 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
+        
+        page = 1
+        loadData()
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
