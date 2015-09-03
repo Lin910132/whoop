@@ -41,8 +41,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             var textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
             textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
             //textfield?.backgroundColor = UIColor.blackColor()
-            //textfield?.textColor = UIColor.whiteColor()
-            //textfield?.tintColor = UIColor.whiteColor()
+            textfield?.textColor = UIColor.whiteColor()
+            textfield?.tintColor = UIColor.whiteColor()
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
             textfield?.attributedPlaceholder = NSAttributedString(string:"Search your School",
