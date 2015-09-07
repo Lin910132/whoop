@@ -2299,7 +2299,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     <navigationItem key="navigationItem" title="Post" id="ILZ-GR-WW9">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PUr-6J-ymY">
                             <connections>
-                                <segue destination="49e-Tb-3d3" kind="presentation" identifier="cancelSegue" id="hXm-LX-KlJ"/>
+                                <action selector="cancelButtonClicked:" destination="laY-OX-8v4" id="i2X-BG-SgX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="sendNormal" id="9B2-8O-Yug">

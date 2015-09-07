@@ -183,6 +183,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var send = segue.destinationViewController as! YRNewPostViewController
         send.schoolId = self.schoolId
+        send.schoolName = self.currentUniversity
     }
     
     func imageViewTapped(noti:NSNotification)
