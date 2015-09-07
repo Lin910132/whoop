@@ -40,6 +40,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     var img = UIImage()
     
     var schoolId:String = "0"
+    var schoolName = String()
     
     var latitude:Double = 0.0
     var longitude:Double = 0.0
@@ -55,7 +56,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
-        self.schoolId = SchoolObject.result
+        //self.schoolId = SchoolObject.result
         
         contentTextView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
@@ -131,18 +132,34 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         }
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+    //    let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
+    //    self.presentViewController(vc, animated: true, completion: nil)
 
-//        if self.schoolId == "" {
-//                    }else{
-//            let anotherView:SearchViewController = mainStoryboard.instantiateViewControllerWithIdentifier("search") as! SearchViewController
-////            anotherView.schoolId = self.schoolId
-////            anotherView.currentUniversity = SchoolObject.schoolName
-//            self.presentViewController(anotherView, animated: true, completion: nil)
-//        }
+        if self.schoolId == "0"{
+            //let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }else{
+            //let anotherView:UniversityViewController = mainStoryboard.instantiateViewControllerWithIdentifier("university") as! UniversityViewController
+            //anotherView.schoolId = self.schoolId
+            //anotherView.currentUniversity = self.schoolName
+            //self.presentViewController(anotherView, animated: true, completion: nil)
+            navigationController?.popViewControllerAnimated(true)
+        }
         
     }
+    
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        if self.schoolId == "0"{
+            let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }else{
+            navigationController?.popViewControllerAnimated(true)
+        }
+        
+    }
+    
     
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
