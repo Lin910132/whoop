@@ -56,7 +56,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
-        //self.schoolId = SchoolObject.result
+        self.schoolId = SchoolObject.result
         
         contentTextView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false

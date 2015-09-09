@@ -10,7 +10,7 @@ import Foundation
 
 
 class SchoolObject: NSObject {
-    static var schoolId:String = ""
+    static var schoolId:String = "0"
     
     static var schoolName:String = ""
     

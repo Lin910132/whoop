@@ -95,7 +95,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
             }
-            self.page++
+            
             
             for data : AnyObject  in arr
             {
@@ -114,7 +114,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
-        //refreshView.startLoading()
+        self.page++
         loadData()
     }
     
