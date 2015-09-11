@@ -62,13 +62,13 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
             }
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
-            self.page++
+           
         })
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
-        //refreshView.startLoading()
+        self.page++
         loadData()
     }
     

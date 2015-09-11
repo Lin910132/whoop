@@ -126,7 +126,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
             }
-            self.page++
+            
             
             for data : AnyObject  in arr
             {
@@ -175,6 +175,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
+        self.page++
         loadData()
     }
     
