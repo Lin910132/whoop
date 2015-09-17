@@ -126,8 +126,10 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         }else{
             if imgList.count == 0 {
                 createNewPost()
+                SchoolObject.schoolId = "0";
             }else{
                 postWithPic()
+                SchoolObject.schoolId = "0";
             }
         }
         
