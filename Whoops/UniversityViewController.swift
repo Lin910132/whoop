@@ -20,6 +20,14 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     var currentUniversity = String()
     var schoolId = String()
     
+    
+    @IBAction func showPostButton(sender: AnyObject) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = currentUniversity

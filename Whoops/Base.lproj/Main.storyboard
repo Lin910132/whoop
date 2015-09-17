@@ -235,11 +235,12 @@ This Policy is current as of the Effective Date set forth above. We may change t
                                             <constraint firstAttribute="height" constant="24" id="7GJ-LE-5ma"/>
                                             <constraint firstAttribute="width" constant="24" id="w5d-3F-iIy"/>
                                         </constraints>
-                                        <state key="normal" image="Settings">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="adm-Sc-8Q6" kind="show" id="6HH-I9-1py"/>
+                                            <action selector="postButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="0Xz-Ge-LoG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1b-It-OOO">
@@ -1953,7 +1954,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     <navigationItem key="navigationItem" id="jWQ-9J-flG">
                         <barButtonItem key="rightBarButtonItem" image="Post" id="iSU-fQ-iHN">
                             <connections>
-                                <segue destination="laY-OX-8v4" kind="show" id="35P-N4-up8"/>
+                                <action selector="showPostButton:" destination="n3u-xl-SSi" id="BUI-sc-jdw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2170,19 +2171,18 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     <connections>
                         <segue destination="3o5-aT-AWB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="NkG-nW-3xJ" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="oNg-8W-Ayf" kind="relationship" relationship="viewControllers" id="jcr-J8-INe"/>
                         <segue destination="xGf-zK-mVk" kind="relationship" relationship="viewControllers" id="lF6-df-TrP"/>
                         <segue destination="WsP-R3-uEW" kind="relationship" relationship="viewControllers" id="OPG-9w-fLn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49.5" y="23.5"/>
+            <point key="canvasLocation" x="380" y="-49"/>
         </scene>
         <!--Post-->
         <scene sceneID="SHS-f2-jMm">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postViewId" hidesBottomBarWhenPushed="YES" id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rTB-1f-ENa"/>
                         <viewControllerLayoutGuide type="bottom" id="dwa-jf-uwl"/>
@@ -2321,7 +2321,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIH-bb-Rjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586.5" y="-18.5"/>
+            <point key="canvasLocation" x="1997.5" y="-1881.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xTz-8v-nCD">
@@ -2450,7 +2450,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Navigation Controller-->
         <scene sceneID="4Oz-rV-w9i">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oNg-8W-Ayf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="postNavigation" automaticallyAdjustsScrollViewInsets="NO" id="oNg-8W-Ayf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Post" id="1Bj-CC-xy5">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-4"/>
                     </tabBarItem>
@@ -2465,12 +2465,12 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="laY-OX-8v4" kind="relationship" relationship="rootViewController" id="3dj-WA-gq2"/>
+                        <segue destination="laY-OX-8v4" kind="relationship" relationship="rootViewController" id="EuR-wT-ZIF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XE8-kH-c5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1125" y="1081"/>
+            <point key="canvasLocation" x="1355" y="-1743"/>
         </scene>
         <!--Profile-->
         <scene sceneID="WJO-tS-lou">
@@ -2784,7 +2784,6 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <image name="Profile" width="37" height="65"/>
         <image name="Rules and Info" width="750" height="1334"/>
         <image name="Search" width="56" height="56"/>
-        <image name="Settings" width="34" height="34"/>
         <image name="ballonHighlight" width="20" height="17"/>
         <image name="facebook" width="76" height="76"/>
         <image name="iner" width="76" height="76"/>
@@ -2794,9 +2793,5 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <image name="weibo" width="76" height="76"/>
         <image name="weixin" width="76" height="76"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="35P-N4-up8"/>
-        <segue reference="ZTg-2z-JPR"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
