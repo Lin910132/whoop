@@ -20,7 +20,7 @@ class SchoolObject: NSObject {
         }
         
         set{
-            self.schoolId = newValue
+            //self.schoolId = newValue
         }
     }
    }
