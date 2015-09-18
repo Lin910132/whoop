@@ -1671,7 +1671,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--Settings-->
         <scene sceneID="lOo-AM-NfQ">
             <objects>
-                <tableViewController id="adm-Sc-8Q6" customClass="SettingViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="adm-Sc-8Q6" customClass="SettingViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nT9-sv-bNh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1931,7 +1931,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--University View Controller-->
         <scene sceneID="i7e-6D-cmP">
             <objects>
-                <tableViewController storyboardIdentifier="university" id="n3u-xl-SSi" customClass="UniversityViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="university" hidesBottomBarWhenPushed="YES" id="n3u-xl-SSi" customClass="UniversityViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zi0-Ph-FUL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2597,7 +2597,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--My Replies-->
         <scene sceneID="AMO-52-gJd">
             <objects>
-                <tableViewController title="My Replies" id="Lvh-BA-oUc" customClass="MyRepliesViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="My Replies" hidesBottomBarWhenPushed="YES" id="Lvh-BA-oUc" customClass="MyRepliesViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WyW-h7-2Ut">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2624,7 +2624,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <!--My Post-->
         <scene sceneID="Oqg-6V-erh">
             <objects>
-                <viewController title="My Post" id="daP-pz-D65" customClass="MyPostsViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Post" hidesBottomBarWhenPushed="YES" id="daP-pz-D65" customClass="MyPostsViewController" customModule="UniPub" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9WA-SH-Fx6"/>
                         <viewControllerLayoutGuide type="bottom" id="zWE-Ub-RQC"/>
