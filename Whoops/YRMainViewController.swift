@@ -71,6 +71,12 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         loadData(self.type)
     }
     
+    @IBAction func postButton(sender: AnyObject) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
     
     
     func setupViews()

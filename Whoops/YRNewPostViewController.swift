@@ -126,16 +126,18 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         }else{
             if imgList.count == 0 {
                 createNewPost()
+                SchoolObject.schoolId = "0";
             }else{
                 postWithPic()
+                SchoolObject.schoolId = "0";
             }
         }
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        //let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
     //    let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
     //    self.presentViewController(vc, animated: true, completion: nil)
 
-        if self.schoolId == "0"{
+        /*if self.schoolId == "0"{
             //let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
             self.presentViewController(vc, animated: true, completion: nil)
@@ -144,19 +146,23 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             //anotherView.schoolId = self.schoolId
             //anotherView.currentUniversity = self.schoolName
             //self.presentViewController(anotherView, animated: true, completion: nil)
-            navigationController?.popViewControllerAnimated(true)
-        }
+            //navigationController?.popViewControllerAnimated(true)
+            
+        }*/
+        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
     @IBAction func cancelButtonClicked(sender: AnyObject) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        if self.schoolId == "0"{
-            let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
-            self.presentViewController(vc, animated: true, completion: nil)
-        }else{
-            navigationController?.popViewControllerAnimated(true)
-        }
+        //let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        //if self.schoolId == "0"{
+        //    let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
+        //    self.presentViewController(vc, animated: true, completion: nil)
+        //}else{
+        //    navigationController?.popViewControllerAnimated(true)
+        //}
+        //navigationController?.popViewControllerAnimated(true);
+        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
