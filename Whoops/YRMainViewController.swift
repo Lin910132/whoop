@@ -143,7 +143,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func addRefreshControl(){
         var fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
-        fresh.tintColor = UIColor.redColor()
+        fresh.tintColor = UIColor.whiteColor()
         fresh.attributedTitle = NSAttributedString(string: "reloading")
         self.tableView?.addSubview(fresh)
     }
