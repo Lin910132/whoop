@@ -127,7 +127,10 @@ class YRJokeCell2: UITableViewCell
             if (imgArray.count == 1)
             {
                 //只有一张图片,高度应该小于宽度，以高度为准，居中显示
-                var imgView = UIImageView(frame:CGRectMake((width - height)/2, yPosition, height, height));imgView.userInteractionEnabled = true
+                //var imgView = UIImageView(frame:CGRectMake((width - height)/2, yPosition, height, height));
+                var imgView = UIImageView(frame: CGRectMake(xPositon, yPosition, height, height))
+                
+                imgView.userInteractionEnabled = true
                 var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                 imgView.addGestureRecognizer(tap)
 

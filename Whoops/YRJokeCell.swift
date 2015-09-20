@@ -105,8 +105,16 @@ class YRJokeCell: UITableViewCell {
                     
                     i++
                     var tempWidth = 10 * i + (i-1) * Int(imgWidth)
+                    //var tempWidth = -10;
                     imgView.frame = CGRectMake(CGFloat(tempWidth), height , imgWidth, imgWidth)
+                    
+                    //imgView.setTranslatesAutoresizingMaskIntoConstraints(false)
                     self.containsPicView.addSubview(imgView)
+                    
+                    //if (i==1){
+                    //    var leftConstraint = NSLayoutConstraint(item: imgView, attribute: .Left, relatedBy: .Equal, toItem: self.containsPicView, attribute: .Left, multiplier: 1.0, constant: 0.0)
+                    //    self.containsPicView.addConstraint(leftConstraint)
+                    //}
                     
                 }
             }else {
