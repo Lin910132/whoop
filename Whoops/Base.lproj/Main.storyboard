@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -229,14 +229,14 @@ This Policy is current as of the Effective Date set forth above. We may change t
                                             <action selector="tabBarButtonClicked:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7TA-QL-iZc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB5-jX-cqN">
-                                        <rect key="frame" x="569" y="4" width="24" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB5-jX-cqN">
+                                        <rect key="frame" x="519" y="4" width="74" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="7GJ-LE-5ma"/>
                                             <constraint firstAttribute="width" constant="24" id="w5d-3F-iIy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="+">
+                                        <state key="normal" image="HomePost">
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2778,6 +2778,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
     </scenes>
     <resources>
         <image name="Home" width="74" height="62"/>
+        <image name="HomePost" width="56" height="56"/>
         <image name="Like" width="49" height="43"/>
         <image name="Logoo" width="512" height="512"/>
         <image name="Post" width="59" height="59"/>
