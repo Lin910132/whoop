@@ -323,7 +323,26 @@ class YRJokeCell2: UITableViewCell
         createDateLabel.text = data.stringAttributeForKey("createDateLabel") as String;
         viewBottom.addSubview(createDateLabel);
         
-        var commentCount = UILabel(frame: CGRectMake(55, (bottomHeight - 16)/2, 70, 16));
+        var  imgNick = UIImageView(frame: CGRectMake(75, (bottomHeight - 16)/2, 16, 16));
+        imgNick.image = UIImage(named: "ballonHighlight");
+        imgNick.userInteractionEnabled = true;
+        viewBottom.addSubview(imgNick);
+        
+        var nickName = UILabel(frame: CGRectMake(97, (bottomHeight - 16)/2, ivBack.frame.width - 180, 16));
+        nickName.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
+        nickName.font = UIFont.systemFontOfSize(13);
+        nickName.text = data.stringAttributeForKey("nickName") as String;
+        if (nickName.text == ""){
+            nickName.text = "Unknown";
+        }
+        viewBottom.addSubview(nickName);
+        
+        var btnNick = UIButton(frame: CGRectMake(75, (bottomHeight - 16)/2, ivBack.frame.width - 164, 16));
+        btnNick.backgroundColor = UIColor.clearColor();
+        btnNick.addTarget(self, action: "btnNickClick:", forControlEvents: UIControlEvents.TouchUpInside);
+        viewBottom.addSubview(btnNick);
+        
+        var commentCount = UILabel(frame: CGRectMake(ivBack.frame.width - 80, (bottomHeight - 16)/2, 70, 16));
         commentCount.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         commentCount.font = UIFont.systemFontOfSize(13);
         commentCount.textAlignment = NSTextAlignment.Center;
@@ -338,22 +357,6 @@ class YRJokeCell2: UITableViewCell
         }
         commentCount.text = "\(strcommentCount) ";
         viewBottom.addSubview(commentCount);
-        
-        var  imgNick = UIImageView(frame: CGRectMake(155, (bottomHeight - 16)/2, 16, 16));
-        imgNick.image = UIImage(named: "ballonHighlight");
-        imgNick.userInteractionEnabled = true;
-        viewBottom.addSubview(imgNick);
-        
-        var nickName = UILabel(frame: CGRectMake(177, (bottomHeight - 16)/2, ivBack.frame.width - 180, 16));
-        nickName.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
-        nickName.font = UIFont.systemFontOfSize(13);
-        nickName.text = data.stringAttributeForKey("nickName") as String;
-        viewBottom.addSubview(nickName);
-        
-        var btnNick = UIButton(frame: CGRectMake(155, (bottomHeight - 16)/2, ivBack.frame.width - 164, 16));
-        btnNick.backgroundColor = UIColor.clearColor();
-        btnNick.addTarget(self, action: "btnNickClick:", forControlEvents: UIControlEvents.TouchUpInside);
-        viewBottom.addSubview(btnNick);
         
         postId = self.data.stringAttributeForKey("id") as String
     }
