@@ -1952,7 +1952,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="jWQ-9J-flG">
-                        <barButtonItem key="rightBarButtonItem" image="Post" id="iSU-fQ-iHN">
+                        <barButtonItem key="rightBarButtonItem" image="HomePost" style="plain" id="iSU-fQ-iHN">
                             <connections>
                                 <action selector="showPostButton:" destination="n3u-xl-SSi" id="BUI-sc-jdw"/>
                             </connections>
@@ -2778,7 +2778,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
     </scenes>
     <resources>
         <image name="Home" width="74" height="62"/>
-        <image name="HomePost" width="56" height="56"/>
+        <image name="HomePost" width="18" height="18"/>
         <image name="Like" width="49" height="43"/>
         <image name="Logoo" width="512" height="512"/>
         <image name="Post" width="59" height="59"/>
