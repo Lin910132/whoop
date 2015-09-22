@@ -317,7 +317,7 @@ class YRJokeCell2: UITableViewCell
         imgTime.image = UIImage(named: "time");
         viewBottom.addSubview(imgTime);
         
-        var createDateLabel = UILabel(frame: CGRectMake(25, (bottomHeight - 16)/2, 30, 16));
+        var createDateLabel = UILabel(frame: CGRectMake(25, (bottomHeight - 16)/2, 50, 16));
         createDateLabel.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         createDateLabel.font = UIFont.systemFontOfSize(13);
         createDateLabel.text = data.stringAttributeForKey("createDateLabel") as String;
