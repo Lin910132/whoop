@@ -245,7 +245,8 @@ class YRJokeCell2: UITableViewCell
         ivBack.addSubview(lableContent);
         
         //设置底部数据
-        var bottomY = textYpostion+size + 25;
+        var bottomY = textYpostion + size + 25;
+        //var bottomY = textYpostion+size + 5;
         
         if(isTop)
         {
@@ -536,7 +537,8 @@ class YRJokeCell2: UITableViewCell
         var lbPostion:CGFloat;
         if(isTop)
         {
-            lbPostion = yPosition ;
+            //lbPostion = yPosition ;
+            lbPostion = yPosition;
             //textYpostion = yPosition;
         }
         else
@@ -563,7 +565,7 @@ class YRJokeCell2: UITableViewCell
             resut = bottomY + bottomHeight;
         }
         
-        return resut;
+        return resut + 20;
         
     }
     

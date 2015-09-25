@@ -282,6 +282,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         let index = indexPath.row
         let data = self.dataArray[index] as! NSDictionary
         return  YRJokeCell2.cellHeightByData(data)
+        //return 500
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
