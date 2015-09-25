@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "432"
             endingLineNumber = "432"
-            landmarkName = "YRMainViewController"
-            landmarkType = "3">
+            landmarkName = "mailComposeController(_:didFinishWithResult:error:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -190,9 +190,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "layoutSubviews()"
-            landmarkType = "5">
+            endingLineNumber = "67">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,12 +360,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "460342881.67914"
+            timestampString = "464840748.867171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
-            landmarkName = "imageViewTapped(_:)"
+            startingLineNumber = "584"
+            endingLineNumber = "584"
+            landmarkName = "judgeNum(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -415,7 +413,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkName = "imageViewTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -522,12 +520,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "460342749.24523"
+            timestampString = "464840748.867171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "btnFavClick(_:)"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
+            landmarkName = "btnNickClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -586,12 +584,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "460342749.24523"
+            timestampString = "464840748.867171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
-            landmarkName = "btnFavClick(_:)"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "btnNickClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -602,12 +600,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "460342749.24523"
+            timestampString = "464840748.867171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "btnFavClick(_:)"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "btnNickClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -825,22 +823,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "462245947.797539"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "setCellUp()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Whoops/YRCommentsViewController.swift"
             timestampString = "462245958.474092"
             startingColumnNumber = "9223372036854775807"
@@ -944,22 +926,6 @@
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Whoops/YRJokeCell2.swift"
-            timestampString = "462634599.956082"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "setCellUp()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
