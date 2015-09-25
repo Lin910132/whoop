@@ -32,7 +32,7 @@ class YRSendComment:UIView , UITextFieldDelegate{
         
         commentText.delegate = self
         
-        var width = UIScreen.mainScreen().bounds.width
+        let width = UIScreen.mainScreen().bounds.width
         var height = UIScreen.mainScreen().bounds.height
         self.sendButton.frame = CGRectMake(0, width - 10, 30, 30)
         
@@ -46,8 +46,8 @@ class YRSendComment:UIView , UITextFieldDelegate{
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
         
-        var comment:String = self.commentText.text
-        if count(comment) > 30 {
+        let comment:String = self.commentText.text!
+        if comment.characters.count > 30 {
             self.commentText.text = comment.substringToIndex(30)
             return false
         }
@@ -76,14 +76,14 @@ class YRSendComment:UIView , UITextFieldDelegate{
     
     @IBAction func sendBtnClicked(sender:UIButton)
     {
-        var content = commentText.text
-        if content.isEmpty{
+        let content = commentText.text
+        if content!.isEmpty{
 //            UIView.showAlertView("WARNING",message:"Comment should not be empty")
             return
         }
         
-        var url = FileUtility.getUrlDomain() + "comment/add?"
-        var paraData = "content=\(content)&postId=\(postId)&uid=\(FileUtility.getUserId())"
+        let url = FileUtility.getUrlDomain() + "comment/add?"
+        let paraData = "content=\(content)&postId=\(postId)&uid=\(FileUtility.getUserId())"
         
         var data:NSMutableArray = YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
         

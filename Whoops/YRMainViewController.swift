@@ -73,7 +73,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func postButton(sender: AnyObject) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") as! UIViewController
+        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") 
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
@@ -120,7 +120,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
 //        
         
         
-        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         var rect = self.tableView.frame;
@@ -141,7 +141,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     func addRefreshControl(){
-        var fresh:UIRefreshControl = UIRefreshControl()
+        let fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         fresh.tintColor = UIColor.whiteColor()
         fresh.attributedTitle = NSAttributedString(string: "reloading")
@@ -150,7 +150,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func actionRefreshHandler(sender:UIRefreshControl){
         page = 1
-        var url = urlString(self.type)
+        let url = urlString(self.type)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -160,7 +160,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             self.dataArray = NSMutableArray()
             for data : AnyObject  in arr
@@ -179,7 +179,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func loadData(type:Int)
     {
-        var url = urlString(type)
+        let url = urlString(type)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -189,7 +189,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
@@ -262,8 +262,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
 
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         var cell :YRJokeCell2? = tableView.dequeueReusableCellWithIdentifier(identifier) as? YRJokeCell2
         if cell == nil{
             cell = YRJokeCell2(style: .Default, reuseIdentifier: identifier)
@@ -279,15 +279,15 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         return  YRJokeCell2.cellHeightByData(data)
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
-        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
+        let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
@@ -316,16 +316,16 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func imageViewTapped(noti:NSNotification)
     {
         
-        var imageURL = noti.object as! String
-        var imgVC = YRImageViewController(nibName: nil, bundle: nil)
+        let imageURL = noti.object as! String
+        let imgVC = YRImageViewController(nibName: nil, bundle: nil)
         imgVC.imageURL = imageURL
         self.navigationController?.pushViewController(imgVC, animated: true)
         
         
     }
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
-        var location:CLLocation = locations[locations.count-1] as! CLLocation
+        let location:CLLocation = locations[locations.count-1] 
         
         if (location.horizontalAccuracy > 0) {
             lat = location.coordinate.latitude
@@ -339,17 +339,17 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
         //        self.textLabel.text = "get location error"
     }
     
     @IBAction func tabBarButtonClicked(sender: AnyObject) {
-        var index = sender.tag
+        let index = sender.tag
         
         for var i = 0;i<4;i++
         {
-            var button = self.view.viewWithTag(i+100) as! UIButton
+            let button = self.view.viewWithTag(i+100) as! UIButton
             if button.tag == index
             {
                 button.selected = true
@@ -385,7 +385,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func ios8()->Bool{
         let version:NSString = UIDevice.currentDevice().systemVersion
         let bigVersion = version.substringToIndex(1)
-        let intBigVersion = bigVersion.toInt()
+        let intBigVersion = Int(bigVersion)
         if intBigVersion >= 8 {
             return true
         }else {
@@ -396,7 +396,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func sendEmail(strTo:String, strSubject:String, strBody:String)
     {
-        var controller = MFMailComposeViewController();
+        let controller = MFMailComposeViewController();
         controller.mailComposeDelegate = self;
         controller.setSubject(strSubject);
         var toList: [String] = [String]()
@@ -412,7 +412,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func refreshMain(){
-        var fresh:UIRefreshControl = UIRefreshControl()
+        let fresh:UIRefreshControl = UIRefreshControl()
         self.actionRefreshHandler(fresh)
     }
     
@@ -425,7 +425,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }

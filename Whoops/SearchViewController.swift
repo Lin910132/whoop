@@ -38,7 +38,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             controller.searchResultsUpdater = self
             controller.searchBar.barTintColor = UIColor(netHex: 0x3593DD)
             controller.searchBar.tintColor = UIColor.whiteColor()
-            var textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
+            let textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
             textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
             //textfield?.backgroundColor = UIColor.blackColor()
             textfield?.textColor = UIColor.whiteColor()
@@ -56,7 +56,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         
         //add background to status bar
-        var modalView:UIView = UIView(frame: CGRectMake(0 , 0, self.view.frame.width, UIApplication.sharedApplication().statusBarFrame.height+2))
+        let modalView:UIView = UIView(frame: CGRectMake(0 , 0, self.view.frame.width, UIApplication.sharedApplication().statusBarFrame.height+2))
         modalView.backgroundColor = UIColor(netHex: 0x2E8BD1)
         self.view.addSubview(modalView)
     
@@ -92,12 +92,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
-        println("get location")
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        print("get location")
         
         if self.flag {
             self.flag = false
-            var location:CLLocation = locations[locations.count-1] as! CLLocation
+            let location:CLLocation = locations[locations.count-1] 
             self.nearby.removeAllObjects()
             if (location.horizontalAccuracy > 0) {
                 self.lat = location.coordinate.latitude
@@ -116,15 +116,15 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
 
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
         //        self.textLabel.text = "get location error"
     }
     
     func addRefreshControl(){
         
         
-        var refresh = UIRefreshControl()
+        let refresh = UIRefreshControl()
         refresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         refresh.tintColor = UIColor.whiteColor()
         self.searchTableView.addSubview(refresh)
@@ -133,7 +133,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func actionRefreshHandler(sender: UIRefreshControl)
     {
 
-        var url = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        let url = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
         self.nearby.removeAllObjects()
         self.refreshView!.startLoading()
         
@@ -145,7 +145,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             self.nearby = NSMutableArray()
             for data : AnyObject  in arr
@@ -190,7 +190,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     
-    func loadDB(var url:String, var target: NSMutableArray)
+    func loadDB(url:String, target: NSMutableArray)
     {
         //if target === self.myFavorite {self.myFavorite.removeAllObjects()}
         target.removeAllObjects()
@@ -204,7 +204,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             for data : AnyObject  in arr
             {
@@ -249,7 +249,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var headCell = tableView.dequeueReusableCellWithIdentifier("headCell") as! SearchHeadCell
+        let headCell = tableView.dequeueReusableCellWithIdentifier("headCell") as! SearchHeadCell
         headCell.backgroundView = nil
         
         if self.resultSearchController.active
@@ -278,8 +278,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("searchResult") as! SearchResultCell
-        var row = indexPath.row
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchResult") as! SearchResultCell
+        let row = indexPath.row
         cell.currentIndex = indexPath.row
         cell.delegate = self
         
@@ -287,7 +287,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         {
             //let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
             //loadDB(myFavoriteUrl, target: self.myFavorite)
-            var data = self.filteredTableData[row] as! NSDictionary
+            let data = self.filteredTableData[row] as! NSDictionary
             cell.title.text = data.stringAttributeForKey("nameEn")
             //cell.title.text = self.filteredTableData[row]
             cell.data = data
@@ -306,7 +306,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             {
                 cell.favorite = self.myFavorite
                 //cell.title.text = self.myFavorite[row]
-                var data = self.myFavorite[row] as! NSDictionary
+                let data = self.myFavorite[row] as! NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
                 //cell.uid = FileUtility.getUserId()
@@ -330,7 +330,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             if indexPath.section == 1
             {
                 //cell.title.text = self.nearby[row]
-                var data = self.nearby[row] as! NSDictionary
+                let data = self.nearby[row] as! NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
                 //cell.uid = FileUtility.getUserId()
@@ -357,8 +357,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         
-        let searchPredicateCn = NSPredicate(format: "(nameCn contains[cd] %@)", searchController.searchBar.text)
-        let searchPredicateEn = NSPredicate(format: "(nameEn contains[cd] %@)", searchController.searchBar.text)
+        let searchPredicateCn = NSPredicate(format: "(nameCn contains[cd] %@)", searchController.searchBar.text!)
+        let searchPredicateEn = NSPredicate(format: "(nameEn contains[cd] %@)", searchController.searchBar.text!)
         var predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: [searchPredicateCn, searchPredicateEn])
         
         let array = _db.filteredArrayUsingPredicate(predicate)
@@ -368,12 +368,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var university = segue.destinationViewController as! UniversityViewController
-        if let indexPath = self.searchTableView.indexPathForSelectedRow() {
+        let university = segue.destinationViewController as! UniversityViewController
+        if let indexPath = self.searchTableView.indexPathForSelectedRow {
             if self.resultSearchController.active
             {
                 self.resultSearchController.resignFirstResponder()
-                var data = self.filteredTableData[indexPath.row] as! NSDictionary
+                let data = self.filteredTableData[indexPath.row] as! NSDictionary
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
@@ -383,14 +383,14 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             else
             {
                 if indexPath.section == 0{
-                    var data = self.myFavorite[indexPath.row] as! NSDictionary
+                    let data = self.myFavorite[indexPath.row] as! NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
                     //university.currentUniversity = "[1F601]"
                 }
                 if indexPath.section == 1{
-                    var data = self.nearby[indexPath.row] as! NSDictionary
+                    let data = self.nearby[indexPath.row] as! NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("id")
                     university.currentUniversity = selectedUniversity

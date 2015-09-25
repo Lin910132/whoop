@@ -21,21 +21,21 @@ class YRHttpRequest: NSObject {
     
     class func requestWithURL(urlString:String,completionHandler:(data:AnyObject)->Void)
     {
-        var url = NSURL(string:urlString)
-        var req = NSURLRequest(URL: url!)
-        var queue = NSOperationQueue();
+        let url = NSURL(string:urlString)
+        let req = NSURLRequest(URL: url!)
+        let queue = NSOperationQueue();
         NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { response, data, error in
             if error != nil
             {
                 dispatch_async(dispatch_get_main_queue(),
                 {
-                    println(error)
+                    print(error)
                     completionHandler(data:NSNull())
                 })
             }
             else
             {
-                let jsonData = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+                let jsonData = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
 
                 dispatch_async(dispatch_get_main_queue(),
                 {
@@ -47,17 +47,17 @@ class YRHttpRequest: NSObject {
     }
     
    
-    class func postWithURL(#urlString:String,paramData:String)->NSMutableArray{
+    class func postWithURL(urlString urlString:String,paramData:String)->NSMutableArray{
     
     
-        var data:NSMutableArray = NSMutableArray()
-        var url1:NSURL = NSURL(string: urlString)!
+        let data:NSMutableArray = NSMutableArray()
+        let url1:NSURL = NSURL(string: urlString)!
     
-        var postData:NSData = paramData.dataUsingEncoding(NSUTF8StringEncoding)!
+        let postData:NSData = paramData.dataUsingEncoding(NSUTF8StringEncoding)!
     
-        var postLength:String = String( postData.length )
+        let postLength:String = String( postData.length )
     
-        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url1)
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL: url1)
         request.HTTPMethod = "POST"
         request.HTTPBody = postData
         request.setValue(postLength, forHTTPHeaderField: "Content-Length")
@@ -68,7 +68,13 @@ class YRHttpRequest: NSObject {
         var reponseError: NSError?
         var response: NSURLResponse?
     
-        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+        var urlData: NSData?
+        do {
+            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
+        } catch let error as NSError {
+            reponseError = error
+            urlData = nil
+        }
     
         if ( urlData != nil ) {
             let res = response as! NSHTTPURLResponse!;
@@ -76,13 +82,13 @@ class YRHttpRequest: NSObject {
     
             if (res.statusCode >= 200 && res.statusCode < 300)
             {
-                var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
+                let responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
     
                 NSLog("Response ==> %@", responseData);
     
                 var error: NSError?
     
-                let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
+                let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
     
                 
     

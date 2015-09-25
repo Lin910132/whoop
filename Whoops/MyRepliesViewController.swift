@@ -27,13 +27,13 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     
     func refreshMyRepliesByFavor(){
-        var fresh:UIRefreshControl = UIRefreshControl()
+        let fresh:UIRefreshControl = UIRefreshControl()
         self.actionRefreshHandler(fresh)
 
     }
     func setupViews()
     {
-        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
@@ -44,7 +44,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     func addRefreshControll()
     {
-        var fresh:UIRefreshControl = UIRefreshControl()
+        let fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         fresh.tintColor = UIColor.whiteColor()
         self.tableView.addSubview(fresh)
@@ -53,7 +53,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     func actionRefreshHandler(sender: UIRefreshControl)
     {
         //page = 1
-        var url = "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=1"
+        let url = "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=1"
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -63,7 +63,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             self.dataArray = NSMutableArray()
             for data : AnyObject  in arr
@@ -80,7 +80,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     func loadData()
     {
-        var url = urlString()
+        let url = urlString()
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -90,7 +90,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
@@ -154,9 +154,9 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var index = indexPath.row
+        let index = indexPath.row
         
-        var data = self.dataArray[index] as! NSDictionary
+        let data = self.dataArray[index] as! NSDictionary
         var cell :YRJokeCell2? = tableView.dequeueReusableCellWithIdentifier(identifier) as? YRJokeCell2
         if cell == nil{
             cell = YRJokeCell2(style: .Default, reuseIdentifier: identifier)
@@ -172,32 +172,32 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
-        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
+        let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         return  YRJokeCell2.cellHeightByData(data)
     }
 
     func imageViewTapped(noti:NSNotification)
     {
         
-        var imageURL = noti.object as! String
-        var imgVC = YRImageViewController(nibName: nil, bundle: nil)
+        let imageURL = noti.object as! String
+        let imgVC = YRImageViewController(nibName: nil, bundle: nil)
         imgVC.imageURL = imageURL
         self.navigationController?.pushViewController(imgVC, animated: true)
     }
     
     func sendEmail(strTo:String, strSubject:String, strBody:String)
     {
-        var controller = MFMailComposeViewController();
+        let controller = MFMailComposeViewController();
         controller.mailComposeDelegate = self;
         controller.setSubject(strSubject);
         var toList: [String] = [String]()
@@ -219,7 +219,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }

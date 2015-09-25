@@ -26,7 +26,7 @@ class YRSendViewCell: UIView, UIImagePickerControllerDelegate,UINavigationContro
         }
         
         
-        var picker = UIImagePickerController()
+        let picker = UIImagePickerController()
  
         picker.delegate = self
 

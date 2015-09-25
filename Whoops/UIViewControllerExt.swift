@@ -21,7 +21,7 @@ extension UIViewController {
         let nav = navController as UINavigationController
         let dic = NSDictionary(object: UIColor.whiteColor(),
             forKey:NSForegroundColorAttributeName)
-        nav.navigationBar.titleTextAttributes = dic as [NSObject : AnyObject]
+        nav.navigationBar.titleTextAttributes = dic as? [String : AnyObject]
         nav.navigationBar.barTintColor = UIColor.applicationMainColor()
         nav.navigationBar.tintColor = UIColor.whiteColor()
         nav.navigationBar.backgroundColor=UIColor.applicationMainColor();

@@ -21,7 +21,7 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         self.uid = FileUtility.getUserId()
         
-        var nib = UINib(nibName:"LikeViewCell", bundle: nil)
+        let nib = UINib(nibName:"LikeViewCell", bundle: nil)
         self.likeTableView.registerNib(nib, forCellReuseIdentifier: identifier)
         
         load_Data()
@@ -29,7 +29,7 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func load_Data(){
-        var url = FileUtility.getUrlDomain() + "msg/getMsgByUId?uid=\(self.uid)&pageNum=\(self.page)"
+        let url = FileUtility.getUrlDomain() + "msg/getMsgByUId?uid=\(self.uid)&pageNum=\(self.page)"
         //var url = "http://104.131.91.181:8080/whoops/msg/getMsgByUId?uid=97&pageNum=1"
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -39,7 +39,7 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             
             for data : AnyObject  in arr
             {
@@ -65,16 +65,16 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
-        var index = indexPath.row
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
+        let index = indexPath.row
         cell?.data = _db[index] as! NSDictionary
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var index = indexPath.row
-        var data = self._db[index] as! NSDictionary
-        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        let index = indexPath.row
+        let data = self._db[index] as! NSDictionary
+        let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("postId")
         commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
@@ -82,8 +82,8 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        var index = indexPath.row
-        var data = self._db[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self._db[index] as! NSDictionary
         return  LikeViewCell.cellHeightByData(data)
     }
 

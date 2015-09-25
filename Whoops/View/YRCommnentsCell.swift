@@ -32,9 +32,9 @@ class YRCommnentsCell: UITableViewCell {
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        var content = self.data.stringAttributeForKey("content")
-        var width = self.contentLabel.width()
-        var height = content.stringHeightWith(17,width:width)
+        let content = self.data.stringAttributeForKey("content")
+        let width = self.contentLabel.width()
+        let height = content.stringHeightWith(17,width:width)
         
         self.contentLabel.setHeight(height)
         self.contentLabel.text = content
@@ -44,7 +44,7 @@ class YRCommnentsCell: UITableViewCell {
         if self.data.stringAttributeForKey("likeNum") == NSNull(){
             self.likeHot = 0
         } else {
-            self.likeHot = self.data.stringAttributeForKey("likeNum").toInt()!
+            self.likeHot = Int(self.data.stringAttributeForKey("likeNum"))!
         }
         
         
@@ -60,10 +60,10 @@ class YRCommnentsCell: UITableViewCell {
         myalert.message = "准备好开始了吗？"
         myalert.addButtonWithTitle("Ready, go!")
         myalert.show()*/
-        var id = self.data.stringAttributeForKey("id")
+        let id = self.data.stringAttributeForKey("id")
         var like = self.data.stringAttributeForKey("likeNum")
 
-            var url = FileUtility.getUrlDomain() + "comment/like?id=\(id)&uid=\(FileUtility.getUserId())"
+            let url = FileUtility.getUrlDomain() + "comment/like?id=\(id)&uid=\(FileUtility.getUserId())"
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
                 if data as! NSObject == NSNull()
@@ -81,9 +81,9 @@ class YRCommnentsCell: UITableViewCell {
     
     @IBAction func unlikeImageClick(){
         
-        var id = self.data.stringAttributeForKey("id")
+        let id = self.data.stringAttributeForKey("id")
         var dislike = self.data.stringAttributeForKey("dislikeNum")
-            var url = FileUtility.getUrlDomain() + "comment/unlike?id=\(id)&uid=\(FileUtility.getUserId())"
+            let url = FileUtility.getUrlDomain() + "comment/unlike?id=\(id)&uid=\(FileUtility.getUserId())"
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
                 if data as! NSObject == NSNull()
@@ -103,8 +103,8 @@ class YRCommnentsCell: UITableViewCell {
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
-        var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width:mainWidth-60)
+        let content = data.stringAttributeForKey("content")
+        let height = content.stringHeightWith(17,width:mainWidth-60)
         return 40.0 + height + 24.0
     }
 

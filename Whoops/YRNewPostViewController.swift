@@ -78,18 +78,18 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
-        var location:CLLocation = locations[locations.count-1] as! CLLocation
+        let location:CLLocation = locations[locations.count-1] 
         
         if (location.horizontalAccuracy > 0) {
             latitude = location.coordinate.latitude
             longitude = location.coordinate.longitude
             
             self.locationManager.stopUpdatingLocation()
-            println(location.coordinate)
+            print(location.coordinate)
             
-            println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
+            print("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
         }
     }
     
@@ -97,7 +97,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
-        var actionSheet = UIActionSheet()
+        let actionSheet = UIActionSheet()
         //        actionSheet.addButtonWithTitle("取消")
         //        actionSheet.addButtonWithTitle("打开照相机")
         //        actionSheet.addButtonWithTitle("从手机相册选择")
@@ -118,9 +118,9 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func sendButtonClick(sender: AnyObject) {
-        var content:String = contentTextView!.text
+        let content:String = contentTextView!.text
         
-        if count(content) == 0 || content == placeHolder {
+        if content.characters.count == 0 || content == placeHolder {
             UIView.showAlertView("Warning",message:"The Content should not be empty")
             return
         }else{
@@ -175,7 +175,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         }else if buttonIndex == 1{
             sourceType = UIImagePickerControllerSourceType.Camera
             
-            var picker = UIImagePickerController()
+            let picker = UIImagePickerController()
             picker.delegate = self
             picker.allowsEditing = true//设置可编辑
             picker.sourceType = sourceType
@@ -215,29 +215,29 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
 //        
      
         
-        for (index, asset) in enumerate(assets) {
+        for (index, asset) in assets.enumerate() {
 
             let imgView = UIImageView(image: asset.fullScreenImage)
             
             imgView.userInteractionEnabled = true
             imgView.tag = imgList.count
             
-            var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+            let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
             imgView.addGestureRecognizer(tap)
 
             if imgList.count < 6 {
                 imgList.append(imgView)
-                var width = self.view.frame.size.width
-                var height = self.view.frame.size.height
-                var imgWidth = (width - 10 - 10 - 20)/3
+                let width = self.view.frame.size.width
+                let height = self.view.frame.size.height
+                let imgWidth = (width - 10 - 10 - 20)/3
                 if imgList.count <= 3 {
-                    var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                    let tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
                     imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
                     self.view.addSubview(imgView)
                     //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
                     toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
                 }else{
-                    var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                    let tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
                     imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
                     self.view.addSubview(imgView)
                     toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
@@ -254,22 +254,22 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             imgView.userInteractionEnabled = true
             imgView.tag = imgList.count
             
-            var tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
+            let tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
             imgView.addGestureRecognizer(tap)
 
 
             imgList.append(imgView)
-            var width = self.view.frame.size.width
-            var height = self.view.frame.size.height
-            var imgWidth = (width - 10 - 10 - 20)/3
+            let width = self.view.frame.size.width
+            let height = self.view.frame.size.height
+            let imgWidth = (width - 10 - 10 - 20)/3
             if imgList.count <= 3 {
-                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                let tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
                 toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
             }else{
-                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                let tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
@@ -286,7 +286,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
 
     func addPhotoButtonClick(sender:UITapGestureRecognizer) {
-        var actionSheet = UIActionSheet()
+        let actionSheet = UIActionSheet()
         //        actionSheet.addButtonWithTitle("取消")
         //        actionSheet.addButtonWithTitle("打开照相机")
         //        actionSheet.addButtonWithTitle("从手机相册选择")
@@ -308,17 +308,17 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
 
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         
         img = info[UIImagePickerControllerEditedImage] as! UIImage
-        var imgView = UIImageView()
+        let imgView = UIImageView()
         imgView.userInteractionEnabled = true
         imgView.tag = imgList.count
 //        var deleteTap = UILongPressGestureRecognizer(target: self, action: "deleteImageViewTapped:")
 //        //        deleteTap.numberOfTapsRequired = 1
 //        imgView.addGestureRecognizer(deleteTap)
         
-        var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+        let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
         imgView.addGestureRecognizer(tap)
         
         
@@ -326,17 +326,17 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         imgView.image = img
         if imgList.count < 6 {
             imgList.append(imgView)
-            var width = self.view.frame.size.width
-            var height = self.view.frame.size.height
-            var imgWidth = (width - 10 - 10 - 20)/3
+            let width = self.view.frame.size.width
+            let height = self.view.frame.size.height
+            let imgWidth = (width - 10 - 10 - 20)/3
             if imgList.count <= 3 {
-                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                let tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
                 toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
             }else{
-                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                let tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
@@ -350,22 +350,22 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             imgView.userInteractionEnabled = true
             imgView.tag = imgList.count
             
-            var tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
+            let tap = UITapGestureRecognizer(target: self, action: "addPhotoButtonClick:")
             imgView.addGestureRecognizer(tap)
             
             
             imgList.append(imgView)
-            var width = self.view.frame.size.width
-            var height = self.view.frame.size.height
-            var imgWidth = (width - 10 - 10 - 20)/3
+            let width = self.view.frame.size.width
+            let height = self.view.frame.size.height
+            let imgWidth = (width - 10 - 10 - 20)/3
             if imgList.count <= 3 {
-                var tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
+                let tempWidth = 10 * imgList.count + (imgList.count-1) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  - imgWidth, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 //                toolView.frame = CGRectMake(0, height/2+200, width-300, 62)
                 toolViewHeighContraint.setValue(30 + imgWidth, forKey: "Constant")
             }else{
-                var tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
+                let tempWidth = 10 * (imgList.count-3) + (imgList.count-4) * Int(imgWidth)
                 imgView.frame = CGRectMake(CGFloat(tempWidth), height/2  + 10, imgWidth, imgWidth)
                 self.view.addSubview(imgView)
                 toolViewHeighContraint.setValue(40 + imgWidth * 2, forKey: "Constant")
@@ -384,8 +384,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         
-        var formerWordcount = count(textView.text)
-        var addWordCount = count(text)
+        let formerWordcount = textView.text.characters.count
+        let addWordCount = text.characters.count
         if formerWordcount + addWordCount <= MAX_WORD_COUNT{
             self.countWordLabel.text = String(MAX_WORD_COUNT - formerWordcount - addWordCount)
             return true
@@ -395,7 +395,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        if count(self.contentTextView.text) < 1 {
+        if self.contentTextView.text.characters.count < 1 {
             self.contentTextView.text = placeHolder
         }
     }
@@ -408,24 +408,24 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     func imageViewTapped(sender:UITapGestureRecognizer)
     {
-        var i:Int = sender.view!.tag
-        var image = self.imgList[i].image
-        var window = UIApplication.sharedApplication().keyWindow
-        var backgroundView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
+        let i:Int = sender.view!.tag
+        let image = self.imgList[i].image
+        let window = UIApplication.sharedApplication().keyWindow
+        let backgroundView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
         backgroundView.backgroundColor = UIColor.blackColor()
         backgroundView.alpha = 0
-        var imageView = UIImageView(frame: self.imgList[i].frame)
+        let imageView = UIImageView(frame: self.imgList[i].frame)
         
         imageView.image = image
         //        imageView.tag = i + 1
         backgroundView.addSubview(imageView)
         window?.addSubview(backgroundView)
-        var hide = UITapGestureRecognizer(target: self, action: "hideImage:")
+        let hide = UITapGestureRecognizer(target: self, action: "hideImage:")
         
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(hide)
         UIView.animateWithDuration(0.3, animations:{ () in
-            var vsize = UIScreen.mainScreen().bounds.size
+            let vsize = UIScreen.mainScreen().bounds.size
             imageView.frame = CGRect(x:0.0, y: 0.0, width: vsize.width, height: vsize.height)
             imageView.contentMode = .ScaleAspectFit
             backgroundView.alpha = 1
@@ -435,12 +435,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func hideImage(sender: UITapGestureRecognizer){
-        var i:Int = sender.view!.tag
-        var backgroundView = sender.view as UIView?
+        let i:Int = sender.view!.tag
+        let backgroundView = sender.view as UIView?
         if let view = backgroundView{
             UIView.animateWithDuration(0.1,
                 animations:{ () in
-                    var imageView = view.viewWithTag(i) as! UIImageView
+                    let imageView = view.viewWithTag(i) as! UIImageView
                     imageView.frame = self.imgList[i].frame
                     imageView.alpha = 0
                     
@@ -454,11 +454,11 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func deleteImageViewTapped(sender:UITapGestureRecognizer){
-        var i:Int = sender.view!.tag
+        let i:Int = sender.view!.tag
         if self.imgList.count == 0 || self.imgList.count < i {
             return
         }
-        var imageView = self.imgList[i]
+        let imageView = self.imgList[i]
         self.imgList.removeAtIndex(i)
         imageView.removeFromSuperview()
     }
@@ -484,11 +484,11 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func createNewPost(){
-        var content = contentTextView.text;
-        var url = FileUtility.getUrlDomain() + "post/addNoPic?"
+        let content = contentTextView.text;
+        let url = FileUtility.getUrlDomain() + "post/addNoPic?"
         var paraData = "content=\(content)"
-        var nickName:String = nickNameText.text
-        if count(nickName) > 0{
+        let nickName:String = nickNameText.text!
+        if nickName.characters.count > 0{
             paraData += "&nickName=\(nickName)"
         }
         
@@ -505,10 +505,10 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     func postWithPic(){
-        var content = contentTextView.text;
-        var nickName:String = nickNameText.text
-        var request = createRequest(content: content, nickName: nickName)
-        NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+        let content = contentTextView.text;
+        let nickName:String = nickNameText.text!
+        let request = createRequest(content: content, nickName: nickName)
+        try? NSURLConnection.sendSynchronousRequest(request, returningResponse: nil)
         
         
         //        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
@@ -545,19 +545,19 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     
-    func createRequest (#content: String, nickName: String) -> NSURLRequest {
+    func createRequest (content content: String, nickName: String) -> NSURLRequest {
         var param = [
             "content"  : content,
             "nickName" : nickName,
             "uid" : FileUtility.getUserId()
         ]  // build your dictionary however appropriate
         if schoolId == "0" {
-            param["latitude"] = toString(self.latitude)
-            param["longitude"] = toString(self.longitude)
+            param["latitude"] = String(self.latitude)
+            param["longitude"] = String(self.longitude)
         }else{
-            param["latitude"] = toString(self.latitude)
-            param["longitude"] = toString(self.longitude)
-            param["schoolId"] = toString(self.schoolId)
+            param["latitude"] = String(self.latitude)
+            param["longitude"] = String(self.longitude)
+            param["schoolId"] = String(self.schoolId)
         }
         
         let boundary = generateBoundaryString()
@@ -578,12 +578,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     /// Create body of the multipart/form-data request
     ///
-    /// :param: parameters   The optional dictionary containing keys and values to be passed to web service
-    /// :param: filePathKey  The optional field name to be used when uploading files. If you supply paths, you must supply filePathKey, too.
-    /// :param: paths        The optional array of file paths of the files to be uploaded
-    /// :param: boundary     The multipart/form-data boundary
+    /// - parameter parameters:   The optional dictionary containing keys and values to be passed to web service
+    /// - parameter filePathKey:  The optional field name to be used when uploading files. If you supply paths, you must supply filePathKey, too.
+    /// - parameter paths:        The optional array of file paths of the files to be uploaded
+    /// - parameter boundary:     The multipart/form-data boundary
     ///
-    /// :returns:            The NSData of the body of the request
+    /// - returns:            The NSData of the body of the request
     
     func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, boundary: String) -> NSData {
         let body = NSMutableData()
@@ -600,7 +600,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         //            for path in paths! {
         let filename = "file"
         for img in imgList {
-            let data:NSData = UIImageJPEGRepresentation(img.image, 0.3)
+            let data:NSData = UIImageJPEGRepresentation(img.image!, 0.3)!
             
             
             body.appendString("--\(boundary)\r\n")
@@ -616,7 +616,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     /// Create boundary string for multipart/form-data request
     ///
-    /// :returns:            The boundary string that consists of "Boundary-" followed by a UUID string.
+    /// - returns:            The boundary string that consists of "Boundary-" followed by a UUID string.
     
     func generateBoundaryString() -> String {
         return "Boundary-\(NSUUID().UUIDString)"
@@ -626,9 +626,9 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     ///
     /// This requires MobileCoreServices framework.
     ///
-    /// :param: path         The path of the file for which we are going to determine the mime type.
+    /// - parameter path:         The path of the file for which we are going to determine the mime type.
     ///
-    /// :returns:            Returns the mime type if successful. Returns application/octet-stream if unable to determine mime type.
+    /// - returns:            Returns the mime type if successful. Returns application/octet-stream if unable to determine mime type.
     
     func mimeTypeForPath(path: String) -> String {
         let pathExtension = path.pathExtension
@@ -643,15 +643,15 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func uploadImageOne(){
-        var imageData = UIImageJPEGRepresentation(imgView.image, 0.3)
+        let imageData = UIImageJPEGRepresentation(imgView.image!, 0.3)
         
         if imageData != nil{
-            var url:String = FileUtility.getUrlDomain() + "post/add?"
-            var nsurl = NSURL(string: url)
-            var request = NSMutableURLRequest(URL:nsurl!)
+            let url:String = FileUtility.getUrlDomain() + "post/add?"
+            let nsurl = NSURL(string: url)
+            let request = NSMutableURLRequest(URL:nsurl!)
             request.HTTPMethod = "POST"
             
-            var bodyData = "content="+contentTextView.text
+            _ = "content="+contentTextView.text
             
             
             //            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
@@ -712,16 +712,16 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             //            var url:String = FileUtility.getUrlDomain() + "post/add?content=\(contentTextView.text)"
             //            var nsurl = NSURL(fileURLWithPath: url)
             //            var request = NSMutableURLRequest(URL: nsurl!)
-            var session = NSURLSession.sharedSession()
+            _ = NSURLSession.sharedSession()
             
             request.HTTPMethod = "POST"
             
-            var boundary = NSString(format: "---------------------------14737809831466499882746641449")
-            var contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
+            let boundary = NSString(format: "---------------------------14737809831466499882746641449")
+            let contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
             //  println("Content Type \(contentType)")
             request.addValue(contentType as String, forHTTPHeaderField: "Content-Type")
             
-            var body = NSMutableData.alloc()
+            let body = NSMutableData()
             
             // Title
             body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -732,7 +732,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
             body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile_img\"; filename=\"img.jpg\"\\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
             body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData(imageData)
+            body.appendData(imageData!)
             body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
             
             
@@ -741,8 +741,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             
             let task = NSURLSession.sharedSession().uploadTaskWithRequest(request, fromData: imageData, completionHandler: {data, response, error -> Void in
                 
-                println(request)
-                println(response)
+                print(request)
+                print(response)
                 // println(payload)
                 
             })

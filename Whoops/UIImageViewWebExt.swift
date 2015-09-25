@@ -32,7 +32,7 @@ extension UIImageView
                 {
                     dispatch_async(dispatch_get_main_queue(),
                         {
-                            println(error)
+                            print(error)
                             self.image = placeHolder
                         })
                 }
@@ -41,7 +41,7 @@ extension UIImageView
                     dispatch_async(dispatch_get_main_queue(),
                         {
                             
-                            var image = UIImage(data: data)
+                            var image = UIImage(data: data!)
                             if image == nil
                             {
                                 self.image = placeHolder
@@ -49,7 +49,7 @@ extension UIImageView
                             else
                             {
                                 self.image = image
-                                FileUtility.imageCacheToPath(cachePath,image:data)
+                                FileUtility.imageCacheToPath(cachePath,image:data!)
                             }
                         })
                 }

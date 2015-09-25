@@ -27,7 +27,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
     
     func setupViews()
     {
-        var nib = UINib(nibName: "YRCommnentsCell", bundle: nil)
+        let nib = UINib(nibName: "YRCommnentsCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
         
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
@@ -40,7 +40,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
     {
         //var url = "http://m2.qiushibaike.com/article/\(self.jokeId)/comments?count=20&page=\(self.page)"
         //var url = FileUtility.getUrlDomain() + "post/get?id=\(self.jokeId)"
-        var url = "http://104.131.91.181:8080/whoops/comment/getCommentByPostId?postId=\(self.jokeId)"
+        let url = "http://104.131.91.181:8080/whoops/comment/getCommentByPostId?postId=\(self.jokeId)"
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -50,7 +50,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             if arr.count  == 0
             {
                 UIView.showAlertView("Oops",message:"No more Comments T_T")
@@ -90,24 +90,24 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRCommnentsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRCommnentsCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         cell.data = data
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         return  YRCommnentsCell.cellHeightByData(data)
     }
     
     func sendEmail(strTo:String, strSubject:String, strBody:String)
     {
-        var controller = MFMailComposeViewController();
+        let controller = MFMailComposeViewController();
         controller.mailComposeDelegate = self;
         controller.setSubject(strSubject);
         var toList: [String] = [String]()
@@ -129,7 +129,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }

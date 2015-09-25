@@ -23,9 +23,9 @@ class LikeViewCell: UITableViewCell {
     
     override func layoutSubviews(){
         super.layoutSubviews()
-        var content = self.data.stringAttributeForKey("msg")
-        var width = self.title.width()
-        var height = content.stringHeightWith(17,width:width)
+        let content = self.data.stringAttributeForKey("msg")
+        let width = self.title.width()
+        let height = content.stringHeightWith(17,width:width)
         
         self.title.setHeight(height)
         self.title.text = content
@@ -47,8 +47,8 @@ class LikeViewCell: UITableViewCell {
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
-        var content = data.stringAttributeForKey("msg")
-        var height = content.stringHeightWith(17,width:mainWidth-80)
+        let content = data.stringAttributeForKey("msg")
+        let height = content.stringHeightWith(17,width:mainWidth-80)
         return 60.0 + height
     }
     

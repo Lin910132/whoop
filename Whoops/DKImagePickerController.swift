@@ -14,7 +14,7 @@ import AssetsLibrary
 @objc public protocol DKImagePickerControllerDelegate : NSObjectProtocol {
     /// Called when right button is clicked.
     ///
-    /// :param: images Images of selected
+    /// - parameter images: Images of selected
     func imagePickerControllerDidSelectedAssets(images: [DKAsset]!)
     
     /// Called when cancel button is clicked.
@@ -104,7 +104,7 @@ class DKImageGroupViewController: UICollectionViewController {
             self.contentView.addSubview(checkView)
         }
         
-        required init(coder aDecoder: NSCoder) {
+        required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
@@ -145,7 +145,7 @@ class DKImageGroupViewController: UICollectionViewController {
         self.init()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -192,7 +192,7 @@ class DKImageGroupViewController: UICollectionViewController {
         let asset = imageAssets[indexPath.row] as! DKAsset
         cell.thumbnail = asset.thumbnailImage
         
-        if find(self.imagePickerController!.selectedAssets, asset) != nil {
+        if self.imagePickerController!.selectedAssets.indexOf(asset) != nil {
             cell.selected = true
             collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
         } else {
@@ -270,7 +270,7 @@ class DKAssetsLibraryController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(GroupCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(GroupCellIdentifier, forIndexPath: indexPath) 
         
         let assetGroup = groups[indexPath.row] as! DKAssetGroup
         cell.textLabel!.text = assetGroup.groupName
@@ -346,7 +346,7 @@ public class DKImagePickerController: UINavigationController {
         
         func removeAsset(asset: DKAsset) {
             imagesDict.removeValueForKey(asset)?.removeFromSuperview()
-            let index = find(assets, asset)
+            let index = assets.indexOf(asset)
             if let toRemovedIndex = index {
                 assets.removeAtIndex(toRemovedIndex)
                 setupContent(false)
@@ -365,13 +365,13 @@ public class DKImagePickerController: UINavigationController {
         
         private func setupContent(isInsert: Bool) {
             if isInsert == false {
-                for (index,asset) in enumerate(assets) {
+                for (index,asset) in assets.enumerate() {
                     let imageView = imagesDict[asset]!
                     imageView.frame = imageFrameForIndex(index)
                 }
             }
             
-            self.contentSize = CGSize(width: CGRectGetMaxX((self.subviews.last as! UIView).frame) + interval,
+            self.contentSize = CGSize(width: CGRectGetMaxX((self.subviews.last)!.frame) + interval,
                 height: self.bounds.height)
         }
     }
@@ -402,11 +402,11 @@ public class DKImagePickerController: UINavigationController {
             contentViewController.removeObserver(self, forKeyPath: "title")
         }
 
-        required init(coder aDecoder: NSCoder) {
+        required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
-        override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
             if keyPath == "title" {
                 self.title = contentViewController.title
             }
@@ -429,7 +429,7 @@ public class DKImagePickerController: UINavigationController {
         return preview
     }()
     lazy internal var doneButton: UIButton =  {
-        let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let button = UIButton(type: UIButtonType.Custom)
         button.setTitle("", forState: UIControlState.Normal)
         button.setTitleColor(self.navigationBar.tintColor, forState: UIControlState.Normal)
         button.reversesTitleShadowWhenHighlighted = true
@@ -446,8 +446,8 @@ public class DKImagePickerController: UINavigationController {
     }
     
     convenience init() {
-        var libraryController = DKAssetsLibraryController()
-        var wrapperVC = DKContentWrapperViewController(libraryController)
+        let libraryController = DKAssetsLibraryController()
+        let wrapperVC = DKContentWrapperViewController(libraryController)
         
         self.init(rootViewController: wrapperVC)
         
@@ -455,7 +455,7 @@ public class DKImagePickerController: UINavigationController {
         wrapperVC.bottomBarHeight = previewHeight
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -468,7 +468,7 @@ public class DKImagePickerController: UINavigationController {
         
         imagesPreviewView.frame = CGRect(x: 0, y: view.bounds.height - previewHeight,
                                      width: view.bounds.width, height: previewHeight)
-        imagesPreviewView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
+        imagesPreviewView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
         
         view.addSubview(imagesPreviewView)
         
@@ -486,11 +486,11 @@ public class DKImagePickerController: UINavigationController {
         
         super.pushViewController(wrapperVC, animated: animated)
 
-        self.topViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.doneButton)
+        self.topViewController!.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.doneButton)
         self.updateSelectionStatus()
         
         if self.viewControllers.count == 1 && self.topViewController?.navigationItem.leftBarButtonItem == nil {
-            self.topViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel,
+            self.topViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel,
                 target: self,
                 action: "onCancelClicked")
         }
@@ -533,7 +533,7 @@ public class DKImagePickerController: UINavigationController {
     
     func unselectedImage(noti: NSNotification) {
         if let asset = noti.object as? DKAsset {
-            selectedAssets.removeAtIndex(find(selectedAssets, asset)!)
+            selectedAssets.removeAtIndex(selectedAssets.indexOf(asset)!)
             imagesPreviewView.removeAsset(asset)
             updateSelectionStatus()
         }

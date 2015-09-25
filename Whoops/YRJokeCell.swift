@@ -50,7 +50,7 @@ class YRJokeCell: UITableViewCell {
         mainWidth = UIScreen.mainScreen().bounds.width
        
         favorPost.userInteractionEnabled = true
-        var tap = UITapGestureRecognizer(target: self, action: "favorViewTapped:")
+        let tap = UITapGestureRecognizer(target: self, action: "favorViewTapped:")
         favorPost!.addGestureRecognizer(tap)
     }
     
@@ -65,9 +65,9 @@ class YRJokeCell: UITableViewCell {
         super.layoutSubviews()
         
         self.nickLabel!.text = self.data.stringAttributeForKey("nickName")
-        var content = self.data.stringAttributeForKey("content")
-        var width = self.contentLabel?.width()
-        var height = content.stringHeightWith(17,width:width!)
+        let content = self.data.stringAttributeForKey("content")
+        let width = self.contentLabel?.width()
+        let height = content.stringHeightWith(17,width:width!)
 
         self.contentLabel!.setHeight(height)
         self.contentLabel!.text = content
@@ -80,7 +80,7 @@ class YRJokeCell: UITableViewCell {
             }
         }
         
-        var imgSrc = self.data.stringAttributeForKey("image") as NSString
+        let imgSrc = self.data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0
         {
             self.containsPicView!.hidden = true
@@ -89,46 +89,46 @@ class YRJokeCell: UITableViewCell {
         else
         {
             containsPicView.hidden = false
-            imgUrls = imgSrc.componentsSeparatedByString(",") as! [String]
-            var count = imgUrls.count
+            imgUrls = imgSrc.componentsSeparatedByString(",") 
+            let count = imgUrls.count
             if imgUrls.count <= 3 {
-                var imgWidth = (mainWidth - 10 - 10 - 20 - 100)/CGFloat(count)
+                let imgWidth = (mainWidth - 10 - 10 - 20 - 100)/CGFloat(count)
                 var i = 0
                 for imgUrl in imgUrls {
-                    var imgView = UIImageView()
+                    let imgView = UIImageView()
                     imgView.userInteractionEnabled = true
-                    var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                    let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                     imgView.addGestureRecognizer(tap)
-                    var imagURL = FileUtility.getUrlImage() + imgUrl
+                    let imagURL = FileUtility.getUrlImage() + imgUrl
                     imgView.tag = i
                     imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"))
                     
                     i++
-                    var tempWidth = 10 * i + (i-1) * Int(imgWidth)
+                    let tempWidth = 10 * i + (i-1) * Int(imgWidth)
                     imgView.frame = CGRectMake(CGFloat(tempWidth), height , imgWidth, imgWidth)
                     self.containsPicView.addSubview(imgView)
                     
                 }
             }else {
                 
-                var imgWidth = (mainWidth - 10 - 10 - 20 - 100)/CGFloat(count >= 3 ? 3 : count)
+                let imgWidth = (mainWidth - 10 - 10 - 20 - 100)/CGFloat(count >= 3 ? 3 : count)
                 var i = 0
                 for imgUrl in imgUrls {
-                    var imgView = UIImageView()
+                    let imgView = UIImageView()
                     imgView.userInteractionEnabled = true
-                    var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                    let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                     imgView.addGestureRecognizer(tap)
-                    var imagURL = FileUtility.getUrlImage() + imgUrl
+                    let imagURL = FileUtility.getUrlImage() + imgUrl
                     imgView.tag = i
                     imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"))
                     
                     i++
                     
                     if i <= 3 {
-                        var tempWidth = 10 * i + (i-1) * Int(imgWidth)
+                        let tempWidth = 10 * i + (i-1) * Int(imgWidth)
                         imgView.frame = CGRectMake(CGFloat(tempWidth), height , imgWidth, imgWidth)
                     }else{
-                        var tempWidth = 10 * (i-3) + (i-4) * Int(imgWidth)
+                        let tempWidth = 10 * (i-3) + (i-4) * Int(imgWidth)
                         imgView.frame = CGRectMake(CGFloat(tempWidth), height + imgWidth + 10, imgWidth, imgWidth)
                     }
                     self.containsPicView.addSubview(imgView)
@@ -168,7 +168,7 @@ class YRJokeCell: UITableViewCell {
         //self.dislikeLabel?.setY(cellHeight/2)
         
         
-        var nickName = self.data.stringAttributeForKey("nickName") as String
+        let nickName = self.data.stringAttributeForKey("nickName") as String
         if nickName == ""{
            contentLabel?.frame = CGRectMake(0, 0, cellContentWidth(), content.stringHeightWith(17,width:cellContentWidth()))
         }else{
@@ -190,10 +190,10 @@ class YRJokeCell: UITableViewCell {
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
 
-        var nickName = data.stringAttributeForKey("nickName")
-        var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width:mainWidth-100)
-        var imgSrc = data.stringAttributeForKey("image") as NSString
+        let nickName = data.stringAttributeForKey("nickName")
+        let content = data.stringAttributeForKey("content")
+        let height = content.stringHeightWith(17,width:mainWidth-100)
+        let imgSrc = data.stringAttributeForKey("image") as NSString
         var value = CGFloat()
         
         if imgSrc.length == 0
@@ -216,14 +216,14 @@ class YRJokeCell: UITableViewCell {
     
     func imageViewTapped(sender:UITapGestureRecognizer)
     {
-        var i:Int = sender.view!.tag
+        let i:Int = sender.view!.tag
         NSNotificationCenter.defaultCenter().postNotificationName("imageViewTapped", object:self.imgUrls[i])
         
     }
     
     func favorViewTapped(sender:UITapGestureRecognizer)
     {
-        var url = FileUtility.getUrlDomain() + "favorPost/add?postId=\(postId)&uid=\(FileUtility.getUserId())"
+        let url = FileUtility.getUrlDomain() + "favorPost/add?postId=\(postId)&uid=\(FileUtility.getUserId())"
         
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -243,7 +243,7 @@ class YRJokeCell: UITableViewCell {
     var unLikeClick:Bool = true
     
     @IBAction func likeImageClick(){
-            var url = FileUtility.getUrlDomain() + "post/like?id=\(postId)&uid=\(FileUtility.getUserId())"
+            let url = FileUtility.getUrlDomain() + "post/like?id=\(postId)&uid=\(FileUtility.getUserId())"
             
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
@@ -252,7 +252,7 @@ class YRJokeCell: UITableViewCell {
                     UIView.showAlertView("提示",message:"加载失败")
                     return
                 }
-                var result:Int = data["result"] as! Int
+                let result:Int = data["result"] as! Int
                 self.likeHotLabel!.text = "\(result)"
 
                 
@@ -262,7 +262,7 @@ class YRJokeCell: UITableViewCell {
     }
     
     @IBAction func unlikeImageClick(){
-            var url = FileUtility.getUrlDomain() + "post/unlike?id=\(postId)&uid=\(FileUtility.getUserId())"
+            let url = FileUtility.getUrlDomain() + "post/unlike?id=\(postId)&uid=\(FileUtility.getUserId())"
             
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
@@ -271,7 +271,7 @@ class YRJokeCell: UITableViewCell {
                     UIView.showAlertView("提示",message:"加载失败")
                     return
                 }
-                var result:Int = data["result"] as! Int
+                let result:Int = data["result"] as! Int
                 self.likeHotLabel!.text = "\(result)"
                 
             })

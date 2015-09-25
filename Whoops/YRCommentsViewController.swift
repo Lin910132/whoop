@@ -32,7 +32,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.title = "Detail"
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -40,7 +40,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         setupViews()
         loadData()
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
     }
     
@@ -71,10 +71,10 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         // 1、将通知中的数据转换成NSDictionary
         let dict = NSDictionary(dictionary: notification.userInfo!);
         // 2、获取键盘最后的Frame值
-        let keyboardFrame = dict[UIKeyboardFrameEndUserInfoKey]!.CGRectValue();
+        let keyboardFrame = dict[UIKeyboardFrameEndUserInfoKey]!.CGRectValue;
         // 3、获取键盘移动值
-        println("keyboardFrame.origin.y \(keyboardFrame.origin.y)")
-        println("self.sendView!.bounds.height \(self.sendView!.bounds.height)")
+        print("keyboardFrame.origin.y \(keyboardFrame.origin.y)")
+        print("self.sendView!.bounds.height \(self.sendView!.bounds.height)")
         let ty = keyboardFrame.origin.y - view.frame.height;
         // 4、获取键盘弹出动画事件
         let duration = dict[UIKeyboardAnimationDurationUserInfoKey] as! Double;
@@ -96,15 +96,15 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.sendView!.resignFirstResponder()
     }
     
     
     func setupViews()
     {
-        var width = self.view.frame.size.width
-        var height = self.view.frame.size.height
+        let width = self.view.frame.size.width
+        let height = self.view.frame.size.height
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height), style:.Grouped)
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
@@ -113,7 +113,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         //self.tableView?.separatorColor = UIColor.redColor()
         self.tableView?.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         //var nib = UINib(nibName:"YRJokeCell", bundle: nil)
-        var nib = UINib(nibName: "YRCommnentsCell", bundle: nil)
+        let nib = UINib(nibName: "YRCommnentsCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         self.view.addSubview(self.tableView!)
@@ -147,7 +147,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func loadData()
     {
-        var url = FileUtility.getUrlDomain() + "comment/getCommentByPostId?postId=\(jokeId)"
+        let url = FileUtility.getUrlDomain() + "comment/getCommentByPostId?postId=\(jokeId)"
         //        self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -157,7 +157,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 return
             }
             
-            var arr = data["data"] as! NSArray
+            let arr = data["data"] as! NSArray
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
@@ -166,8 +166,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             //            self.refreshView!.stopLoading()
             self.page++
             
-            var width = self.view.frame.size.width
-            var height = self.view.frame.size.height
+            let width = self.view.frame.size.width
+            let height = self.view.frame.size.height
             self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
             
             
@@ -177,7 +177,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func loadPostData()
     {
-        var url = FileUtility.getUrlDomain() + "post/get?id=\(self.jokeId)&uid=\(FileUtility.getUserId())"
+        let url = FileUtility.getUrlDomain() + "post/get?id=\(self.jokeId)&uid=\(FileUtility.getUserId())"
         
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -192,7 +192,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             var arrHeader =  NSBundle.mainBundle().loadNibNamed("YRJokeCell" ,owner: self, options: nil) as Array
             
             self.headerView = YRJokeCell2(style: .Default, reuseIdentifier: "cell")
-            var post = data["data"] as! NSDictionary
+            let post = data["data"] as! NSDictionary
             self.headerView?.data = post
             self.headerView?.setCellUp()
             self.headerView?.frame = CGRectMake(0, 0, self.view.frame.size.width,YRJokeCell2.cellHeightByData(post))
@@ -222,9 +222,9 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRJokeCell
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRCommnentsCell
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRCommnentsCell
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         cell.data = data
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.backgroundColor = UIColor.whiteColor();
@@ -239,8 +239,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        var index = indexPath.row
-        var data = self.dataArray[index] as! NSDictionary
+        let index = indexPath.row
+        let data = self.dataArray[index] as! NSDictionary
         return  YRCommnentsCell.cellHeightByData(data)
     }
     //    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
@@ -268,7 +268,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     func btnAuditClicked(){
-        var alertView = UIAlertView()
+        let alertView = UIAlertView()
         alertView.title = "Report"
         alertView.message = "This post violate whoop's regulation!"
         alertView.addButtonWithTitle("No")
@@ -286,7 +286,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func alertView(alertView:UIAlertView, clickedButtonAtIndex buttonIndex:Int){
         if buttonIndex != alertView.cancelButtonIndex{
-            var url = FileUtility.getUrlDomain() + "post/reportPost?postId=\(self.jokeId)&uid=\(FileUtility.getUserId())"
+            let url = FileUtility.getUrlDomain() + "post/reportPost?postId=\(self.jokeId)&uid=\(FileUtility.getUserId())"
             
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 

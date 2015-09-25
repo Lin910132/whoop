@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .None
-        var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+        let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
         self.PostImage.addGestureRecognizer(tap)
         // Initialization code
     }
@@ -34,16 +34,16 @@ class PostTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        var content = self.data.stringAttributeForKey("content")
+        let content = self.data.stringAttributeForKey("content")
         imgWidth = self.PostImage.width()
-        var height = content.stringHeightWith(17, width: imgWidth)
+        let height = content.stringHeightWith(17, width: imgWidth)
         self.ContentLable.setHeight(height)
         self.ContentLable.text = content
    
         //self.ContentLable.numberOfLines = 4
         //self.ContentLable.sizeToFit()
         
-        var imgSrc = self.data.stringAttributeForKey("image") as NSString
+        let imgSrc = self.data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0 {
             self.PostImage.hidden = true
             self.TimePosted.setY(self.ContentLable.bottom()+15)
@@ -51,9 +51,9 @@ class PostTableViewCell: UITableViewCell {
         }
         else
         {
-            var imageId = self.data.stringAttributeForKey("id") as NSString
-            var prefiximageId = imageId.substringToIndex(5)
-            var imagURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/small/\(imgSrc)"
+            let imageId = self.data.stringAttributeForKey("id") as NSString
+            let prefiximageId = imageId.substringToIndex(5)
+            let imagURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/small/\(imgSrc)"
             self.PostImage!.hidden = false
             self.PostImage!.setImage(imagURL,placeHolder: UIImage(named: "avatar.jpg"))
             self.largeImageURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/medium/\(imgSrc)"
@@ -67,9 +67,9 @@ class PostTableViewCell: UITableViewCell {
     
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
-        var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width: 300)
-        var imgSrc = data.stringAttributeForKey("image") as NSString
+        let content = data.stringAttributeForKey("content")
+        let height = content.stringHeightWith(17,width: 300)
+        let imgSrc = data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0
         {
             return 59.0 + height + 60.0

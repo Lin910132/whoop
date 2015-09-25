@@ -22,10 +22,10 @@ class MyUITabBarController: UITabBarController{
     
     func configTabBar() {
         let items = self.tabBar.items
-        for item in items as! [UITabBarItem] {
+        for item in items! {
             let dic = NSDictionary(object: UIColor.applicationMainColor(),
                 forKey:   NSForegroundColorAttributeName)
-            item.setTitleTextAttributes(dic as [NSObject : AnyObject],forState: UIControlState.Selected)
+            item.setTitleTextAttributes(dic as! [String : AnyObject],forState: UIControlState.Selected)
         }
     }
     

@@ -14,49 +14,49 @@ extension String {
     func stringHeightWith(fontSize:CGFloat,width:CGFloat)->CGFloat
 
     {
-        var font = UIFont.systemFontOfSize(fontSize)
-        var size = CGSizeMake(width,CGFloat.max)
-        var paragraphStyle = NSMutableParagraphStyle()
+        let font = UIFont.systemFontOfSize(fontSize)
+        let size = CGSizeMake(width,CGFloat.max)
+        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping;
-        var  attributes = [NSFontAttributeName:font,
+        let  attributes = [NSFontAttributeName:font,
             NSParagraphStyleAttributeName:paragraphStyle.copy()]
         
-        var text = self as NSString
-        var rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
+        let text = self as NSString
+        let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
         return rect.size.height
     }
     
     func dateStringFromTimestamp(timeStamp:NSString)->String
     {
-        var ts = timeStamp.doubleValue
-        var  formatter = NSDateFormatter ()
+        let ts = timeStamp.doubleValue
+        let  formatter = NSDateFormatter ()
         formatter.dateFormat = "yyyyyMM月dd日 HH:MM:ss"
-        var date = NSDate(timeIntervalSince1970 : ts)
+        let date = NSDate(timeIntervalSince1970 : ts)
          return  formatter.stringFromDate(date)
         
     }
     
     func substringToIndex(index:Int) -> String {
-        return self.substringToIndex(advance(self.startIndex, index))
+        return self.substringToIndex(self.startIndex.advancedBy(index))
     }
     func substringFromIndex(index:Int) -> String {
-        return self.substringFromIndex(advance(self.startIndex, index))
+        return self.substringFromIndex(self.startIndex.advancedBy(index))
     }
     func substringWithRange(range:Range<Int>) -> String {
-        let start = advance(self.startIndex, range.startIndex)
-        let end = advance(self.startIndex, range.endIndex)
+        let start = self.startIndex.advancedBy(range.startIndex)
+        let end = self.startIndex.advancedBy(range.endIndex)
         return self.substringWithRange(start..<end)
     }
     subscript(index:Int) -> Character{
-        return self[advance(self.startIndex, index)]
+        return self[self.startIndex.advancedBy(index)]
     }
     subscript(range:Range<Int>) -> String {
-        let start = advance(self.startIndex, range.startIndex)
-        let end = advance(self.startIndex, range.endIndex)
+        let start = self.startIndex.advancedBy(range.startIndex)
+        let end = self.startIndex.advancedBy(range.endIndex)
         return self[start..<end]
     }
     func replaceCharactersInRange(range:Range<Int>, withString: String!) -> String {
-        var result:NSMutableString = NSMutableString(string: self)
+        let result:NSMutableString = NSMutableString(string: self)
         result.replaceCharactersInRange(NSRange(range), withString: withString)
         return result as String
     }
@@ -65,13 +65,28 @@ extension String {
         var textSize:CGSize!
         if CGSizeEqualToSize(size, CGSizeZero) {
             let attributes = NSDictionary(object: font, forKey: NSFontAttributeName)
-            textSize = self.sizeWithAttributes(attributes as [NSObject : AnyObject])
+            textSize = self.sizeWithAttributes(attributes as? [String : AnyObject])
         } else {
             let option = NSStringDrawingOptions.UsesLineFragmentOrigin
             let attributes = NSDictionary(object: font, forKey: NSFontAttributeName)
-            let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes as [NSObject : AnyObject], context: nil)
+            let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes as? [String : AnyObject], context: nil)
             textSize = stringRect.size
         }
         return textSize
+    }
+    
+    func stringByAppendingPathComponent(path: String) -> String {
+        
+        let nsSt = self as NSString
+        
+        return nsSt.stringByAppendingPathComponent(path)
+    }
+    
+    var pathExtension: String {
+        
+        get {
+            
+            return (self as NSString).pathExtension
+        }
     }
 }

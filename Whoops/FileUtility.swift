@@ -14,7 +14,7 @@ class FileUtility: NSObject {
     class func cachePath(fileName:String)->String
     {
         var arr =  NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        var path = arr[0] as! String
+        let path = arr[0] 
         return "\(path)/\(fileName)"
     }
     
@@ -26,7 +26,7 @@ class FileUtility: NSObject {
     
     class func imageDataFromPath(path:String)->AnyObject
     {
-        var exist = NSFileManager.defaultManager().fileExistsAtPath(path)
+        let exist = NSFileManager.defaultManager().fileExistsAtPath(path)
         if exist
         {
             return  UIImage(contentsOfFile: path)!
@@ -41,54 +41,58 @@ class FileUtility: NSObject {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths[0] as! String
         let path = documentsDirectory.stringByAppendingPathComponent("user.plist")
+        
         let fileManager = NSFileManager.defaultManager()
         //check if file exists
         if(!fileManager.fileExistsAtPath(path)) {
             // If it doesn't, copy it from the default file in the Bundle
             if let bundlePath = NSBundle.mainBundle().pathForResource("user", ofType: "plist") {
                 let resultDictionary = NSMutableDictionary(contentsOfFile: bundlePath)
-                println("Bundle user.plist file is --> \(resultDictionary?.description)")
-                fileManager.copyItemAtPath(bundlePath, toPath: path, error: nil)
-                println("copy")
+                print("Bundle user.plist file is --> \(resultDictionary?.description)")
+                do {
+                    try fileManager.copyItemAtPath(bundlePath, toPath: path)
+                } catch _ {
+                }
+                print("copy")
             } else {
-                println("user.plist not found. Please, make sure it is part of the bundle.")
+                print("user.plist not found. Please, make sure it is part of the bundle.")
             }
         } else {
-            println("user.plist already exits at path.")
+            print("user.plist already exits at path.")
             // use this to delete file from documents directory
             //fileManager.removeItemAtPath(path, error: nil)
         }
         let resultDictionary = NSMutableDictionary(contentsOfFile: path)
-        println("Loaded user.plist file is --> \(resultDictionary?.description)")
-        var myDict = NSDictionary(contentsOfFile: path)
+        print("Loaded user.plist file is --> \(resultDictionary?.description)")
+        let myDict = NSDictionary(contentsOfFile: path)
         if let dict = myDict {
             
           
-            var key = dict.allKeys[0] as! String
+            let key = dict.allKeys[0] as! String
 
             userId =  dict.objectForKey(key) as! String
          
 
             //...
         } else {
-            println("WARNING: Couldn't create dictionary from user.plist! ")
+            print("WARNING: Couldn't create dictionary from user.plist! ")
         }
         return userId
     }
     
     
     class func saveUserId() {
-        var url = FileUtility.getUrlDomain() + "user/add"
+        let url = FileUtility.getUrlDomain() + "user/add"
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             
-            var user = data["data"] as! NSDictionary
-            var userId = user.stringAttributeForKey("id")
+            let user = data["data"] as! NSDictionary
+            let userId = user.stringAttributeForKey("id")
             
             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
             let documentsDirectory = paths.objectAtIndex(0) as! NSString
             let path = documentsDirectory.stringByAppendingPathComponent("user.plist")
-            var dict: NSMutableDictionary = NSMutableDictionary()
+            let dict: NSMutableDictionary = NSMutableDictionary()
             
             
             //saving values
