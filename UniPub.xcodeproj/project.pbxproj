@@ -41,9 +41,9 @@
 		868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 868A305B1A9E972700FC9EF9 /* Main.storyboard */; };
 		868A305F1A9E972700FC9EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868A305E1A9E972700FC9EF9 /* Images.xcassets */; };
 		868A30621A9E972700FC9EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868A30601A9E972700FC9EF9 /* LaunchScreen.xib */; };
-		868F52E91B42F44300B337CA /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 868F52E81B42F44300B337CA /* libFlurry_6.4.0.a */; };
 		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
 		8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */; };
+		869931CF1BB7935B00EF5C9C /* libFlurry_7.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 869931CE1BB7935B00EF5C9C /* libFlurry_7.1.1.a */; settings = {ASSET_TAGS = (); }; };
 		86A2E6481AAC9ECC00499C13 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */; };
 		86D0A4F81AE012A100D86953 /* LikeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A4F61AE012A100D86953 /* LikeViewCell.swift */; };
 		86D0A4F91AE012A100D86953 /* LikeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D0A4F71AE012A100D86953 /* LikeViewCell.xib */; };
@@ -115,8 +115,6 @@
 		73BB89FF1AAF533600CAECB5 /* YRSendComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRSendComment.xib; sourceTree = "<group>"; };
 		73BB8A011AAF53AE00CAECB5 /* YRSendComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YRSendComment.swift; sourceTree = "<group>"; };
 		7E2882FA1B1DEA04003F95EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		861D2E751B39083000A0B3AC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = "../Flurry iPhone SDK viPhone 6.4.0/Flurry-iOS-6.4.0/Flurry/Flurry.h"; sourceTree = "<group>"; };
-		861D2E761B39083000A0B3AC /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryWatch.h; path = "../Flurry iPhone SDK viPhone 6.4.0/Flurry-iOS-6.4.0/Flurry/FlurryWatch.h"; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
 		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
 		868A30501A9E972700FC9EF9 /* UniPub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,9 +125,11 @@
 		868A305E1A9E972700FC9EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		868A30611A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		868A30671A9E972700FC9EF9 /* UniPubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniPubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		868F52E81B42F44300B337CA /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.4.0.a; sourceTree = "<group>"; };
 		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadCell.swift; sourceTree = "<group>"; };
+		869931CC1BB7934E00EF5C9C /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = SOURCE_ROOT; };
+		869931CD1BB7935B00EF5C9C /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryWatch.h; path = Flurry/FlurryWatch.h; sourceTree = SOURCE_ROOT; };
+		869931CE1BB7935B00EF5C9C /* libFlurry_7.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_7.1.1.a; path = Flurry/libFlurry_7.1.1.a; sourceTree = SOURCE_ROOT; };
 		86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		86D0A4F61AE012A100D86953 /* LikeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewCell.swift; sourceTree = "<group>"; };
 		86D0A4F71AE012A100D86953 /* LikeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeViewCell.xib; sourceTree = "<group>"; };
@@ -166,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				868F52E91B42F44300B337CA /* libFlurry_6.4.0.a in Frameworks */,
 				E39DE6DF1B28DAF700744D27 /* Security.framework in Frameworks */,
 				E39DE6E31B28DB1800744D27 /* SystemConfiguration.framework in Frameworks */,
 				E39DE6EB1B28DB5300744D27 /* Social.framework in Frameworks */,
@@ -182,6 +181,7 @@
 				E39DE6D31B28DA6800744D27 /* Bolts.framework in Frameworks */,
 				E39DE6D11B28DA4200744D27 /* Parse.framework in Frameworks */,
 				7E2882FB1B1DEA04003F95EB /* MessageUI.framework in Frameworks */,
+				869931CF1BB7935B00EF5C9C /* libFlurry_7.1.1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,9 +302,9 @@
 		868A30521A9E972700FC9EF9 /* Whoops */ = {
 			isa = PBXGroup;
 			children = (
-				868F52E81B42F44300B337CA /* libFlurry_6.4.0.a */,
-				861D2E761B39083000A0B3AC /* FlurryWatch.h */,
-				861D2E751B39083000A0B3AC /* Flurry.h */,
+				869931CD1BB7935B00EF5C9C /* FlurryWatch.h */,
+				869931CE1BB7935B00EF5C9C /* libFlurry_7.1.1.a */,
+				869931CC1BB7934E00EF5C9C /* Flurry.h */,
 				E3F754E81B2661C3001A9CFE /* image */,
 				239581EA1AA0C1560028188F /* oc */,
 				239A38381A9FF3AC000976E0 /* util */,
@@ -630,6 +630,11 @@
 					viPhone,
 					"6.4.0/Flurry-iOS-6.4.0/Flurry",
 					"$(PROJECT_DIR)/Whoops",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"6.4.0/Flurry-iOS-6.4.0/Flurry",
 				);
 				PRODUCT_NAME = UniPub;
 				PROVISIONING_PROFILE = "";
@@ -657,6 +662,11 @@
 					viPhone,
 					"6.4.0/Flurry-iOS-6.4.0/Flurry",
 					"$(PROJECT_DIR)/Whoops",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"6.4.0/Flurry-iOS-6.4.0/Flurry",
 				);
 				PRODUCT_NAME = UniPub;
 				PROVISIONING_PROFILE = "";
