@@ -270,7 +270,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func btnAuditClicked(){
         let alertView = UIAlertView()
         alertView.title = "Report"
-        alertView.message = "This post violate whoop's regulation!"
+        alertView.message = "This post violate Unipub's regulation!"
         alertView.addButtonWithTitle("No")
         alertView.addButtonWithTitle("Yes")
         alertView.cancelButtonIndex = 0
