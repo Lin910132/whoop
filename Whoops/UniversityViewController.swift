@@ -15,7 +15,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
 
     let identifier = "cell"
     var dataArray = NSMutableArray()
-    var page :Int = 1
+    //var page :Int = 1
     var refreshView:YRRefreshView?
     var currentUniversity = String()
     var schoolId = String()
@@ -35,7 +35,10 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         super.viewDidLoad()
         self.title = currentUniversity
         setupViews()
-        loadData()
+        //for (var i=0; i<UniversityPageObj.PageNum; i++){
+        //    loadData(i+1)
+        //}
+        loadData(UniversityPageObj.PageNum)
     }
 
     func setupViews()
@@ -90,9 +93,9 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         })
     }
     
-    func loadData()
+    func loadData(page: Int)
     {
-        let url = urlString()
+        let url = urlString(page)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -103,10 +106,12 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             }
             
             let arr = data["data"] as! NSArray
-            if self.page == 1 {
+            //if self.page == 1 {
+            //    self.dataArray = NSMutableArray()
+            //}
+            if page == 1 {
                 self.dataArray = NSMutableArray()
             }
-            
             
             for data : AnyObject  in arr
             {
@@ -118,15 +123,15 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         
     }
     
-    func urlString()->String
+    func urlString(page:Int)->String
     {
         return "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=\(page)&uid=\(FileUtility.getUserId())"
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
-        self.page++
-        loadData()
+        UniversityPageObj.Page = UniversityPageObj.Page + 1
+        loadData(UniversityPageObj.PageNum)
     }
     
     override func didReceiveMemoryWarning() {
@@ -144,9 +149,16 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
+        let page = UniversityPageObj.PageNum
+        //for (var i=0; i<UniversityPageObj.PageNum; i++){
+        //    loadData(i+1)
+        //}
         
-        page = 1
-        loadData()
+        for (var i=0; i < page; i++){
+            loadData(i+1)
+        }
+        //let page = 1
+        //loadData(page)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
