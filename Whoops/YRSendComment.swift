@@ -76,8 +76,8 @@ class YRSendComment:UIView , UITextFieldDelegate{
     
     @IBAction func sendBtnClicked(sender:UIButton)
     {
-        let content = commentText.text
-        if content!.isEmpty{
+        let content = commentText.text!
+        if content.isEmpty{
 //            UIView.showAlertView("WARNING",message:"Comment should not be empty")
             return
         }
@@ -85,7 +85,7 @@ class YRSendComment:UIView , UITextFieldDelegate{
         let url = FileUtility.getUrlDomain() + "comment/add?"
         let paraData = "content=\(content)&postId=\(postId)&uid=\(FileUtility.getUserId())"
         
-        var data:NSMutableArray = YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
+        YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
         
         commentText.text = ""
         self.delegate.refreshCommentView(self,didClickButton:sender)
