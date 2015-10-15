@@ -12,10 +12,10 @@ import MessageUI
 
 
 class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshUniversityDelegate {
-
+    
     let identifier = "cell"
     var dataArray = NSMutableArray()
-    //var page :Int = 1
+    var page :Int = 1
     var refreshView:YRRefreshView?
     var currentUniversity = String()
     var schoolId = String()
@@ -25,7 +25,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         
         SchoolObject.schoolId = self.schoolId;
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") 
+        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation")
         
         self.presentViewController(vc, animated: true, completion: nil)
         
@@ -35,12 +35,9 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         super.viewDidLoad()
         self.title = currentUniversity
         setupViews()
-        //for (var i=0; i<UniversityPageObj.PageNum; i++){
-        //    loadData(i+1)
-        //}
-        loadData(UniversityPageObj.PageNum)
+        loadData()
     }
-
+    
     func setupViews()
     {
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
@@ -68,7 +65,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         //page = 1
         let url = "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=1&uid=\(FileUtility.getUserId())"
-
+        
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -93,9 +90,9 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         })
     }
     
-    func loadData(page: Int)
+    func loadData()
     {
-        let url = urlString(page)
+        let url = urlString()
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -106,12 +103,10 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             }
             
             let arr = data["data"] as! NSArray
-            //if self.page == 1 {
-            //    self.dataArray = NSMutableArray()
-            //}
-            if page == 1 {
+            if self.page == 1 {
                 self.dataArray = NSMutableArray()
             }
+            
             
             for data : AnyObject  in arr
             {
@@ -123,22 +118,22 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         
     }
     
-    func urlString(page:Int)->String
+    func urlString()->String
     {
         return "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=\(page)&uid=\(FileUtility.getUserId())"
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
-        UniversityPageObj.Page = UniversityPageObj.Page + 1
-        loadData(UniversityPageObj.PageNum)
+        self.page++
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
@@ -149,26 +144,19 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
-        let page = UniversityPageObj.PageNum
-        //for (var i=0; i<UniversityPageObj.PageNum; i++){
-        //    loadData(i+1)
-        //}
         
-        for (var i=0; i < page; i++){
-            loadData(i+1)
-        }
-        //let page = 1
-        //loadData(page)
+        page = 1
+        loadData()
     }
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -251,7 +239,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
-
     
-
+    
+    
 }
