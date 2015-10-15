@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YRImageZoomingView: UIScrollView,UIScrollViewDelegate {
+class YRImageZoomingView: UIScrollView/*, UIScrollViewDelegate (添加上拉刷新前有的delegate)*/{
 
     
     var imageView:UIImageView?

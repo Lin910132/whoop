@@ -33,7 +33,6 @@
 		73BB89FE1AAF4A1E00CAECB5 /* 108.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BB89FD1AAF4A1E00CAECB5 /* 108.png */; };
 		73BB8A001AAF533600CAECB5 /* YRSendComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BB89FF1AAF533600CAECB5 /* YRSendComment.xib */; };
 		73BB8A021AAF53AE00CAECB5 /* YRSendComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB8A011AAF53AE00CAECB5 /* YRSendComment.swift */; };
-		7E2882FB1B1DEA04003F95EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2882FA1B1DEA04003F95EB /* MessageUI.framework */; };
 		860D538C1BBCCCAD00F16202 /* UniversityPageObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D538B1BBCCCAD00F16202 /* UniversityPageObj.swift */; settings = {ASSET_TAGS = (); }; };
 		86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */; };
 		86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */; };
@@ -49,6 +48,11 @@
 		86D0A4F81AE012A100D86953 /* LikeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A4F61AE012A100D86953 /* LikeViewCell.swift */; };
 		86D0A4F91AE012A100D86953 /* LikeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D0A4F71AE012A100D86953 /* LikeViewCell.xib */; };
 		86D0A4FB1AE019AB00D86953 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */; };
+		86F213E41BD03CA40032EC94 /* ZLSwiftConstDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F213DF1BD03CA40032EC94 /* ZLSwiftConstDefine.swift */; settings = {ASSET_TAGS = (); }; };
+		86F213E51BD03CA40032EC94 /* ZLSwiftFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F213E01BD03CA40032EC94 /* ZLSwiftFootView.swift */; settings = {ASSET_TAGS = (); }; };
+		86F213E61BD03CA40032EC94 /* ZLSwiftHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F213E11BD03CA40032EC94 /* ZLSwiftHeadView.swift */; settings = {ASSET_TAGS = (); }; };
+		86F213E71BD03CA40032EC94 /* ZLSwiftRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86F213E21BD03CA40032EC94 /* ZLSwiftRefresh.bundle */; settings = {ASSET_TAGS = (); }; };
+		86F213E81BD03CA40032EC94 /* ZLSwiftRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F213E31BD03CA40032EC94 /* ZLSwiftRefreshExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		86F32C261B84216D00689CE6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F32C251B84216D00689CE6 /* SettingViewController.swift */; };
 		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 		9B88E2AD1AD6C6FC00B5E051 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */; };
@@ -137,6 +141,11 @@
 		86D0A4F61AE012A100D86953 /* LikeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewCell.swift; sourceTree = "<group>"; };
 		86D0A4F71AE012A100D86953 /* LikeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeViewCell.xib; sourceTree = "<group>"; };
 		86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		86F213DF1BD03CA40032EC94 /* ZLSwiftConstDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwiftConstDefine.swift; sourceTree = "<group>"; };
+		86F213E01BD03CA40032EC94 /* ZLSwiftFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwiftFootView.swift; sourceTree = "<group>"; };
+		86F213E11BD03CA40032EC94 /* ZLSwiftHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwiftHeadView.swift; sourceTree = "<group>"; };
+		86F213E21BD03CA40032EC94 /* ZLSwiftRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLSwiftRefresh.bundle; sourceTree = "<group>"; };
+		86F213E31BD03CA40032EC94 /* ZLSwiftRefreshExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwiftRefreshExtension.swift; sourceTree = "<group>"; };
 		86F32C251B84216D00689CE6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 		9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
@@ -256,6 +265,11 @@
 		239A38381A9FF3AC000976E0 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				86F213DF1BD03CA40032EC94 /* ZLSwiftConstDefine.swift */,
+				86F213E01BD03CA40032EC94 /* ZLSwiftFootView.swift */,
+				86F213E11BD03CA40032EC94 /* ZLSwiftHeadView.swift */,
+				86F213E21BD03CA40032EC94 /* ZLSwiftRefresh.bundle */,
+				86F213E31BD03CA40032EC94 /* ZLSwiftRefreshExtension.swift */,
 				2363F9931AA00913009957D1 /* NSDictionaryExt.swift */,
 				239A38391A9FF414000976E0 /* UIImageViewWebExt.swift */,
 				E34F95521B814A6300EF5E24 /* DKImagePickerController_PhotoChecked@2x.png */,
@@ -431,6 +445,7 @@
 				86D0A4F91AE012A100D86953 /* LikeViewCell.xib in Resources */,
 				73BB89FE1AAF4A1E00CAECB5 /* 108.png in Resources */,
 				2332725C1AA13FAA00B6666E /* YRSendViewCell.xib in Resources */,
+				86F213E71BD03CA40032EC94 /* ZLSwiftRefresh.bundle in Resources */,
 				738AA80C1AABD411008E6649 /* 112.png in Resources */,
 				E34F95541B814A6300EF5E24 /* DKImagePickerController_PhotoChecked@2x.png in Resources */,
 				239A38531A9FFB13000976E0 /* YRRefreshView.xib in Resources */,
@@ -462,6 +477,8 @@
 				E34F95551B814A6300EF5E24 /* DKImagePickerController.swift in Sources */,
 				86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */,
 				E342EB581B90FDBE00B2E534 /* SchoolObject.swift in Sources */,
+				86F213E51BD03CA40032EC94 /* ZLSwiftFootView.swift in Sources */,
+				86F213E41BD03CA40032EC94 /* ZLSwiftConstDefine.swift in Sources */,
 				2363F9981AA00A1E009957D1 /* YRImageViewController.swift in Sources */,
 				239A38401A9FF414000976E0 /* NSStringExt.swift in Sources */,
 				239A38421A9FF414000976E0 /* UIViewExt.swift in Sources */,
@@ -471,6 +488,7 @@
 				9B88E2AD1AD6C6FC00B5E051 /* UIColorExt.swift in Sources */,
 				2363F9941AA00913009957D1 /* NSDictionaryExt.swift in Sources */,
 				86A2E6481AAC9ECC00499C13 /* UniversityViewController.swift in Sources */,
+				86F213E81BD03CA40032EC94 /* ZLSwiftRefreshExtension.swift in Sources */,
 				86D0A4F81AE012A100D86953 /* LikeViewCell.swift in Sources */,
 				860D538C1BBCCCAD00F16202 /* UniversityPageObj.swift in Sources */,
 				E3780B0A1B1FE67500EB662E /* YRJokeCell2.swift in Sources */,
@@ -479,6 +497,7 @@
 				9B88E2B11AD6CAFE00B5E051 /* UIViewControllerExt.swift in Sources */,
 				2363F99C1AA00FBC009957D1 /* YRNewPostViewController.swift in Sources */,
 				73BB8A021AAF53AE00CAECB5 /* YRSendComment.swift in Sources */,
+				86F213E61BD03CA40032EC94 /* ZLSwiftHeadView.swift in Sources */,
 				738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */,
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
 				86F32C261B84216D00689CE6 /* SettingViewController.swift in Sources */,
