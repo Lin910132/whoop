@@ -42,10 +42,16 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
-        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        self.refreshView = arr[0] as? YRRefreshView
-        self.refreshView!.delegate = self
-        self.tableView.tableFooterView = self.refreshView
+        //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+        //self.refreshView = arr[0] as? YRRefreshView
+        //self.refreshView!.delegate = self
+        //self.tableView.tableFooterView = self.refreshView
+        
+        tableView.toLoadMoreAction({ () -> Void in
+            self.page++
+            self.loadData()
+        })
+        
         addRefreshControll()
         
         SchoolObject.result = self.schoolId
@@ -93,7 +99,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     func loadData()
     {
         let url = urlString()
-        self.refreshView!.startLoading()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -113,7 +119,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
         })
         
     }
@@ -145,7 +151,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         
-        page = 1
+        //page = 1
         loadData()
     }
     
