@@ -50,6 +50,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         tableView.toLoadMoreAction({ () -> Void in
             self.page++
             self.loadData()
+            self.tableView.doneRefresh()
         })
         
         addRefreshControll()
@@ -69,10 +70,10 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     
     func actionRefreshHandler(sender: UIRefreshControl)
     {
-        //page = 1
+        self.page = 1
         let url = "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=1&uid=\(FileUtility.getUserId())"
-        
-        self.refreshView!.startLoading()
+        tableView.beginLoadMoreData()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -90,10 +91,11 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+          //  self.refreshView!.stopLoading()
             
             sender.endRefreshing()
         })
+
     }
     
     func loadData()
@@ -113,6 +115,9 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 self.dataArray = NSMutableArray()
             }
             
+            if (arr.count == 0){
+                self.tableView.endLoadMoreData()
+            }
             
             for data : AnyObject  in arr
             {

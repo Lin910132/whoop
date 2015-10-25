@@ -132,6 +132,10 @@ extension UIScrollView: UIScrollViewDelegate {
         let footView:ZLSwiftFootView = self.viewWithTag(ZLSwiftFootViewTag) as! ZLSwiftFootView
         footView.isEndLoadMore = true
     }
+    public func beginLoadMoreData() {
+        let footView:ZLSwiftFootView = self.viewWithTag(ZLSwiftFootViewTag) as! ZLSwiftFootView
+        footView.isEndLoadMore = false
+    }
     
     //MARK: doneRefersh
     //完成刷新

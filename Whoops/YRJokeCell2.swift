@@ -58,6 +58,8 @@ class YRJokeCell2: UITableViewCell
     var likeNum:UILabel!
     var likeButton:UIButton!
     var unlikeButton:UIButton!
+    var favButton:UIButton!
+    var isFaveFlag:Bool=false
     
     var imgList = [UIImageView]()
     override func awakeFromNib() {
@@ -101,12 +103,15 @@ class YRJokeCell2: UITableViewCell
         //fav.backgroundColor = UIColor.redColor();
         var isFavor = data.stringAttributeForKey("isFavor") as String;
         if isFavor == "favor" {
+            isFaveFlag = true
             fav.setImage(UIImage(named:"starB1"), forState: UIControlState.Normal);
         }else{
+            isFaveFlag = false
             fav.setImage(UIImage(named:"star"), forState: UIControlState.Normal);
         }
         fav.addTarget(self, action: "btnFavClick:", forControlEvents: UIControlEvents.TouchUpInside);
-        ivBack.addSubview(fav);
+        self.favButton = fav;
+        ivBack.addSubview(self.favButton);
         
         //设置图片
         var imageStr = data.stringAttributeForKey("image") as NSString;
@@ -402,16 +407,30 @@ class YRJokeCell2: UITableViewCell
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("Warning",message:"Loading Failed!")
                 return
             }
             
-            self.refreshMainDelegate?.refreshMain()
+            //let post = data["data"] as! NSDictionary
+            //let isFavor = post["isFavor"] as! String;
+            
+            
+            //self.refreshMainDelegate?.refreshMain()
             self.refreshCommentDelegate?.refreshCommentByFavor()
             self.refreshUniversityDelete?.refreshUniversityByFavor()
             self.refreshMyRepliesDelegate?.refreshMyRepliesByFavor()
             
+            
         })
+        //let isFavor = self.data.stringAttributeForKey("isFavor") as String
+        if isFaveFlag == true {
+            self.favButton.setImage(UIImage(named:"star"), forState: UIControlState.Normal);
+            isFaveFlag = false
+        }else{
+            self.favButton.setImage(UIImage(named:"starB1"), forState: UIControlState.Normal);
+            isFaveFlag = true
+        }
+        
         
     }
     
@@ -423,7 +442,7 @@ class YRJokeCell2: UITableViewCell
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("Warning",message:"Loading Failed")
                 return
             }
             let result:Int = data["result"] as! Int

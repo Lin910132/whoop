@@ -67,8 +67,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         
-        page = 1
-        loadData(self.type)
+        //page = 1
+        //loadData(self.type)
     }
     
     @IBAction func postButton(sender: AnyObject) {
@@ -137,6 +137,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.view.addSubview(self.tableView!)
         
         self.addRefreshControl()
+        loadData(self.type)
+
     }
     
     
