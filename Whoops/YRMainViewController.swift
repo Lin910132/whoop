@@ -24,7 +24,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     let identifier = "cell"
     //    var tableView:UITableView?
     var dataArray = NSMutableArray()
-    var page :Int = 1
+    var page = [1,1,1,1]
     var refreshView:YRRefreshView?
     let locationManager: CLLocationManager = CLLocationManager()
     
@@ -129,11 +129,19 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.height));
         // self.tableView?.registerClass(YRJokeCell.self,
         //forCellReuseIdentifier: identifier)
+        
+        
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView!.delegate = self
-        
         self.tableView!.tableFooterView = self.refreshView
+        
+        //tableView.toLoadMoreAction({ () -> Void in
+        //    self.page[self.type]++
+        //    self.loadData(self.type)
+        //    self.tableView.doneRefresh()
+        //})
+        
         self.view.addSubview(self.tableView!)
         
         self.addRefreshControl()
@@ -151,7 +159,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func actionRefreshHandler(sender:UIRefreshControl){
-        page = 1
+        page[self.type] = 1
         let url = urlString(self.type)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
@@ -170,7 +178,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.dataArray.addObject(data)
                 
             }
-            self.page++
+            self.page[self.type]++
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
             
@@ -193,10 +201,13 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             let arr = data["data"] as! NSArray
             
-            if self.page == 1 {
+            if self.page[type] == 1 {
                 self.dataArray = NSMutableArray()
             }
             
+            if (arr.count == 0){
+                self.tableView.endLoadMoreData()
+            }
             
             for data : AnyObject  in arr
             {
@@ -217,23 +228,23 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         var url:String = FileUtility.getUrlDomain()
         if(school == 0){
             if type == 0 {
-                url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+                url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page[type])"
             }else if (type == 1){
-                url += "post/listHotByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+                url += "post/listHotByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page[type])"
             }else if (type == 2){
-                url += "favorPost/list?uid=\(FileUtility.getUserId())&pageNum=\(page)"
+                url += "favorPost/list?uid=\(FileUtility.getUserId())&pageNum=\(page[type])"
             }else {
-                url += "post/listHotAll?pageNum=\(page)"
+                url += "post/listHotAll?pageNum=\(page[type])"
             }
         }else{
             if type == 0 {
-                url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page)"
+                url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page[type])"
             }else if (type == 1){
-                url += "post/listHotBySchool?schoolId=\(school)&pageNum=\(page)"
+                url += "post/listHotBySchool?schoolId=\(school)&pageNum=\(page[type])"
             }else if (type == 2){
-                url += "favorPost/list?uid=\(FileUtility.getUserId())&pageNum=\(page)"
+                url += "favorPost/list?uid=\(FileUtility.getUserId())&pageNum=\(page[type])"
             }else {
-                url += "post/listHotAll?pageNum=\(page)"
+                url += "post/listHotAll?pageNum=\(page[type])"
             }
         }
         url += "&uid=\(FileUtility.getUserId())"
@@ -312,7 +323,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
         //refreshView.startLoading()
-        self.page++
+        self.page[self.type]++
         loadData(self.type)
     }
     
@@ -333,7 +344,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         if (location.horizontalAccuracy > 0) {
             lat = location.coordinate.latitude
             lng = location.coordinate.longitude
-            if self.page == 1 {
+            if self.page[self.type] == 1 {
                 loadData(self.type)
             }
             self.locationManager.stopUpdatingLocation()
@@ -362,11 +373,11 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 button.selected = false
             }
         }
-        page = 1
+        //page[self.type] = 1
         self.dataArray = NSMutableArray()
         self.tableView!.reloadData()
         self.type = index - 100
-        loadData(index-100)
+        //loadData(index-100)
     }
     
     

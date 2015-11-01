@@ -97,6 +97,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
+        contentTextView.resignFirstResponder();
+        nickNameText.resignFirstResponder();
         let actionSheet = UIActionSheet()
         //        actionSheet.addButtonWithTitle("取消")
         //        actionSheet.addButtonWithTitle("打开照相机")
