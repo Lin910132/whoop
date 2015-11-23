@@ -42,10 +42,6 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
-        //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        //self.refreshView = arr[0] as? YRRefreshView
-        //self.refreshView!.delegate = self
-        //self.tableView.tableFooterView = self.refreshView
         
         tableView.toLoadMoreAction({ () -> Void in
             self.page++
@@ -73,7 +69,6 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         self.page = 1
         let url = "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=1&uid=\(FileUtility.getUserId())"
         tableView.beginLoadMoreData()
-        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -91,8 +86,6 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 
             }
             self.tableView!.reloadData()
-          //  self.refreshView!.stopLoading()
-            
             sender.endRefreshing()
         })
 
@@ -101,7 +94,6 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     func loadData()
     {
         let url = urlString()
-        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -124,7 +116,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
-            //self.refreshView!.stopLoading()
+
         })
         
     }

@@ -12,7 +12,7 @@ import CoreLocation
 import MessageUI
 //import YRJokeCell2
 
-class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
+class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, /*YRRefreshViewDelegate,*/MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
     
     
     
@@ -52,6 +52,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         userId = FileUtility.getUserId()
         self.topBarview.backgroundColor = UIColor(red:65.0/255.0 , green:137.0/255.0 , blue:210.0/255.0 , alpha: 1.0);
         setupViews()
+        
         // self.hotClick();
         
     }
@@ -86,60 +87,23 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        //self.title = "UniPub";
-        //var titleImgView = UIImageView(frame:CGRectMake(0, 0, 64, 28))
-        //titleImgView.image = UIImage(named: "whook")
-        //self.navigationItem.titleView = titleImgView
-//        var myTabbar :UIView = UIView(frame: CGRectMake(0,64,width,32))
-//        myTabbar.backgroundColor = UIColor(red: 0.164, green: 0.49, blue: 0.83, alpha: 1.0)
-//
-//        
-//        self.view.addSubview(myTabbar)
-//        
-//        var count = itemArray.count
-//        
-//        for var index = 0; index < count; index++
-//        {
-//            var btnWidth = (CGFloat)(index*80)
-//            var button  = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-//            button.frame = CGRectMake(btnWidth, 0,80,32)
-//            button.tag = index+100
-//            var title = itemArray[index]
-//            button.setTitle(title, forState: UIControlState.Normal)
-//            button.setTitleColor(UIColor(red: 1, green: 1, blue: 1, alpha: 0.7), forState: UIControlState.Normal)
-//            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
-//            button.titleLabel?.font = UIFont.systemFontOfSize(14)
-////            button.backgroundColor = UIColor.brownColor()
-//            button.addTarget(self, action: "tabBarButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
-//            myTabbar.addSubview(button)
-//            if index == 0
-//            {
-//                button.selected = true
-//            }
-//        }
-//        
         
         
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         var rect = self.tableView.frame;
-//        rect.size.height = rect.size.height -  49.0 as CGFloat;
-//        self.tableView.frame = rect;
-        //self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.height));
-        // self.tableView?.registerClass(YRJokeCell.self,
-        //forCellReuseIdentifier: identifier)
         
         
-        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        self.refreshView = arr[0] as? YRRefreshView
-        self.refreshView!.delegate = self
-        self.tableView!.tableFooterView = self.refreshView
-        
+        //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+        //self.refreshView = arr[0] as? YRRefreshView
+        //self.refreshView!.delegate = self
+        //self.tableView!.tableFooterView = self.refreshView
+    
         //tableView.toLoadMoreAction({ () -> Void in
         //    self.page[self.type]++
         //    self.loadData(self.type)
-        //    self.tableView.doneRefresh()
+        //    //self.tableView.doneRefresh()
         //})
         
         self.view.addSubview(self.tableView!)
@@ -161,7 +125,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func actionRefreshHandler(sender:UIRefreshControl){
         page[self.type] = 1
         let url = urlString(self.type)
-        self.refreshView!.startLoading()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -180,7 +144,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
             self.page[self.type]++
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
             
             sender.endRefreshing()
         })
@@ -190,7 +154,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func loadData(type:Int)
     {
         let url = urlString(type)
-        self.refreshView!.startLoading()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -205,16 +169,16 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.dataArray = NSMutableArray()
             }
             
-            if (arr.count == 0){
-                self.tableView.endLoadMoreData()
-            }
+            //if (arr.count == 0){
+            //    self.tableView.endLoadMoreData()
+            //}
             
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
             
         })
         
@@ -287,6 +251,10 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         cell!.delegate = self;
         cell!.refreshMainDelegate = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
+        if (indexPath.row == self.dataArray.count-1){
+            self.page[self.type]++
+            loadData(self.type)
+        }
         return cell!
     }
     
@@ -320,12 +288,12 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     
-    func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
-    {
-        //refreshView.startLoading()
-        self.page[self.type]++
-        loadData(self.type)
-    }
+    //func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
+    //{
+    //    //refreshView.startLoading()
+    //    self.page[self.type]++
+    //    loadData(self.type)
+    //}
     
     func imageViewTapped(noti:NSNotification)
     {
@@ -373,28 +341,17 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 button.selected = false
             }
         }
-        //page[self.type] = 1
+        
+        self.page[self.type] = 1
         self.dataArray = NSMutableArray()
         self.tableView!.reloadData()
         self.type = index - 100
-        //loadData(index-100)
+        self.loadData(index-100)
+        //self.setupViews()
+        
+
     }
     
-    
-    //    @IBAction func hotClick(){
-    //        var selectIndex = segmentedControl.selectedSegmentIndex
-    //        if selectIndex == 1{
-    //            self.type = "hot"
-    //            page = 1
-    //            self.dataArray = NSMutableArray()
-    //            loadData("hot")
-    //        }else{
-    //            self.type = "new"
-    //            page = 1
-    //            self.dataArray = NSMutableArray()
-    //            loadData("new")
-    //        }
-    //    }
     
     func ios8()->Bool{
         let version:NSString = UIDevice.currentDevice().systemVersion

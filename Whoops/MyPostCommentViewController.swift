@@ -95,6 +95,12 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
         let index = indexPath.row
         let data = self.dataArray[index] as! NSDictionary
         cell.data = data
+        
+        //if (indexPath.row == dataArray.count - 1){
+        //    self.page++
+        //    loadData()
+        //}
+        
         return cell
     }
     

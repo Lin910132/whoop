@@ -35,10 +35,12 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     {
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
-        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        self.refreshView = arr[0] as? YRRefreshView
-        self.refreshView!.delegate = self
-        self.tableView.tableFooterView = self.refreshView
+        
+        //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+        //self.refreshView = arr[0] as? YRRefreshView
+        //self.refreshView!.delegate = self
+        //self.tableView.tableFooterView = self.refreshView
+        
         addRefreshControll()
     }
     
@@ -52,9 +54,9 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     
     func actionRefreshHandler(sender: UIRefreshControl)
     {
-        //page = 1
+        page = 1
         let url = "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=1"
-        self.refreshView!.startLoading()
+       // self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -72,7 +74,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
                 
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
             
             sender.endRefreshing()
         })
@@ -81,7 +83,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     func loadData()
     {
         let url = urlString()
-        self.refreshView!.startLoading()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -95,14 +97,14 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
             if self.page == 1 {
                 self.dataArray = NSMutableArray()
             }
-            self.page++
+            //self.page++
             
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
             
         })
         
@@ -167,6 +169,12 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
         cell!.delegate = self;
         cell!.refreshMyRepliesDelegate = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
+        
+        if (indexPath.row == dataArray.count-1){
+            page++
+            loadData()
+        }
+        
         return cell!
 
     }

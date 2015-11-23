@@ -63,10 +63,11 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.PostTableView.registerNib(nib, forCellReuseIdentifier: identifier)
-        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        self.refreshView = arr[0] as? YRRefreshView
-        self.refreshView?.delegate = self
-        self.PostTableView.tableFooterView = self.refreshView
+        //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+        //self.refreshView = arr[0] as? YRRefreshView
+        //self.refreshView?.delegate = self
+        //self.PostTableView.tableFooterView = self.refreshView
+        
         self.addRefreshControl()
     }
     
@@ -81,9 +82,9 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func actionRefreshHandler(sender:UIRefreshControl){
         
-        //page = 1
+        page = 1
         let url = "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=1"
-        self.refreshView!.startLoading()
+        //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
@@ -103,7 +104,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 
             }
             self.PostTableView.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
             
             sender.endRefreshing()
         })
@@ -133,7 +134,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.dataArray.addObject(data)
             }
             self.PostTableView.reloadData()
-            self.refreshView!.stopLoading()
+            //self.refreshView!.stopLoading()
         })
     }
     
@@ -170,6 +171,12 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell!.setCellUp()
         cell!.delegate = self;
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
+        
+        if (indexPath.row == dataArray.count-1){
+            page++
+            loadData()
+        }
+        
         return cell!
     }
     
