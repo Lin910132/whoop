@@ -18,6 +18,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     var page:Int = 1
     var refreshView: YRRefreshView?
     var uid = String()
+    var stopLoading:Bool = false
     
     @IBOutlet weak var PostTableView: UITableView!
     
@@ -128,6 +129,11 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.dataArray = NSMutableArray()
             }
             
+            if (arr.count == 0){
+                self.stopLoading = true
+            }else{
+                self.stopLoading = false
+            }
             
             for data : AnyObject  in arr
             {
@@ -172,7 +178,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell!.delegate = self;
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
         
-        if (indexPath.row == dataArray.count-1){
+        if (indexPath.row == dataArray.count-1)&&(!stopLoading){
             page++
             loadData()
         }

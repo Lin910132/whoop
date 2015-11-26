@@ -12,7 +12,7 @@ import CoreLocation
 import MessageUI
 //import YRJokeCell2
 
-class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, /*YRRefreshViewDelegate,*/MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
+class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
     
     
     
@@ -27,7 +27,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     var page = [1,1,1,1]
     var refreshView:YRRefreshView?
     let locationManager: CLLocationManager = CLLocationManager()
-    
+    var stopLoading: Bool = false
     var lat:Double = 0
     var lng:Double = 0
     var school:Int = 0
@@ -68,8 +68,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         
-        //page = 1
-        //loadData(self.type)
+        page[self.type] = 1
+        loadData(self.type)
     }
     
     @IBAction func postButton(sender: AnyObject) {
@@ -169,9 +169,11 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.dataArray = NSMutableArray()
             }
             
-            //if (arr.count == 0){
-            //    self.tableView.endLoadMoreData()
-            //}
+            if (arr.count == 0){
+                self.stopLoading = true
+            }else{
+                self.stopLoading = false
+            }
             
             for data : AnyObject  in arr
             {
@@ -251,7 +253,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         cell!.delegate = self;
         cell!.refreshMainDelegate = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
-        if (indexPath.row == self.dataArray.count-1){
+        if (indexPath.row == self.dataArray.count-1) && (self.stopLoading == false){
             self.page[self.type]++
             loadData(self.type)
         }
@@ -288,12 +290,12 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     
-    //func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
-    //{
-    //    //refreshView.startLoading()
-    //    self.page[self.type]++
-    //    loadData(self.type)
-    //}
+    func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
+    {
+        //refreshView.startLoading()
+        self.page[self.type]++
+        loadData(self.type)
+    }
     
     func imageViewTapped(noti:NSNotification)
     {

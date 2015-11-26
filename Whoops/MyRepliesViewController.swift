@@ -16,7 +16,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     var page :Int = 1
     var refreshView:YRRefreshView?
     var uid = String()
-
+    var stopLoading:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +98,11 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
                 self.dataArray = NSMutableArray()
             }
             //self.page++
+            if (arr.count == 0){
+                self.stopLoading = true
+            }else{
+                self.stopLoading = false
+            }
             
             for data : AnyObject  in arr
             {
@@ -170,7 +175,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
         cell!.refreshMyRepliesDelegate = self
         cell!.backgroundColor = UIColor(red:246.0/255.0 , green:246.0/255.0 , blue:246.0/255.0 , alpha: 1.0);
         
-        if (indexPath.row == dataArray.count-1){
+        if (indexPath.row == dataArray.count-1)&&(!self.stopLoading){
             page++
             loadData()
         }
