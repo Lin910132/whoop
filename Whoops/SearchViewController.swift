@@ -33,6 +33,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
+        
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -87,10 +89,17 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView?.delegate = self
-        //self.addRefreshControl()
+        self.addRefreshControl()
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         print("get location")
@@ -175,9 +184,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func refreshSearchView(){
         
         self.myFavorite.removeAllObjects()
-        //self.nearby.removeAllObjects()
+        self.nearby.removeAllObjects()
         loadDB(myFavoriteUrl, target: myFavorite)
-        //loadDB(nearbyUrl, target: nearby)
+        loadDB(nearbyUrl, target: nearby)
         //self.refreshView!.stopLoading()
         
         

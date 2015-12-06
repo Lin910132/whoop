@@ -12,7 +12,7 @@ import CoreLocation
 
 
 
-class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate,DKImagePickerControllerDelegate{
+class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate,DKImagePickerControllerDelegate{
     
     
     
@@ -92,8 +92,6 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             print("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
         }
     }
-    
-    
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
@@ -288,6 +286,9 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
 
     func addPhotoButtonClick(sender:UITapGestureRecognizer) {
+        contentTextView.resignFirstResponder();
+        nickNameText.resignFirstResponder();
+        
         let actionSheet = UIActionSheet()
         //        actionSheet.addButtonWithTitle("取消")
         //        actionSheet.addButtonWithTitle("打开照相机")
@@ -400,6 +401,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         if self.contentTextView.text.characters.count < 1 {
             self.contentTextView.text = placeHolder
         }
+        
+        textView.resignFirstResponder()
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -410,6 +413,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     func imageViewTapped(sender:UITapGestureRecognizer)
     {
+        contentTextView.resignFirstResponder();
+        nickNameText.resignFirstResponder();
         let i:Int = sender.view!.tag
         let image = self.imgList[i].image
         let window = UIApplication.sharedApplication().keyWindow

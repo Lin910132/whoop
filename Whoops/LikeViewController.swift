@@ -11,6 +11,7 @@ import UIKit
 class LikeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     let identifier = "likeViewCell"
+    var stopLoading: Bool = true
     var _db = NSMutableArray()
     var uid = String()
     var page: Int = 1
@@ -28,6 +29,11 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.page = 1
+        load_Data()
+    }
+    
     func load_Data(){
         let url = FileUtility.getUrlDomain() + "msg/getMsgByUId?uid=\(self.uid)&pageNum=\(self.page)"
         //var url = "http://104.131.91.181:8080/whoops/msg/getMsgByUId?uid=97&pageNum=1"
@@ -41,13 +47,19 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let arr = data["data"] as! NSArray
             
+            if (arr.count == 0){
+                self.stopLoading = true
+            }else{
+                self.stopLoading = false
+            }
+            
             for data : AnyObject  in arr
             {
                 self._db.addObject(data)
             }
             self.likeTableView.reloadData()
             // self.refreshView!.stopLoading()
-            self.page++
+            //self.page++
         })
     }
 
@@ -68,6 +80,11 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
         let index = indexPath.row
         cell?.data = _db[index] as! NSDictionary
+        
+        if (indexPath.row == self._db.count-1) && (self.stopLoading == false){
+            self.page++
+            load_Data()
+        }
         return cell!
     }
     
