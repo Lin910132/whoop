@@ -21,8 +21,13 @@ class LikeViewCell: UITableViewCell {
         // Initialization code
     }
     
-    override func layoutSubviews(){
-        super.layoutSubviews()
+    func setupSubviews(){
+        //super.layoutSubviews()
+        if(self.data.count <= 0)
+        {
+            return ;
+        }
+        
         let content = self.data.stringAttributeForKey("msg")
         let width = self.title.width()
         let height = content.stringHeightWith(17,width:width)

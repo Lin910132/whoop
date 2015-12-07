@@ -21,15 +21,17 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.uid = FileUtility.getUserId()
-        
+        _db.removeAllObjects()
         let nib = UINib(nibName:"LikeViewCell", bundle: nil)
         self.likeTableView.registerNib(nib, forCellReuseIdentifier: identifier)
         
-        load_Data()
+        //load_Data()
         // Do any additional setup after loading the view.
     }
+
     
     override func viewWillAppear(animated: Bool) {
+        _db.removeAllObjects()
         self.page = 1
         load_Data()
     }
@@ -79,8 +81,8 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
         let index = indexPath.row
-        cell?.data = _db[index] as! NSDictionary
-        
+        cell!.data = _db[index] as! NSDictionary
+        cell!.setupSubviews()
         if (indexPath.row == self._db.count-1) && (self.stopLoading == false){
             self.page++
             load_Data()

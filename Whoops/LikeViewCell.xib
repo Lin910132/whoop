@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77c-vx-B04">
-                        <rect key="frame" x="8" y="8" width="227" height="22"/>
+                        <rect key="frame" x="8" y="8" width="227" height="21.5"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,14 +43,17 @@
                     <constraint firstItem="R9M-It-ZkA" firstAttribute="leading" secondItem="gGC-bt-sSz" secondAttribute="trailing" constant="8" id="0I4-O3-BL9"/>
                     <constraint firstItem="R9M-It-ZkA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4Nm-XW-yOl"/>
                     <constraint firstItem="77c-vx-B04" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="BRH-ya-BGp"/>
+                    <constraint firstItem="R9M-It-ZkA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="NE4-q8-aU2"/>
                     <constraint firstItem="R9M-It-ZkA" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Rfd-8f-sPd"/>
                     <constraint firstItem="gGC-bt-sSz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="V3W-5b-89h"/>
                     <constraint firstItem="R9M-It-ZkA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bHg-2B-hwk"/>
+                    <constraint firstItem="77c-vx-B04" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="dcg-Ka-j2x"/>
                     <constraint firstItem="77c-vx-B04" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="hEJ-iw-lnG"/>
                     <constraint firstItem="R9M-It-ZkA" firstAttribute="leading" secondItem="77c-vx-B04" secondAttribute="trailing" constant="8" id="hnP-yL-0Eh"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="hEJ-iw-lnG"/>
                         <exclude reference="Rfd-8f-sPd"/>
                     </mask>
                 </variation>
