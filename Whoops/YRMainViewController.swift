@@ -68,8 +68,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         
-        page[self.type] = 1
-        loadData(self.type)
+        //page[self.type] = 1
+        //loadData(self.type)
     }
     
     @IBAction func postButton(sender: AnyObject) {
