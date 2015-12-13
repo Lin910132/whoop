@@ -504,7 +504,7 @@ class YRJokeCell2: UITableViewCell
         let height:CGFloat = 160; //图片区域的高度
         let offset:CGFloat = 5; //图片偏移区
         var xPositon:CGFloat = 5;
-        let yPosition:CGFloat = 30;
+        let yPosition:CGFloat = 20;
         var width:CGFloat;
         width = (CGFloat)(UIScreen.mainScreen().bounds.width - 20 - 55); //图片区域的宽度
         
@@ -589,7 +589,7 @@ class YRJokeCell2: UITableViewCell
             resut = bottomY + bottomHeight;
         }
         
-        return resut + 20;
+        return resut + 30;
         
     }
     

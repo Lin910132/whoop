@@ -306,7 +306,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             cell.backgroundView = nil
             cell.backgroundColor = UIColor.clearColor()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.likeButton.setImage(UIImage(named: "115"), forState: UIControlState.Normal)
+            cell.likeButton.setImage(UIImage(named: "SearchLike"), forState: UIControlState.Normal)
             return cell
         }
         else
@@ -355,7 +355,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 cell.backgroundColor = UIColor.clearColor()
                 //cell.tailImg.image = UIImage(named: "115")
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell.likeButton.setImage(UIImage(named: "115"), forState: UIControlState.Normal)
+                cell.likeButton.setImage(UIImage(named: "SearchLike"), forState: UIControlState.Normal)
                 return cell
             }
         }

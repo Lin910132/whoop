@@ -38,8 +38,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
-        self.page = 1
-        loadData()
+        //self.page = 1
+        //loadData()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -184,6 +184,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         return cell!
+        
+
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)

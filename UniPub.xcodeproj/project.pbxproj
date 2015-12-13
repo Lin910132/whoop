@@ -36,10 +36,10 @@
 		860D538C1BBCCCAD00F16202 /* UniversityPageObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860D538B1BBCCCAD00F16202 /* UniversityPageObj.swift */; };
 		86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */; };
 		86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */; };
+		8682A3351C1D3B04006ECD52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8682A3341C1D3B04006ECD52 /* Images.xcassets */; };
 		868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30551A9E972700FC9EF9 /* AppDelegate.swift */; };
 		868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30571A9E972700FC9EF9 /* FirstViewController.swift */; };
 		868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 868A305B1A9E972700FC9EF9 /* Main.storyboard */; };
-		868A305F1A9E972700FC9EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868A305E1A9E972700FC9EF9 /* Images.xcassets */; };
 		868A30621A9E972700FC9EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868A30601A9E972700FC9EF9 /* LaunchScreen.xib */; };
 		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
 		8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */; };
@@ -123,12 +123,12 @@
 		860D538B1BBCCCAD00F16202 /* UniversityPageObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityPageObj.swift; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
 		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
+		8682A3341C1D3B04006ECD52 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		868A30501A9E972700FC9EF9 /* UniPub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A30541A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A30551A9E972700FC9EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		868A30571A9E972700FC9EF9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		868A305C1A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		868A305E1A9E972700FC9EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		868A30611A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		868A30671A9E972700FC9EF9 /* UniPubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniPubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -328,8 +328,8 @@
 				868A30551A9E972700FC9EF9 /* AppDelegate.swift */,
 				868A30571A9E972700FC9EF9 /* FirstViewController.swift */,
 				868A305B1A9E972700FC9EF9 /* Main.storyboard */,
-				868A305E1A9E972700FC9EF9 /* Images.xcassets */,
 				73BB89FD1AAF4A1E00CAECB5 /* 108.png */,
+				8682A3341C1D3B04006ECD52 /* Images.xcassets */,
 				868A30601A9E972700FC9EF9 /* LaunchScreen.xib */,
 				868A30531A9E972700FC9EF9 /* Supporting Files */,
 			);
@@ -440,6 +440,7 @@
 				E3780B091B1FE67500EB662E /* YRJokeCell.xib in Resources */,
 				868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */,
 				86D0A4F91AE012A100D86953 /* LikeViewCell.xib in Resources */,
+				8682A3351C1D3B04006ECD52 /* Images.xcassets in Resources */,
 				73BB89FE1AAF4A1E00CAECB5 /* 108.png in Resources */,
 				2332725C1AA13FAA00B6666E /* YRSendViewCell.xib in Resources */,
 				738AA80C1AABD411008E6649 /* 112.png in Resources */,
@@ -448,7 +449,6 @@
 				73BB8A001AAF533600CAECB5 /* YRSendComment.xib in Resources */,
 				73BB084B1AADED0800F8C878 /* user.plist in Resources */,
 				868A30621A9E972700FC9EF9 /* LaunchScreen.xib in Resources */,
-				868A305F1A9E972700FC9EF9 /* Images.xcassets in Resources */,
 				239A384E1A9FFB13000976E0 /* YRCommnentsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

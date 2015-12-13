@@ -17,10 +17,26 @@ class SettingViewController: UITableViewController {
             UIApplication.sharedApplication().openURL(url!)
         }
         else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.facebook.com/whoop.hopkins")!)
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://www.facebook.com/hopkinswhoop/")!)
         }
     }
     
+    @IBAction func WeChatButtonClick(sender: AnyObject) {
+    }
+    
+    @IBAction func InsButtonClick(sender: AnyObject) {
+        
+        let url = NSURL(string: "instagram://user?username=Unipub")
+        if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+        }
+        else {
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://www.instagram.com/unipub/")!)
+        }
+    }
+    
+    @IBAction func WeiBoButtonClick(sender: AnyObject) {
+    }
     
     @IBAction func renrenLink(sender: AnyObject) {
         //if let url = NSURL(string: "http://page.renren.com/602116917") {

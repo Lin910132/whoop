@@ -149,7 +149,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         
         //page = 1
-        loadData()
+        //loadData()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
