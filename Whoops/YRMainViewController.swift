@@ -48,12 +48,43 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 locationManager.requestWhenInUseAuthorization()
             }
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "SendButtonRefresh:",name:"loadMain", object: nil)
+        
         locationManager.startUpdatingLocation()
         userId = FileUtility.getUserId()
         self.topBarview.backgroundColor = UIColor(red:65.0/255.0 , green:137.0/255.0 , blue:210.0/255.0 , alpha: 1.0);
         setupViews()
         
         // self.hotClick();
+        
+    }
+    
+    func SendButtonRefresh(sender:UIRefreshControl){
+        page[self.type] = 1
+        let url = urlString(self.type)
+        //self.refreshView!.startLoading()
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as! NSObject == NSNull()
+            {
+                UIView.showAlertView("Alert",message:"Loading Failed")
+                return
+            }
+            
+            let arr = data["data"] as! NSArray
+            
+            self.dataArray = NSMutableArray()
+            for data : AnyObject  in arr
+            {
+                self.dataArray.addObject(data)
+                
+            }
+            self.page[self.type]++
+            self.tableView!.reloadData()
+            //self.refreshView!.stopLoading()
+
+        })
         
     }
     

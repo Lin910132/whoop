@@ -4,6 +4,8 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>weibo</string>
+		<string>weixin</string>
 		<string>instagram</string>
 		<string>renren</string>
 	</array>

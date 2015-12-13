@@ -127,9 +127,14 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             if imgList.count == 0 {
                 createNewPost()
                 SchoolObject.schoolId = "0";
+                NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("loadMain", object: nil)
+                
             }else{
                 postWithPic()
                 SchoolObject.schoolId = "0";
+                NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("loadMain", object: nil)
             }
         }
         
@@ -501,9 +506,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         if schoolId == "0" {
             paraData += "&latitude=\(latitude)&longitude=\(longitude)"
+            
         }else{
             paraData += "&latitude=\(latitude)&longitude=\(longitude)"
             paraData += "&schoolId=\(schoolId)"
+        
+            
         }
         
         paraData += "&uid=\(FileUtility.getUserId())"
@@ -561,6 +569,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         if schoolId == "0" {
             param["latitude"] = String(self.latitude)
             param["longitude"] = String(self.longitude)
+        
         }else{
             param["latitude"] = String(self.latitude)
             param["longitude"] = String(self.longitude)

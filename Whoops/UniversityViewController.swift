@@ -34,6 +34,8 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = currentUniversity
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "SendButtonRefresh:",name:"load", object: nil)
         setupViews()
         loadData()
     }
@@ -62,6 +64,33 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         fresh.tintColor = UIColor.whiteColor()
         self.tableView.addSubview(fresh)
+    }
+    
+    func SendButtonRefresh(sender: UIRefreshControl)
+    {
+        self.page = 1
+        let url = "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=1&uid=\(FileUtility.getUserId())"
+        tableView.beginLoadMoreData()
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as! NSObject == NSNull()
+            {
+                UIView.showAlertView("Opps",message:"Loading Failed")
+                return
+            }
+            
+            let arr = data["data"] as! NSArray
+            
+            self.dataArray = NSMutableArray()
+            for data : AnyObject  in arr
+            {
+                self.dataArray.addObject(data)
+                
+            }
+            self.tableView!.reloadData()
+
+        })
+        
     }
     
     func actionRefreshHandler(sender: UIRefreshControl)
@@ -147,7 +176,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
-        
+        //self.tableView.re
         //page = 1
         //loadData()
     }

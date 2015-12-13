@@ -22,6 +22,13 @@ class SettingViewController: UITableViewController {
     }
     
     @IBAction func WeChatButtonClick(sender: AnyObject) {
+        let url = NSURL(string: "weixin://weixin.qq.com/r/YkjO1jTEk2nsrXC19x1w")
+        if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+        }
+        else {
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://weixin.qq.com/r/YkjO1jTEk2nsrXC19x1w")!)
+        }
     }
     
     @IBAction func InsButtonClick(sender: AnyObject) {
@@ -36,20 +43,26 @@ class SettingViewController: UITableViewController {
     }
     
     @IBAction func WeiBoButtonClick(sender: AnyObject) {
+        let url = NSURL(string: "weibo://")
+        if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+        }
+        else {
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://www.weibo.com/")!)
+        }
     }
     
     @IBAction func renrenLink(sender: AnyObject) {
         //if let url = NSURL(string: "http://page.renren.com/602116917") {
         //    UIApplication.sharedApplication().openURL(url)
         //}
-        let renrenHooks = "renren://page.renren.com/602116917"
+        let renrenHooks = "renren://profile/602116917"
         let renrenUrl = NSURL(string: renrenHooks)
         if UIApplication.sharedApplication().canOpenURL(renrenUrl!)
         {
             UIApplication.sharedApplication().openURL(renrenUrl!)
             
         } else {
-            //redirect to safari because the user doesn't have Instagram
             UIApplication.sharedApplication().openURL(NSURL(string: "http://page.renren.com/602116917")!)
         }
     }
