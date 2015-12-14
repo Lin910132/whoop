@@ -55,7 +55,8 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     func actionRefreshHandler(sender: UIRefreshControl)
     {
         page = 1
-        let url = "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=1"
+        self.stopLoading = false
+        let url = "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(FileUtility.getUserId())&pageNum=1"
        // self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             

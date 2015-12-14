@@ -24,8 +24,9 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        
         setupViews()
+        loadData()
         //self.title = "Profile"
         //uid = FileUtility.getUserId()
         //self.uid = "1"
@@ -84,15 +85,14 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     func actionRefreshHandler(sender:UIRefreshControl){
         
         page = 1
-        let url = "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=1"
+        self.stopLoading = false
+        let url = "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(FileUtility.getUserId())&pageNum=1"
         //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as! NSObject == NSNull()
             {
-                let myAltert=UIAlertController(title: "Alert", message: "Refresh Failed", preferredStyle: UIAlertControllerStyle.Alert)
-                myAltert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(myAltert, animated: true, completion: nil)
+                UIView.showAlertView("Opps",message:"Loading Failed")
                 return
             }
             
@@ -108,6 +108,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             //self.refreshView!.stopLoading()
             
             sender.endRefreshing()
+            
         })
     }
     
@@ -147,7 +148,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     func urlString() ->String{
         //return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
         self.uid = FileUtility.getUserId()
-        return "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=\(page)"
+        return "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=\(self.page)"
     }
     
     override func didReceiveMemoryWarning() {
