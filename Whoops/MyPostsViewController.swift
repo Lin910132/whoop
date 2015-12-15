@@ -137,8 +137,22 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             for data : AnyObject  in arr
             {
-                self.dataArray.addObject(data)
+                var isExist:Bool = false
+                for item in self.dataArray
+                {
+                    var oldId = data["id"] as! Int
+                    var newId = item["id"] as! Int
+                    if  oldId == newId
+                    {
+                        isExist = true
+                    }
+                }
+                if isExist == false {
+                    self.dataArray.addObject(data)
+                }
+                
             }
+
             self.PostTableView.reloadData()
             //self.refreshView!.stopLoading()
         })

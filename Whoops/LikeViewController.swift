@@ -57,8 +57,22 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             for data : AnyObject  in arr
             {
-                self._db.addObject(data)
+                var isExist:Bool = false
+                for item in self._db
+                {
+                    var oldId = data["id"] as! Int
+                    var newId = item["id"] as! Int
+                    if  oldId == newId
+                    {
+                        isExist = true
+                    }
+                }
+                if isExist == false {
+                    self._db.addObject(data)
+                }
+                
             }
+
             self.likeTableView.reloadData()
             // self.refreshView!.stopLoading()
             //self.page++
