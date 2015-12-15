@@ -62,6 +62,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func SendButtonRefresh(sender:UIRefreshControl){
         page[self.type] = 1
+        self.stopLoading = false
         let url = urlString(self.type)
         //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
@@ -167,6 +168,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func actionRefreshHandler(sender:UIRefreshControl){
         page[self.type] = 1
+        self.stopLoading = false
         let url = urlString(self.type)
         //self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
@@ -373,6 +375,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func tabBarButtonClicked(sender: AnyObject) {
         let index = sender.tag
+        self.stopLoading = false
         
         for var i = 0;i<4;i++
         {
