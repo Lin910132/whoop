@@ -253,7 +253,6 @@
 				86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */,
 				9B88E2AE1AD6C83000B5E051 /* MyUITabBarController.swift */,
 				86D0A4FA1AE019AB00D86953 /* LikeViewController.swift */,
-				86F32C251B84216D00689CE6 /* SettingViewController.swift */,
 				E342EB571B90FDBE00B2E534 /* SchoolObject.swift */,
 				860D538B1BBCCCAD00F16202 /* UniversityPageObj.swift */,
 			);
@@ -274,6 +273,7 @@
 				239A383A1A9FF414000976E0 /* YRHttpRequest.swift */,
 				239A383B1A9FF414000976E0 /* NSStringExt.swift */,
 				239A383C1A9FF414000976E0 /* FileUtility.swift */,
+				86F32C251B84216D00689CE6 /* SettingViewController.swift */,
 				239A383D1A9FF414000976E0 /* UIViewExt.swift */,
 				732E123D1AB3A57C00E7F925 /* NSMutableData.swift */,
 				9B88E2AC1AD6C6FC00B5E051 /* UIColorExt.swift */,
