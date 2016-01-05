@@ -222,13 +222,22 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRJokeCell
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! YRCommnentsCell
+        var cell : YRCommnentsCell? = tableView.dequeueReusableCellWithIdentifier(identifier) as? YRCommnentsCell
+        if cell == nil {
+            cell = YRCommnentsCell(style: .Default, reuseIdentifier: identifier)
+        }
+        
+        //var cell :YRJokeCell2? = tableView.dequeueReusableCellWithIdentifier(identifier) as? YRJokeCell2
+        //if cell == nil{
+        //    cell = YRJokeCell2(style: .Default, reuseIdentifier: identifier)
+        //}
+        
         let index = indexPath.row
         let data = self.dataArray[index] as! NSDictionary
-        cell.data = data
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.backgroundColor = UIColor.whiteColor();
-        return cell
+        cell!.data = data
+        cell!.selectionStyle = UITableViewCellSelectionStyle.None
+        cell!.backgroundColor = UIColor.whiteColor();
+        return cell!
     }
     
     //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
