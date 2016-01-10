@@ -93,7 +93,12 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
+        //let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? LikeViewCell
+        var cell : LikeViewCell? = tableView.dequeueReusableCellWithIdentifier(identifier) as? LikeViewCell
+        if cell == nil{
+            cell = LikeViewCell(style: .Default, reuseIdentifier: identifier)
+        }
+        
         let index = indexPath.row
         cell!.data = _db[index] as! NSDictionary
         cell!.setupSubviews()
@@ -110,6 +115,8 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("postId")
         commentsVC.hidesBottomBarWhenPushed = true
+        
+        likeTableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 import CoreLocation
-
+import AVFoundation
 
 
 class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate,DKImagePickerControllerDelegate{
@@ -171,13 +171,51 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     
-    
+    func RequestCamera(){
+        var backCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        var frontCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
+        for device in availableCameraDevices{
+            
+            if (device.position == .Back){
+                backCameraDevice = device as! AVCaptureDevice
+            }else{
+                if (device.position == .Front){
+                    frontCameraDevice = device as! AVCaptureDevice
+                }
+            }
+        }
+        
+        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch authorizationStatus {
+        case .NotDetermined:
+            // permission dialog not yet presented, request authorization
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
+                completionHandler: { (granted:Bool) -> Void in
+                    if (granted == false) {
+                        print(granted)
+                    }
+                    else {
+                        print(granted)
+                    }
+            })
+        case .Authorized: break
+            // go ahead
+        case .Denied, .Restricted: break
+            // the user explicitly denied camera usage or is not allowed to access the camera devices
+        }
+        
+    }
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         var sourceType = UIImagePickerControllerSourceType.Camera
         if buttonIndex == actionSheet.cancelButtonIndex {
             return
         }else if buttonIndex == 1{
+            
+            RequestCamera()
+            
             sourceType = UIImagePickerControllerSourceType.Camera
             
             let picker = UIImagePickerController()

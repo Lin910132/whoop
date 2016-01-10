@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import MessageUI
+import AVFoundation
 //import YRJokeCell2
 
 class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
@@ -56,7 +57,45 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.topBarview.backgroundColor = UIColor(red:65.0/255.0 , green:137.0/255.0 , blue:210.0/255.0 , alpha: 1.0);
         setupViews()
         
+        RequestCamera()
         // self.hotClick();
+        
+    }
+    
+    func RequestCamera(){
+        var backCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        var frontCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
+        for device in availableCameraDevices{
+            
+            if (device.position == .Back){
+                backCameraDevice = device as! AVCaptureDevice
+            }else{
+                if (device.position == .Front){
+                    frontCameraDevice = device as! AVCaptureDevice
+                }
+            }
+        }
+        
+        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch authorizationStatus {
+        case .NotDetermined:
+            // permission dialog not yet presented, request authorization
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
+                completionHandler: { (granted:Bool) -> Void in
+                    if (granted == false) {
+                        print(granted)
+                    }
+                    else {
+                        print(granted)
+                    }
+            })
+        case .Authorized: break
+            // go ahead
+        case .Denied, .Restricted: break
+            // the user explicitly denied camera usage or is not allowed to access the camera devices
+        }
         
     }
     
@@ -81,8 +120,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -115,6 +154,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //page[self.type] = 1
         //loadData(self.type)
     }
+    
+    
     
     @IBAction func postButton(sender: AnyObject) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
@@ -225,8 +266,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -332,6 +373,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         self.navigationController?.pushViewController(commentsVC, animated: true)
         
         //    self.performSegueWithIdentifier("showComment", sender:data.stringAttributeForKey("id"))
