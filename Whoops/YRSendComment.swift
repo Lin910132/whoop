@@ -47,8 +47,8 @@ class YRSendComment:UIView , UITextFieldDelegate{
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
         
         let comment:String = self.commentText.text!
-        if comment.characters.count > 30 {
-            self.commentText.text = comment.substringToIndex(30)
+        if comment.characters.count > 100 {
+            self.commentText.text = comment.substringToIndex(100)
             return false
         }
         return true
