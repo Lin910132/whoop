@@ -48,7 +48,7 @@ class SearchResultCell: UITableViewCell {
                     
                     if data as! NSObject == NSNull()
                     {
-                        UIView.showAlertView("WARNING",message:"Failed")
+                        UIView.showAlertView("WARNING".localized(), message: "Failed".localized())
                         return
                     }
                     
@@ -74,7 +74,7 @@ class SearchResultCell: UITableViewCell {
                     
                     if data as! NSObject == NSNull()
                     {
-                        UIView.showAlertView("WARNING",message:"Failed")
+                        UIView.showAlertView("WARNING".localized(), message:"Failed".localized())
                         return
                     }
                     

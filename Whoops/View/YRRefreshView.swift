@@ -54,7 +54,7 @@ class YRRefreshView: UIView {
     
     func stopLoading()
     {
-        self.button!.setTitle("Click to load more", forState: .Normal)
+        self.button!.setTitle("Click to load more".localized(), forState: .Normal)
         self.button.backgroundColor = UIColor.clearColor()
         self.indicator!.hidden = true
         self.indicator!.stopAnimating()

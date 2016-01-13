@@ -36,8 +36,6 @@ class YRCommnentsCell: UITableViewCell {
         let width = self.contentLabel.width()
         let height = content.stringHeightWith(17,width:width)
         
-        //Set position of lable. The width is set in YrCommentsCell.xib
-        self.contentLabel.numberOfLines = 0
         self.contentLabel.setHeight(height)
         self.contentLabel.text = content
         
@@ -63,28 +61,29 @@ class YRCommnentsCell: UITableViewCell {
         myalert.addButtonWithTitle("Ready, go!")
         myalert.show()*/
         let id = self.data.stringAttributeForKey("id")
-        var like = self.data.stringAttributeForKey("likeNum")
-
-            let url = FileUtility.getUrlDomain() + "comment/like?id=\(id)&uid=\(FileUtility.getUserId())"
-            YRHttpRequest.requestWithURL(url,completionHandler:{ data in
-                
-                if data as! NSObject == NSNull()
-                {
-                    UIView.showAlertView("提示",message:"加载失败")
-                    return
-                }
-                var result:Int = data["result"] as! Int
-                
-                
-            })
+//        var like = self.data.stringAttributeForKey("likeNum")
+        let url = FileUtility.getUrlDomain() + "comment/like?id=\(id)&uid=\(FileUtility.getUserId())"
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
+            if data as! NSObject == NSNull()
+            {
+                UIView.showAlertView("提示",message:"加载失败")
+                return
+            }
+//            var result:Int = data["result"] as! Int
+            
+            
+        })
+
+        
+        
         
     }
     
     @IBAction func unlikeImageClick(){
         
         let id = self.data.stringAttributeForKey("id")
-        var dislike = self.data.stringAttributeForKey("dislikeNum")
+//        var dislike = self.data.stringAttributeForKey("dislikeNum")
             let url = FileUtility.getUrlDomain() + "comment/unlike?id=\(id)&uid=\(FileUtility.getUserId())"
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
@@ -93,8 +92,8 @@ class YRCommnentsCell: UITableViewCell {
                     UIView.showAlertView("提示",message:"加载失败")
                     return
                 }
-                var result:Int = data["result"] as! Int
-                                
+//                var result:Int = data["result"] as! Int
+                
             })
             
 
@@ -106,8 +105,8 @@ class YRCommnentsCell: UITableViewCell {
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
         let content = data.stringAttributeForKey("content")
-        let height = content.stringHeightWith(17,width:mainWidth-80)
-        return 30.0 + height + 24.0
+        let height = content.stringHeightWith(17,width:mainWidth-60)
+        return 40.0 + height + 24.0
     }
 
     

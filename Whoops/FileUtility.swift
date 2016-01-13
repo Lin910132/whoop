@@ -101,7 +101,7 @@ class FileUtility: NSObject {
             //...
             //writing to user.plist
             dict.writeToFile(path, atomically: false)
-            let resultDictionary = NSMutableDictionary(contentsOfFile: path)
+//            let resultDictionary = NSMutableDictionary(contentsOfFile: path)
           
             
         })

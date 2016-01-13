@@ -33,7 +33,7 @@ class YRSendComment:UIView , UITextFieldDelegate{
         commentText.delegate = self
         
         let width = UIScreen.mainScreen().bounds.width
-        var height = UIScreen.mainScreen().bounds.height
+//        var height = UIScreen.mainScreen().bounds.height
         self.sendButton.frame = CGRectMake(0, width - 10, 30, 30)
         
                
@@ -47,8 +47,8 @@ class YRSendComment:UIView , UITextFieldDelegate{
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
         
         let comment:String = self.commentText.text!
-        if comment.characters.count > 100 {
-            self.commentText.text = comment.substringToIndex(100)
+        if comment.characters.count > 30 {
+            self.commentText.text = comment.substringToIndex(30)
             return false
         }
         return true
@@ -56,8 +56,8 @@ class YRSendComment:UIView , UITextFieldDelegate{
    
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        var width = UIScreen.mainScreen().bounds.width
-        var height = UIScreen.mainScreen().bounds.height
+//        var width = UIScreen.mainScreen().bounds.width
+//        var height = UIScreen.mainScreen().bounds.height
 //        self.frame = CGRectMake(0, height * 0.5 , width, 50)
         return true
     }

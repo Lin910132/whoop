@@ -9,6 +9,7 @@
 import UIKit
 import MessageUI
 
+
 class MyRepliesViewController: UITableViewController,MFMailComposeViewControllerDelegate, YRRefreshViewDelegate,YRJokeCellDelegate,YRRefreshMyRepliesDelegate {
     
     let identifier = "cell"
@@ -62,7 +63,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Opps",message:"Loading Failed")
+                UIView.showAlertView("Opps".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -89,7 +90,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Opps",message:"Loading Failed")
+                UIView.showAlertView("Opps".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -110,8 +111,8 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -153,7 +154,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
-        
+        self.navigationItem.title = "My Replies".localized()
         //self.page = 1
         //loadData()
     }
@@ -204,8 +205,6 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
         let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
     
@@ -242,7 +241,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email".localized(), message: "Your device could not send e-mail.  Please check e-mail configuration and try again.".localized(), delegate: self, cancelButtonTitle: "OK".localized())
         sendMailErrorAlert.show()
     }
     

@@ -8,6 +8,10 @@
 
 import UIKit
 import CoreLocation
+import Localize_Swift
+
+
+
 
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate,YRRefreshSearchViewDelegate, CLLocationManagerDelegate{
     
@@ -33,29 +37,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = true
-        
-        self.resultSearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.searchBar.barTintColor = UIColor(netHex: 0x3593DD)
-            controller.searchBar.tintColor = UIColor.whiteColor()
-            let textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
-            textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
-            //textfield?.backgroundColor = UIColor.blackColor()
-            textfield?.textColor = UIColor.whiteColor()
-            textfield?.tintColor = UIColor.whiteColor()
-            controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.sizeToFit()
-            textfield?.attributedPlaceholder = NSAttributedString(string:"Search your School",
-                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-//            
-//            controller.searchBar.placeholder = "Search your School"
-            self.searchTableView.tableHeaderView = controller.searchBar
-//            self.searchTableView.tableHeaderView?.backgroundColor = UIColor(netHex: 0x3593DD)
-            return controller
-        })()
-        
+        //MARK: I changed
+        self.navigationController?.navigationBarHidden = false
         
         //add background to status bar
         let modalView:UIView = UIView(frame: CGRectMake(0 , 0, self.view.frame.width, UIApplication.sharedApplication().statusBarFrame.height+2))
@@ -94,7 +77,36 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.searchBar.barTintColor = UIColor(netHex: 0x3593DD)
+            controller.searchBar.tintColor = UIColor.whiteColor()
+            let textfield = controller.searchBar.valueForKey("_searchField") as? UITextField
+            textfield?.backgroundColor = UIColor(netHex: 0x2E8BD1)
+            //textfield?.backgroundColor = UIColor.blackColor()
+            textfield?.textColor = UIColor.whiteColor()
+            textfield?.tintColor = UIColor.whiteColor()
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            textfield?.attributedPlaceholder = NSAttributedString(string: "Search your School".localized(),
+                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+            //
+            //            controller.searchBar.placeholder = "Search your School"
+            self.searchTableView.tableHeaderView = controller.searchBar
+            //            self.searchTableView.tableHeaderView?.backgroundColor = UIColor(netHex: 0x3593DD)
+            return controller
+        })()
+
+        
+        self.searchTableView.reloadData()
+        
+//        let titleStr = self.navigationItem.title! as String
+        print(Localize.currentLanguage(), "Explore".localized())
+        self.navigationItem.title = "Explore".localized()
+        self.navigationController?.navigationBarHidden = false
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -207,8 +219,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             if data as! NSObject == NSNull()
             {
-                let myAltert=UIAlertController(title: "Alert", message: "No Network Access", preferredStyle: UIAlertControllerStyle.Alert)
-                myAltert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                let myAltert=UIAlertController(title: "Alert".localized(), message: "No Network Access".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                myAltert.addAction(UIAlertAction(title: "OK".localized(), style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(myAltert, animated: true, completion: nil)
                 return
             }
@@ -268,9 +280,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         else
         {
             switch (section){
-            case 0: headCell.header.text = "My Favorite"
+            case 0: headCell.header.text = "My Favorite".localized()
                 headCell.headImg.image = UIImage(named: "Like")
-            case 1: headCell.header.text = "Nearby"
+            case 1: headCell.header.text = "Near By".localized()
                 headCell.headImg.image = UIImage(named: "Nearby")
             default: headCell.header.text = nil
                 headCell.headImg.image = nil
@@ -307,6 +319,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             cell.backgroundColor = UIColor.clearColor()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.likeButton.setImage(UIImage(named: "SearchLike"), forState: UIControlState.Normal)
+            cell.frontImg.image = UIImage(named: "frontImg")
             return cell
         }
         else
@@ -332,7 +345,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 //}
                 
                 cell.likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
-
+                cell.frontImg.image = UIImage(named: "frontImg")
                 return cell
             }
             
@@ -356,6 +369,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 //cell.tailImg.image = UIImage(named: "115")
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.likeButton.setImage(UIImage(named: "SearchLike"), forState: UIControlState.Normal)
+                cell.frontImg.image = UIImage(named: "frontImg")
                 return cell
             }
         }
@@ -368,7 +382,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         let searchPredicateCn = NSPredicate(format: "(nameCn contains[cd] %@)", searchController.searchBar.text!)
         let searchPredicateEn = NSPredicate(format: "(nameEn contains[cd] %@)", searchController.searchBar.text!)
-        var predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: [searchPredicateCn, searchPredicateEn])
+        let predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: [searchPredicateCn, searchPredicateEn])
         
         let array = _db.filteredArrayUsingPredicate(predicate)
 

@@ -481,7 +481,7 @@ public class DKImagePickerController: UINavigationController {
     }
 
     override public func pushViewController(viewController: UIViewController, animated: Bool) {
-        var wrapperVC = DKContentWrapperViewController(viewController)
+        let wrapperVC = DKContentWrapperViewController(viewController)
         wrapperVC.bottomBarHeight = previewHeight
         
         super.pushViewController(wrapperVC, animated: animated)
