@@ -154,7 +154,7 @@ class MyRepliesViewController: UITableViewController,MFMailComposeViewController
     {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
-        
+        self.navigationItem.title = "My Replies".localized()
         //self.page = 1
         //loadData()
     }
