@@ -10,17 +10,22 @@ import Foundation
 import UIKit
 import CoreLocation
 import MessageUI
-import AVFoundation
+import Localize_Swift
+
+
 //import YRJokeCell2
 
 class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate,MFMailComposeViewControllerDelegate,YRJokeCellDelegate,YRRefreshMainDelegate{
+    @IBOutlet weak var newBtn: UIButton!
+    @IBOutlet weak var favoriteBtn: UIButton!
+    @IBOutlet weak var hotBtn: UIButton!
+    @IBOutlet weak var allTimeHotBtn: UIButton!
     
     
     
     @IBOutlet weak var tableView: UITableView!
-     @IBOutlet weak var topBarview: UIView!
+    @IBOutlet weak var topBarview: UIView!
     //@IBOutlet weak var segmentedControl: UISegmentedControl!
-    
     
     let identifier = "cell"
     //    var tableView:UITableView?
@@ -36,12 +41,11 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var type:Int = 0
     
-    let itemArray = ["New","Hot","Favorite","All time Hot"]
-    
+    let itemArray = ["New","Hot","Favorite","All Time Hot"]
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         if(ios8()){
@@ -57,47 +61,10 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.topBarview.backgroundColor = UIColor(red:65.0/255.0 , green:137.0/255.0 , blue:210.0/255.0 , alpha: 1.0);
         setupViews()
         
-        RequestCamera()
         // self.hotClick();
         
     }
     
-    func RequestCamera(){
-        var backCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        var frontCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
-        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
-        for device in availableCameraDevices{
-            
-            if (device.position == .Back){
-                backCameraDevice = device as! AVCaptureDevice
-            }else{
-                if (device.position == .Front){
-                    frontCameraDevice = device as! AVCaptureDevice
-                }
-            }
-        }
-        
-        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
-        switch authorizationStatus {
-        case .NotDetermined:
-            // permission dialog not yet presented, request authorization
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
-                completionHandler: { (granted:Bool) -> Void in
-                    if (granted == false) {
-                        print(granted)
-                    }
-                    else {
-                        print(granted)
-                    }
-            })
-        case .Authorized: break
-            // go ahead
-        case .Denied, .Restricted: break
-            // the user explicitly denied camera usage or is not allowed to access the camera devices
-        }
-        
-    }
     
     func SendButtonRefresh(sender:UIRefreshControl){
         page[self.type] = 1
@@ -108,7 +75,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Alert",message:"Loading Failed")
+                UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -142,9 +109,16 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewWillDisappear(animated: Bool)
     {
+        self.tableView.reloadData()
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "imageViewTapped", object:nil)
         
+    }
+    override func viewDidAppear(animated: Bool) {
+        self.newBtn.setTitle(itemArray[0].localized(), forState: .Normal)
+        self.hotBtn.setTitle(itemArray[1].localized(), forState: .Normal)
+        self.favoriteBtn.setTitle(itemArray[2].localized(), forState: .Normal)
+        self.allTimeHotBtn.setTitle(itemArray[3].localized(), forState: .Normal)
     }
     override func viewWillAppear(animated: Bool)
     {
@@ -153,22 +127,27 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         //page[self.type] = 1
         //loadData(self.type)
+        
+        //
+        self.newBtn.setTitle(itemArray[0].localized(), forState: .Normal)
+        self.hotBtn.setTitle(itemArray[1].localized(), forState: .Normal)
+        self.favoriteBtn.setTitle(itemArray[2].localized(), forState: .Normal)
+        self.allTimeHotBtn.setTitle(itemArray[3].localized(), forState: .Normal)
+        
     }
     
-    
-    
-    @IBAction func postButton(sender: AnyObject) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") 
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
+//    @IBAction func postButton(sender: AnyObject) {
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+//        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation") 
+//        self.presentViewController(vc, animated: true, completion: nil)
+//    }
     
     
     
     func setupViews()
     {
-        var width = self.view.frame.size.width
-        var height = self.view.frame.size.height
+//        var width = self.view.frame.size.width
+//        var height = self.view.frame.size.height
         //        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
@@ -177,7 +156,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         let nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
-        var rect = self.tableView.frame;
+//        var rect = self.tableView.frame;
         
         
         //var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
@@ -203,7 +182,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         let fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         fresh.tintColor = UIColor.whiteColor()
-        fresh.attributedTitle = NSAttributedString(string: "reloading")
+        fresh.attributedTitle = NSAttributedString(string: "Loading".localized())
         self.tableView?.addSubview(fresh)
     }
     
@@ -216,7 +195,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Alert",message:"Loading Failed")
+                UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -245,7 +224,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Alert",message:"Loading Failed")
+                UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -453,7 +432,6 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.type = index - 100
         self.loadData(index-100)
         //self.setupViews()
-        
 
     }
     
@@ -495,7 +473,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email".localized(), message: "Your device could not send e-mail.  Please check e-mail configuration and try again.".localized(), delegate: self, cancelButtonTitle: "OK".localized())
         sendMailErrorAlert.show()
     }
     

@@ -53,7 +53,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
             let arr = data["data"] as! NSArray
             if arr.count  == 0
             {
-                UIView.showAlertView("Oops",message:"No more Comments T_T")
+                UIView.showAlertView("Alert".localized(), message: "No more Comments T_T".localized())
                 self.tableView!.tableFooterView = nil
             }
             for data : AnyObject  in arr
@@ -61,8 +61,8 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -142,7 +142,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate,
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK".localized())
         sendMailErrorAlert.show()
     }
     

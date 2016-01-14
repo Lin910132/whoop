@@ -7,8 +7,42 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class SettingViewController: UITableViewController {
+    
+    @IBOutlet weak var votingLbl: UILabel!
+    @IBOutlet weak var rightLeftSegControll: UISegmentedControl!
+    @IBOutlet weak var languageLbl: UILabel!
+    @IBOutlet weak var privacyPolicyLbl: UILabel!
+    @IBOutlet weak var rulesInfoLbl: UILabel!
+    @IBOutlet weak var termsOfServiceLbl: UILabel!
+    
+    
+    
+    
+    
+    
+    let segItems = ["Left", "Right"]
+    
+    override func viewWillAppear(animated: Bool) {
+        self.votingLbl.text = "Voting".localized()
+        self.rightLeftSegControll.setTitle("Left".localized(), forSegmentAtIndex: 0)
+        self.rightLeftSegControll.setTitle("Right".localized(), forSegmentAtIndex: 1)
+        self.languageLbl.text = "Language".localized()
+        self.privacyPolicyLbl.text = "Privacy Policy".localized()
+        self.rulesInfoLbl.text = "Rules & Info".localized()
+        self.termsOfServiceLbl.text = "Terms of Service".localized()
+        
+        
+        
+        self.navigationItem.title = "Settings".localized()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.Plain, target: self, action: "goBackBtn")
+    }
+    func goBackBtn(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
 
     @IBAction func facebookLink(sender: AnyObject) {
         //let url = NSURL(string: "http://www.facebook.com/whoop.hopkins")

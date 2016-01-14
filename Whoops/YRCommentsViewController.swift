@@ -29,7 +29,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
-        self.title = "Detail"
+        self.title = "Detail".localized()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +52,9 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationItem.leftBarButtonItem?.title = "Back".localized()
+        self.navigationItem.title = "Detail".localized()
+        self.sendView?.commentText.placeholder = "Write some comments".localized()
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "onKeyboardWillChangeFrame:",
             name: UIKeyboardWillChangeFrameNotification,
@@ -153,7 +156,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("WARNING",message:"Network error!")
+                UIView.showAlertView("WARNING".localized(), message: "Network error!".localized())
                 return
             }
             
@@ -163,8 +166,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -196,13 +199,13 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Alert",message:"Loading Failed")
+                UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                 return
             }
             
             
             
-            var arrHeader =  NSBundle.mainBundle().loadNibNamed("YRJokeCell" ,owner: self, options: nil) as Array
+//            var arrHeader =  NSBundle.mainBundle().loadNibNamed("YRJokeCell" ,owner: self, options: nil) as Array
             
             self.headerView = YRJokeCell2(style: .Default, reuseIdentifier: "cell")
             let post = data["data"] as! NSDictionary
@@ -291,10 +294,10 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func btnAuditClicked(){
         let alertView = UIAlertView()
-        alertView.title = "Report"
-        alertView.message = "This post violate Unipub's regulation!"
-        alertView.addButtonWithTitle("No")
-        alertView.addButtonWithTitle("Yes")
+        alertView.title = "Report".localized()
+        alertView.message = "This post violate Unipub's regulation!".localized()
+        alertView.addButtonWithTitle("No".localized())
+        alertView.addButtonWithTitle("Yes".localized())
         alertView.cancelButtonIndex = 0
         alertView.delegate = self
         alertView.show()
@@ -314,11 +317,11 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 
                 if data as! NSObject == NSNull()
                 {
-                    UIView.showAlertView("Alert",message:"Loading Failed")
+                    UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                     return
                 }
                 
-                UIView.showAlertView("Alert",message:"Report success")
+                UIView.showAlertView("Alert".localized(),message: "Report success".localized())
                 
             })
             

@@ -17,7 +17,7 @@ class YRImageViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
-        self.title = "Photo"
+        self.title = "Photo".localized()
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -38,6 +38,9 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        self.navigationItem.title = "Post".localized()
+        
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageViewTapped:", name: "imageViewTapped", object: nil)
         //self.page = 1
         //loadData()
@@ -119,8 +122,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if data as! NSObject == NSNull()
             {
-                let myAltert=UIAlertController(title: "Alert", message: "Refresh Failed", preferredStyle: UIAlertControllerStyle.Alert)
-                myAltert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                let myAltert=UIAlertController(title: "Alert".localized(), message: "Refresh Failed".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                myAltert.addAction(UIAlertAction(title: "OK".localized(), style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(myAltert, animated: true, completion: nil)
                 return
             }
@@ -141,8 +144,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -256,7 +259,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.".localized(), delegate: self, cancelButtonTitle: "OK".localized())
         sendMailErrorAlert.show()
     }
     

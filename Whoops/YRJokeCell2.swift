@@ -87,11 +87,11 @@ class YRJokeCell2: UITableViewCell
             return ;
         }
         
-        var rec = UIScreen.mainScreen().bounds.width;
+//        var rec = UIScreen.mainScreen().bounds.width;
         
         self.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0);
         //背景图片
-        var ivBack = UIImageView(frame:CGRectMake(10, 7, UIScreen.mainScreen().bounds.width - 20, 187));
+        let ivBack = UIImageView(frame:CGRectMake(10, 7, UIScreen.mainScreen().bounds.width - 20, 187));
         ivBack.backgroundColor = UIColor.whiteColor();
         ivBack.layer.shadowOffset = CGSizeMake(10, 10);
         ivBack.layer.shadowColor = UIColor(red:237.0/255.0 , green:237.0/255.0, blue:237.0/255.0 , alpha: 1.0).CGColor;
@@ -99,9 +99,9 @@ class YRJokeCell2: UITableViewCell
         self.addSubview(ivBack);
         
         //收藏按钮
-        var fav = UIButton(frame:CGRectMake(3, 3, 24, 24));
+        let fav = UIButton(frame:CGRectMake(3, 3, 24, 24));
         //fav.backgroundColor = UIColor.redColor();
-        var isFavor = data.stringAttributeForKey("isFavor") as String;
+        let isFavor = data.stringAttributeForKey("isFavor") as String;
         if isFavor == "favor" {
             isFaveFlag = true
             fav.setImage(UIImage(named:"starB1"), forState: UIControlState.Normal);
@@ -114,12 +114,12 @@ class YRJokeCell2: UITableViewCell
         ivBack.addSubview(self.favButton);
         
         //设置图片
-        var imageStr = data.stringAttributeForKey("image") as NSString;
-        var imgArray = imageStr.componentsSeparatedByString(",") as NSArray;
-        var height:CGFloat = 160; //图片区域的高度
-        var offset:CGFloat = 5; //图片偏移区
-        var xPositon:CGFloat = 5;
-        var yPosition:CGFloat = 30;
+        let imageStr = data.stringAttributeForKey("image") as NSString;
+        let imgArray = imageStr.componentsSeparatedByString(",") as NSArray;
+        let height:CGFloat = 160; //图片区域的高度
+        let offset:CGFloat = 5; //图片偏移区
+        let xPositon:CGFloat = 5;
+        let yPosition:CGFloat = 30;
         var width:CGFloat;
         width = (CGFloat)(ivBack.frame.size.width - 55); //图片区域的宽度
         
@@ -133,24 +133,24 @@ class YRJokeCell2: UITableViewCell
             {
                 //只有一张图片,高度应该小于宽度，以高度为准，靠左显示
                 //var imgView = UIImageView(frame:CGRectMake((width - height)/2, yPosition, height, height));
-                var imgView = UIImageView(frame: CGRectMake(xPositon, yPosition, height, height))
+                let imgView = UIImageView(frame: CGRectMake(xPositon, yPosition, height, height))
                 
                 imgView.userInteractionEnabled = true
-                var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                 imgView.addGestureRecognizer(tap)
                 
                 self.imgList.append(imgView)
                 
                 
                 ivBack.addSubview(imgView);
-                var imgUrl = imgArray.objectAtIndex(0) as! NSString;
+                let imgUrl = imgArray.objectAtIndex(0) as! NSString;
                 if(imgUrl.length <= 0)
                 {
                     imgView.image = UIImage(named: "Logoo.png");
                 }
                 else
                 {
-                    var imagURL = FileUtility.getUrlImage() + (imgUrl as String);
+                    let imagURL = FileUtility.getUrlImage() + (imgUrl as String);
                     imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"));
                 }
                 
@@ -169,12 +169,12 @@ class YRJokeCell2: UITableViewCell
                 {
                     var x:CGFloat;
                     x = xPositon + CGFloat(index * Int(imgWidth + offset));
-                    var imgView = UIImageView(frame:CGRectMake(x, yPosition, imgWidth, imgWidth));
+                    let imgView = UIImageView(frame:CGRectMake(x, yPosition, imgWidth, imgWidth));
                     self.imgList.append(imgView)
                     imgView.userInteractionEnabled = true
-                    var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                    let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                     imgView.addGestureRecognizer(tap)
-                    var imagURL = FileUtility.getUrlImage() + (imgUrl as! String)
+                    let imagURL = FileUtility.getUrlImage() + (imgUrl as! String)
                     imgView.tag = index;
                     imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"))
                     index++;
@@ -196,12 +196,12 @@ class YRJokeCell2: UITableViewCell
                     x = xPositon + CGFloat(index%3 * Int(widthTmp + offset));
                     var y:CGFloat;
                     y = yPosition + CGFloat(index/3 * Int(widthTmp + offset));
-                    var imgView = UIImageView(frame:CGRectMake(x , y, widthTmp, widthTmp));
+                    let imgView = UIImageView(frame:CGRectMake(x , y, widthTmp, widthTmp));
                     self.imgList.append(imgView)
                     imgView.userInteractionEnabled = true
-                    var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+                    let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
                     imgView.addGestureRecognizer(tap)
-                    var imagURL = FileUtility.getUrlImage() + (imgUrl as! String)
+                    let imagURL = FileUtility.getUrlImage() + (imgUrl as! String)
                     imgView.tag = index;
                     imgView.setImage(imagURL,placeHolder: UIImage(named: "Logoo.png"))
                     index++;
@@ -236,14 +236,14 @@ class YRJokeCell2: UITableViewCell
             lbPostion = textYpostion;
         }
         
-        var lableContent = UILabel(frame: CGRectMake(3, lbPostion, ivBack.frame.size.width-6, 1000));
+        let lableContent = UILabel(frame: CGRectMake(3, lbPostion, ivBack.frame.size.width-6, 1000));
         lableContent.numberOfLines = 0;
         lableContent.textColor = UIColor(red:60.0/255.0 , green:60.0/255.0 , blue: 60.0/255.0, alpha: 1.0);
         lableContent.font = UIFont.systemFontOfSize(17);
-        var text = data.stringAttributeForKey("content");
+        let text = data.stringAttributeForKey("content");
         
         lableContent.text = text as String;
-        var size = text.stringHeightWith(17,width:lableContent.frame.size.width) + 20;
+        let size = text.stringHeightWith(17,width:lableContent.frame.size.width) + 20;
         var rect = lableContent.frame as CGRect;
         
         rect.size.height = size+20;
@@ -274,8 +274,8 @@ class YRJokeCell2: UITableViewCell
         ivBack.frame = rectBack;
         
         //喜欢按钮
-        var like = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, ((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
-        var isLike = data.stringAttributeForKey("isLike") as String;
+        let like = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, ((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
+        let isLike = data.stringAttributeForKey("isLike") as String;
         if isLike == "1" {
             like.setImage(UIImage(named:"Likefill"), forState: UIControlState.Normal);
         }else{
@@ -300,7 +300,7 @@ class YRJokeCell2: UITableViewCell
         ivBack.addSubview(likeNum);
         
         //不喜欢
-        var unlike = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, 2*(textYpostion - yPosition)/3+((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
+        let unlike = UIButton(frame:CGRectMake(ivBack.frame.size.width-36, 2*(textYpostion - yPosition)/3+((textYpostion - yPosition)/3 - 34)/2 + yPosition, 34, 34));
         
         if isLike == "-1" {
             unlike.setImage(UIImage(named:"unlikefill"), forState: UIControlState.Normal);
@@ -315,26 +315,26 @@ class YRJokeCell2: UITableViewCell
         
         
         
-        var viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, bottomHeight));
+        let viewBottom = UIView(frame: CGRectMake(0, bottomY, ivBack.frame.size.width, bottomHeight));
         viewBottom.backgroundColor = UIColor(red:244.0/255.0 , green:244.0/255.0 , blue:244.0/255.0 , alpha: 1.0);
         ivBack.addSubview(viewBottom);
         
-        var imgTime = UIImageView(frame: CGRectMake(5, (bottomHeight - 16)/2, 16, 16));
+        let imgTime = UIImageView(frame: CGRectMake(5, (bottomHeight - 16)/2, 16, 16));
         imgTime.image = UIImage(named: "time");
         viewBottom.addSubview(imgTime);
         
-        var createDateLabel = UILabel(frame: CGRectMake(25, (bottomHeight - 16)/2, 50, 16));
+        let createDateLabel = UILabel(frame: CGRectMake(25, (bottomHeight - 16)/2, 50, 16));
         createDateLabel.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         createDateLabel.font = UIFont.systemFontOfSize(13);
         createDateLabel.text = data.stringAttributeForKey("createDateLabel") as String;
         viewBottom.addSubview(createDateLabel);
         
-        var  imgNick = UIImageView(frame: CGRectMake(75, (bottomHeight - 16)/2, 16, 16));
+        let imgNick = UIImageView(frame: CGRectMake(75, (bottomHeight - 16)/2, 16, 16));
         imgNick.image = UIImage(named: "ballonHighlight");
         imgNick.userInteractionEnabled = true;
         viewBottom.addSubview(imgNick);
         
-        var nickName = UILabel(frame: CGRectMake(97, (bottomHeight - 16)/2, ivBack.frame.width - 180, 16));
+        let nickName = UILabel(frame: CGRectMake(97, (bottomHeight - 16)/2, ivBack.frame.width - 180, 16));
         nickName.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         nickName.font = UIFont.systemFontOfSize(13);
         nickName.text = data.stringAttributeForKey("nickName") as String;
@@ -343,23 +343,23 @@ class YRJokeCell2: UITableViewCell
         }
         viewBottom.addSubview(nickName);
         
-        var btnNick = UIButton(frame: CGRectMake(75, (bottomHeight - 16)/2, ivBack.frame.width - 164, 16));
+        let btnNick = UIButton(frame: CGRectMake(75, (bottomHeight - 16)/2, ivBack.frame.width - 164, 16));
         btnNick.backgroundColor = UIColor.clearColor();
         btnNick.addTarget(self, action: "btnNickClick:", forControlEvents: UIControlEvents.TouchUpInside);
         viewBottom.addSubview(btnNick);
         
-        var commentCount = UILabel(frame: CGRectMake(ivBack.frame.width - 80, (bottomHeight - 16)/2, 70, 16));
+        let commentCount = UILabel(frame: CGRectMake(ivBack.frame.width - 80, (bottomHeight - 16)/2, 70, 16));
         commentCount.textColor = UIColor(red:149.0/255.0 , green:149.0/255.0 , blue:149.0/255.0 , alpha: 1.0);
         commentCount.font = UIFont.systemFontOfSize(13);
         commentCount.textAlignment = NSTextAlignment.Center;
         
         var strcommentCount = data.stringAttributeForKey("commentCount") as String
         if strcommentCount == "" || strcommentCount == "0" {
-            strcommentCount = "0 Reply"
+            strcommentCount = "0"+" "+"Reply".localized()
         }else if strcommentCount == "1" {
-            strcommentCount = "1 Reply"
+            strcommentCount = "1"+" "+"Reply".localized()
         }else {
-            strcommentCount = "\(strcommentCount) Replies"
+            strcommentCount = "\(strcommentCount)"+" "+"Replies".localized()
         }
         commentCount.text = "\(strcommentCount) ";
         viewBottom.addSubview(commentCount);
@@ -385,9 +385,9 @@ class YRJokeCell2: UITableViewCell
                     subject = content.substringToIndex(20)
                     subject = subject + "..."
                 }
-                subject = "I'm interest in your post in Whoop, that " + subject
+                subject = "I'm interest in your post in Whoop, that ".localized() + subject
                 
-                let body:String = "Hi, I'm interest in your post in Whoop, that \"" + content + "\""
+                let body:String = "Hi, I'm interest in your post in Whoop, that".localized()+"\"" + content + "\""
                 
                 delegate?.sendEmail(nick as String,
                     strSubject: subject,
@@ -407,7 +407,7 @@ class YRJokeCell2: UITableViewCell
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Warning",message:"Loading Failed!")
+                UIView.showAlertView("WARNING".localized(),message: "Loading Failed".localized())
                 return
             }
             
@@ -442,7 +442,7 @@ class YRJokeCell2: UITableViewCell
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Warning",message:"Loading Failed")
+                UIView.showAlertView("WARNING",message: "Loading Failed".localized())
                 return
             }
             let result:Int = data["result"] as! Int
@@ -503,7 +503,7 @@ class YRJokeCell2: UITableViewCell
         let imgArray = imageStr.componentsSeparatedByString(",") as NSArray;
         let height:CGFloat = 160; //图片区域的高度
         let offset:CGFloat = 5; //图片偏移区
-        var xPositon:CGFloat = 5;
+//        var xPositon:CGFloat = 5;
         let yPosition:CGFloat = 20;
         var width:CGFloat;
         width = (CGFloat)(UIScreen.mainScreen().bounds.width - 20 - 55); //图片区域的宽度
@@ -537,7 +537,7 @@ class YRJokeCell2: UITableViewCell
                 var widthTmp:CGFloat;
                 widthTmp = (CGFloat)(width - 2*offset)/3;
                 var index = 0
-                for imgUrl in imgArray
+                for _ in imgArray
                 {
                     index++;
                 }

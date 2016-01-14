@@ -14,10 +14,10 @@ extension UIImageView
     func setImage(urlString:String,placeHolder:UIImage!)
     {
     
-        var url = NSURL(string:urlString)
-        var cacheFilename = url?.lastPathComponent
-        var cachePath = FileUtility.cachePath(cacheFilename!)
-        var image : AnyObject = FileUtility.imageDataFromPath(cachePath)
+        let url = NSURL(string:urlString)
+        let cacheFilename = url?.lastPathComponent
+        let cachePath = FileUtility.cachePath(cacheFilename!)
+        let image : AnyObject = FileUtility.imageDataFromPath(cachePath)
       //  println(cachePath)
         if image as! NSObject != NSNull()
         {
@@ -25,8 +25,8 @@ extension UIImageView
         }
         else
         {
-            var req = NSURLRequest(URL: url!)
-            var queue = NSOperationQueue();
+            let req = NSURLRequest(URL: url!)
+            let queue = NSOperationQueue();
             NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { response, data, error in
                 if error != nil
                 {
@@ -41,7 +41,7 @@ extension UIImageView
                     dispatch_async(dispatch_get_main_queue(),
                         {
                             
-                            var image = UIImage(data: data!)
+                            let image = UIImage(data: data!)
                             if image == nil
                             {
                                 self.image = placeHolder

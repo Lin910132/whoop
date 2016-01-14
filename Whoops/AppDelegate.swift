@@ -8,13 +8,42 @@
 
 import UIKit
 import Parse
+import Localize_Swift
+
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
+    
+    
+
+
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //MARK: - Getting the Device's language setting.
+        var fstRun: Bool = false
+        if !fstRun{
+            let cuLang = Localize.currentLanguage()
+            switch cuLang{
+            case "en":
+                Localize.setCurrentLanguage(cuLang)
+            case "zh-Hans":
+                Localize.setCurrentLanguage(cuLang)
+            case "zh-Hant":
+                Localize.setCurrentLanguage(cuLang)
+            default:
+                Localize.setCurrentLanguage("en")
+            }
+            fstRun = true
+        }
+        
+        
+        
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = .LightContent
        // UIApplication.sharedApplication().statusBarFrame =
@@ -62,6 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.saveInBackground()
         
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+
+        // Language Setting Part
 
         return true
     }
@@ -116,7 +147,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

@@ -31,6 +31,8 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationItem.title = "Likes".localized()
+        
         _db.removeAllObjects()
         self.page = 1
         load_Data()
@@ -43,7 +45,7 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Alert",message:"Loading Failed")
+                UIView.showAlertView("Alert".localized(), message: "Loading Failed".localized())
                 return
             }
             
@@ -60,8 +62,8 @@ class LikeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var isExist:Bool = false
                 for item in self._db
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true

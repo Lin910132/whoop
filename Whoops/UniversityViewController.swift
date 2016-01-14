@@ -26,9 +26,8 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         SchoolObject.schoolId = self.schoolId;
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("postNavigation")
-        
+        isSchool = true
         self.presentViewController(vc, animated: true, completion: nil)
-        
     }
     
     override func viewDidLoad() {
@@ -75,7 +74,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Opps",message:"Loading Failed")
+                UIView.showAlertView("Opps",message: "Loading Failed".localized())
                 return
             }
             
@@ -104,7 +103,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Opps",message:"Loading Failed")
+                UIView.showAlertView("Opps".localized(),message: "Loading Failed".localized())
                 return
             }
             
@@ -131,7 +130,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
             
             if data as! NSObject == NSNull()
             {
-                UIView.showAlertView("Opps",message:"Loading Failed")
+                UIView.showAlertView("Opps",message: "Loading Failed".localized())
                 return
             }
             
@@ -152,8 +151,8 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
                 var isExist:Bool = false
                 for item in self.dataArray
                 {
-                    var oldId = data["id"] as! Int
-                    var newId = item["id"] as! Int
+                    let oldId = data["id"] as! Int
+                    let newId = item["id"] as! Int
                     if  oldId == newId
                     {
                         isExist = true
@@ -236,8 +235,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
         let commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.navigationItem.title = "Back".localized()        
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
     
@@ -285,7 +283,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate,MFM
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email".localized(), message: "Your device could not send e-mail.  Please check e-mail configuration and try again.".localized(), delegate: self, cancelButtonTitle: "OK".localized())
         sendMailErrorAlert.show()
     }
     

@@ -65,14 +65,15 @@ class YRHttpRequest: NSObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
     
     
-        var reponseError: NSError?
+//        var reponseError: NSError?
         var response: NSURLResponse?
     
         var urlData: NSData?
         do {
             urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
         } catch let error as NSError {
-            reponseError = error
+//            reponseError = error
+            print(error.localizedDescription)
             urlData = nil
         }
     
@@ -86,9 +87,9 @@ class YRHttpRequest: NSObject {
     
                 NSLog("Response ==> %@", responseData);
     
-                var error: NSError?
+//                var error: NSError?
     
-                let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
+//                let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
     
                 
     

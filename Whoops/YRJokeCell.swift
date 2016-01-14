@@ -63,7 +63,7 @@ class YRJokeCell: UITableViewCell {
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        
+//        print("Data: \(self.data)")
         self.nickLabel!.text = self.data.stringAttributeForKey("nickName")
         let content = self.data.stringAttributeForKey("content")
         let width = self.contentLabel?.width()
@@ -162,11 +162,11 @@ class YRJokeCell: UITableViewCell {
         
         var commentCount = self.data.stringAttributeForKey("commentCount") as String
         if commentCount == "" || commentCount == "0" {
-            commentCount = "0 Reply"
+            commentCount = "0"+" "+"Reply".localized()
         }else if commentCount == "1" {
-            commentCount = "1 Reply"
+            commentCount = "1"+" "+"Reply".localized()
         }else {
-            commentCount = "\(commentCount) Replies"
+            commentCount = "\(commentCount)"+" "+"Replies".localized()
         }
         self.commentLabel!.text = "\(commentCount) "
         

@@ -9,8 +9,10 @@
 import UIKit
 import MobileCoreServices
 import CoreLocation
-import AVFoundation
+import Localize_Swift
 
+
+var isSchool: Bool = false
 
 class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate,DKImagePickerControllerDelegate{
     
@@ -48,11 +50,28 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     let MAX_WORD_COUNT = 300
     
     var universityView:UniversityViewController!
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.schoolId = "0"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        self.navigationItem.title = "Post".localized()
+        self.navigationItem.leftBarButtonItem?.title = "Back".localized()
+        self.nickNameText.placeholder = "Email or Phone Number".localized()
+        self.contentTextView.text = placeHolder.localized()
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back".localized(), style: UIBarButtonItemStyle.Plain, target: self, action: "goBackBtn")
+    }
+//    func goBackBtn(){
+////        self.navigationController?.popViewControllerAnimated(true)
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //
         
-        //nickNameText.textColor = UIColor.blackColor()
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
@@ -60,7 +79,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         contentTextView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
-        self.contentTextView.text = placeHolder
+        
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -102,12 +121,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         //        actionSheet.addButtonWithTitle("打开照相机")
         //        actionSheet.addButtonWithTitle("从手机相册选择")
         if imgList.count >= 6 {
-            UIView.showAlertView("Warning",message:"The max count of photos can not be more than 6")
+            UIView.showAlertView("WARNING".localized(), message: "The max count of photos can not be more than 6".localized())
             return
         }
-        actionSheet.addButtonWithTitle("Cancel")
-        actionSheet.addButtonWithTitle("Camera")
-        actionSheet.addButtonWithTitle("Photo Library")
+        actionSheet.addButtonWithTitle("Cancel".localized())
+        actionSheet.addButtonWithTitle("Camera".localized())
+        actionSheet.addButtonWithTitle("Photo Library".localized())
         actionSheet.cancelButtonIndex = 0
         actionSheet.delegate = self
         
@@ -120,8 +139,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func sendButtonClick(sender: AnyObject) {
         let content:String = contentTextView!.text
         
-        if content.characters.count == 0 || content == placeHolder {
-            UIView.showAlertView("Warning",message:"The Content should not be empty")
+        if content.characters.count == 0 || content == placeHolder.localized() {
+            UIView.showAlertView("WARNING".localized(), message: "The Content should not be empty".localized())
             return
         }else{
             if imgList.count == 0 {
@@ -154,68 +173,34 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             //navigationController?.popViewControllerAnimated(true)
             
         }*/
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        if self.schoolId == "0"{
+            let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId")
+            self.presentViewController(vc, animated: true, completion: nil)
+        }else{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func cancelButtonClicked(sender: AnyObject) {
-        //let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        //if self.schoolId == "0"{
-        //    let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as! UIViewController
-        //    self.presentViewController(vc, animated: true, completion: nil)
-        //}else{
-        //    navigationController?.popViewControllerAnimated(true)
-        //}
-        //navigationController?.popViewControllerAnimated(true);
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        if self.schoolId == "0"{
+            let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId")
+            self.presentViewController(vc, animated: true, completion: nil)
+        }else if isSchool{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
-    func RequestCamera(){
-        var backCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        var frontCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
-        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
-        for device in availableCameraDevices{
-            
-            if (device.position == .Back){
-                backCameraDevice = device as! AVCaptureDevice
-            }else{
-                if (device.position == .Front){
-                    frontCameraDevice = device as! AVCaptureDevice
-                }
-            }
-        }
-        
-        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
-        switch authorizationStatus {
-        case .NotDetermined:
-            // permission dialog not yet presented, request authorization
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
-                completionHandler: { (granted:Bool) -> Void in
-                    if (granted == false) {
-                        print(granted)
-                    }
-                    else {
-                        print(granted)
-                    }
-            })
-        case .Authorized: break
-            // go ahead
-        case .Denied, .Restricted: break
-            // the user explicitly denied camera usage or is not allowed to access the camera devices
-        }
-        
-    }
+    
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         var sourceType = UIImagePickerControllerSourceType.Camera
         if buttonIndex == actionSheet.cancelButtonIndex {
             return
         }else if buttonIndex == 1{
-            
-            RequestCamera()
-            
             sourceType = UIImagePickerControllerSourceType.Camera
             
             let picker = UIImagePickerController()
@@ -258,7 +243,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
 //        
      
         
-        for (index, asset) in assets.enumerate() {
+        for (_, asset) in assets.enumerate() {
 
             let imgView = UIImageView(image: asset.fullScreenImage)
             
@@ -337,12 +322,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         //        actionSheet.addButtonWithTitle("打开照相机")
         //        actionSheet.addButtonWithTitle("从手机相册选择")
         if imgList.count >= 6 {
-            UIView.showAlertView("Warning",message:"The max count of photos can not be more than 6")
+            UIView.showAlertView("WARNING".localized(), message: "The max count of photos can not be more than 6".localized())
             return
         }
-        actionSheet.addButtonWithTitle("Cancel")
-        actionSheet.addButtonWithTitle("Camera")
-        actionSheet.addButtonWithTitle("Photo Library")
+        actionSheet.addButtonWithTitle("Cancel".localized())
+        actionSheet.addButtonWithTitle("Caamera".localized())
+        actionSheet.addButtonWithTitle("Photo Library".localized())
         actionSheet.cancelButtonIndex = 0
         actionSheet.delegate = self
         
@@ -442,14 +427,14 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     func textViewDidEndEditing(textView: UITextView) {
         if self.contentTextView.text.characters.count < 1 {
-            self.contentTextView.text = placeHolder
+            self.contentTextView.text = placeHolder.localized()
         }
         
         textView.resignFirstResponder()
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        if self.contentTextView.text == placeHolder{
+        if self.contentTextView.text == placeHolder.localized(){
             self.contentTextView.text = ""
         }
     }
